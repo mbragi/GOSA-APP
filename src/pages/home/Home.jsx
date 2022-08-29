@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import routes from '../../routes';
 import Navigation from '../component/Navigation';
-
+import './home.css';
 
 
 
@@ -13,7 +13,7 @@ import Navigation from '../component/Navigation';
 
 function Home(props) {    
     return (
-        < >
+        <>
         <Navigation />
             <div className='relative overflow-hidden' 
             style={{ minHeight: '100vh', 
@@ -27,7 +27,7 @@ function Home(props) {
                       quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
                       consequat.</p>
                       <div className='text-center'>
-                          <Link to={routes.studentMain}>
+                          <Link to={routes.signin}>
                               <button className="btn bg-lime-500 hover:bg-lime-600 text-white mx-4">Get Started</button>
                           </Link>
                       </div>
