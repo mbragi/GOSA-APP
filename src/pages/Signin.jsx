@@ -12,7 +12,7 @@ function Signin() {
         <div className="flex  justify-center items-center ">
             {/* Header */}
             <div className="max-w-sm mt-10 px-10 m-auto py-10 border-2 border-black border-solid  rounded-xl shadow-lg shadow-black">
-              <h1 className="text-3xl text-slate-800 font-bold mb-6">Welcome back! ✨</h1>
+              <h1 className="text-3xl text-blue-800 font-bold mb-6">SIGN IN ✨</h1>
               {/* Form */}
               <form>
                 <div className="space-y-4">
