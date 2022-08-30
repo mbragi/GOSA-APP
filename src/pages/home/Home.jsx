@@ -13,7 +13,7 @@ import './home.css';
 
 function Home(props) {    
     return (
-        <div style={{ background: 'linear-gradient(90deg, #a5e29c, #1b7b2c)'}}>
+        <div className='min-h-screen' style={{ background: 'linear-gradient(90deg, #a5e29c, #1b7b2c)'}}>
             <Navigation />
             <section className="bg-block" >
                 <div className="flex max-w-screen justify-center content-center items-center px-4 mt-24 ml-24 mr-20">
