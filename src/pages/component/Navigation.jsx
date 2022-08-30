@@ -17,9 +17,9 @@ function Navigation() {
         </div>
         <div className='flex justify-between items-center' style={{ width: '60%' }}>
             <ul className='flex' style={{ width: '60%' }}>
-                <li className='mx-4 cursor-pointer text-white'>Home</li>
-                <Link to='/Gallery'><li className='mx-4 cursor-pointer text-white'>Gallery</li></Link>
-                <li className='mx-4 cursor-pointer text-white'>Contact Us</li>
+                <Link to='/Home'><li className='mx-4  text-white'>Home</li></Link>
+                <Link to='/Gallery'><li className='mx-4  text-white'>Gallery</li></Link>
+                <Link to='/Contact'><li className='mx-4  text-white'>Contact Us</li></Link>
             </ul>
             <div style={{ paddingRight: '5rem' }}>
                 <button onClick={() => setSelected('signin')} className={`btn ${selected === 'signin' && "bg-emerald-800"} hover:bg-emerald-700 text-white mx-4`}>Sign in</button>

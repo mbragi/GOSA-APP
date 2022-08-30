@@ -1,5 +1,5 @@
 export default Object.freeze({
-  home: "/",
+  home: "/home",
   gallery: "/gallery",
   haveAnIdea: "/idea/main",
   haveAnIdea02: "/idea/phase-02",
