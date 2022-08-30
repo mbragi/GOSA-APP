@@ -9,7 +9,7 @@ function Navigation() {
 
   return (
     <div>
-      <nav className='absolute bg-black top-0 left-0 flex justify-between items-center p-4' style={{ zIndex: '20', width: '100vw' }}>
+      <nav className='bg-transparent flex justify-between items-center p-4' style={{ zIndex: '20', width: '100vw' }}>
         <div className='' style={{ paddingLeft: '5rem' }}>
             <h1 className='text-white font-bold text-3xl cursor-pointer'>Gosa Set-013</h1>
             {/*<img className="rounded-full" src={gosa} width="100" height="100"
