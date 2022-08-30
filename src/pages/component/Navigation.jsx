@@ -22,8 +22,8 @@ function Navigation() {
                 <li className='mx-4 cursor-pointer text-white'>Contact Us</li>
             </ul>
             <div style={{ paddingRight: '5rem' }}>
-                <button onClick={() => setSelected('signin')} className={`btn ${selected === 'signin' && "bg-emerald-500"} hover:bg-emerald-600 text-white mx-4`}>Sign in</button>
-                <button onClick={() => setSelected('signup')} className={`btn ${selected === 'signup' && "bg-emerald-500"} hover:bg-emerald-600 text-white`}>Sign up</button>
+                <button onClick={() => setSelected('signin')} className={`btn ${selected === 'signin' && "bg-emerald-800"} hover:bg-emerald-700 text-white mx-4`}>Sign in</button>
+                <button onClick={() => setSelected('signup')} className={`btn ${selected === 'signup' && "bg-emerald-800"} hover:bg-emerald-700 text-white`}>Sign up</button>
             </div>
         </div>
       </nav>
