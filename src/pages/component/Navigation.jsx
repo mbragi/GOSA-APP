@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import routes from '../../routes';
 import gosa from '../../assets/gosa.jpg'
 
@@ -18,7 +18,7 @@ function Navigation() {
         <div className='flex justify-between items-center' style={{ width: '60%' }}>
             <ul className='flex' style={{ width: '60%' }}>
                 <li className='mx-4 cursor-pointer text-white'>Home</li>
-                <li className='mx-4 cursor-pointer text-white'>Gallery</li>
+                <Link to='/Gallery'><li className='mx-4 cursor-pointer text-white'>Gallery</li></Link>
                 <li className='mx-4 cursor-pointer text-white'>Contact Us</li>
             </ul>
             <div style={{ paddingRight: '5rem' }}>
