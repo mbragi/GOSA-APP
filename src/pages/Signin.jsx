@@ -29,13 +29,13 @@ function Signin() {
                   <div className="mr-1">
                     <Link className="text-sm underline hover:no-underline" to="/reset-password">Forgot Password?</Link>
                   </div>
-                  <Link className="btn bg-indigo-500 hover:bg-indigo-600 text-white ml-3" to="/">Sign In</Link>
+                  <Link className="btn bg-emerald-500 hover:bg-emerald-600 text-white ml-3" to="/community/feed">Sign In</Link>
                 </div>
               </form>
               {/* Footer */}
               <div className="pt-5 mt-6 border-t border-slate-200">
                 <div className="text-sm">
-                  Don’t you have an account? <Link className="font-medium text-indigo-500 hover:text-indigo-600" to="/signup">Sign Up</Link>
+                  Don’t you have an account? <Link className="font-medium text-emerald-500 hover:text-emerald-600" to="/signup">Sign Up</Link>
                 </div>
                 {/* Warning */}
                 <div className="mt-5">
