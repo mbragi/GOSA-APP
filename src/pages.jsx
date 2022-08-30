@@ -67,6 +67,7 @@ import AccordionPage from './pages/component/AccordionPage';
 import IconsPage from './pages/component/IconsPage';
 
 import routes from './routes';
+import Gallery from './pages/gallery/Gallery';
 // import Main from './pages/haveAnIdea/main';
 // import Phase02 from './pages/haveAnIdea/Phase02';
 // import Phase03 from './pages/haveAnIdea/Phase03';
@@ -80,6 +81,7 @@ import routes from './routes';
 
 const pages = [
   { path: routes.home, element: <Home /> },
+  { path: routes.gallery, element: <Gallery /> },
   {/*{ path: routes.haveAnIdea, element: <Main /> },
   { path: routes.haveAnIdea02, element: <Phase02 /> },
   { path: routes.haveAnIdea03, element: <Phase03 /> },
