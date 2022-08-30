@@ -6,12 +6,12 @@ import AuthDecoration from '../images/auth-decoration.png';
 
 function Signin() {
   return (
-    <main className="bg-white ">
+    <main className='min-h-screen' style={{ background: 'linear-gradient(30deg, #a5e29c, #242424)'}}>
 
         {/* Content */}
         <div className="flex  justify-center items-center ">
             {/* Header */}
-            <div className="max-w-sm mt-10 px-10 m-auto py-10 border-2 border-black border-solid  rounded-xl shadow-lg shadow-black">
+            <div className="max-w-sm mt-10 px-10 m-auto py-10 border-2 border-black border-solid  rounded-xl shadow-lg shadow-black " style={{ background: 'white'}}>
               <h1 className="text-3xl text-blue-800 font-bold mb-6">SIGN IN ✨</h1>
               {/* Form */}
               <form>
