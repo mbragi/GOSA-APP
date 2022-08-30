@@ -18,7 +18,7 @@ function Home(props) {
                         <h1 className="max-w-2xl pb-4 text-4xl font-extrabold leading-none md:text-5xl xl:text-6xl dark:text-white">GOSA Set 2013 Commnunity</h1>
                         <p className="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">For Light and Truth.</p>
                         <Link to={routes.signin}>
-                            <button className="btn bg-emerald-500 hover:bg-emerald-600 text-white mx-6 ">Get Started</button>
+                            <button className="btn bg-emerald-500 hover:bg-emerald-600 text-white mx-6 cursor-pointer ">Get Started</button>
                         </Link>
                     </div>
                     <div className="flex w-3/4 h-96 px-24 ">
