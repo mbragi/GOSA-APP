@@ -2,9 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import routes from '../../routes';
 import Navigation from '../component/Navigation';
-import './home.css';
-
-
 
 // import Footer from '../component/Footer';
 
@@ -15,7 +12,7 @@ function Home(props) {
     return (
         <div className='min-h-screen' style={{ background: 'linear-gradient(90deg, #a5e29c, #1b7b2c)'}}>
             <Navigation />
-            <section className="bg-block" >
+            <section className="flex bg-block" >
                 <div className="flex max-w-screen justify-center content-center items-center px-4 mt-24 ml-24 mr-20">
                     <div className="mr-auto ml-auto mt-4 place-self-center lg:col-span-7">
                         <h1 className="max-w-2xl mb-4 text-4xl font-extrabold leading-none md:text-5xl xl:text-6xl dark:text-white">GOSA Set 2013 Commnunity</h1>
