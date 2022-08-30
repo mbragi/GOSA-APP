@@ -9,7 +9,7 @@ function Navigation() {
 
   return (
     <div>
-      <nav className='absolute top-0 left-0 flex justify-between items-center p-4' style={{ zIndex: '20', width: '100vw' }}>
+      <nav className='absolute bg-black top-0 left-0 flex justify-between items-center p-4' style={{ zIndex: '20', width: '100vw' }}>
         <div className='' style={{ paddingLeft: '5rem' }}>
             <h1 className='text-white font-bold text-3xl cursor-pointer'>Gosa Set-013</h1>
             {/*<img className="rounded-full" src={gosa} width="100" height="100"
@@ -22,8 +22,8 @@ function Navigation() {
                 <li className='mx-4 cursor-pointer text-white'>Contact Us</li>
             </ul>
             <div style={{ paddingRight: '5rem' }}>
-                <button onClick={() => setSelected('signin')} className={`btn ${selected === 'signin' && "bg-lime-500"} hover:bg-lime-600 text-white mx-4`}>Sign in</button>
-                <button onClick={() => setSelected('signup')} className={`btn ${selected === 'signup' && "bg-lime-500"} hover:bg-lime-600 text-white`}>Sign up</button>
+                <button onClick={() => setSelected('signin')} className={`btn ${selected === 'signin' && "bg-emerald-500"} hover:bg-emerald-600 text-white mx-4`}>Sign in</button>
+                <button onClick={() => setSelected('signup')} className={`btn ${selected === 'signup' && "bg-emerald-500"} hover:bg-emerald-600 text-white`}>Sign up</button>
             </div>
         </div>
       </nav>
