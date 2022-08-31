@@ -24,8 +24,12 @@ function Navigation() {
 
             </ul>
             <div style={{ paddingRight: '5rem' }}>
+              <Link to={routes.signin}>
                 <button onClick={() => setSelected('signin')} className={`btn ${selected === 'signin' && "bg-white text-black"} hover:bg-white hover:text-black text-white mx-4`}>Sign in</button>
+              </Link>
+              <Link to={routes.signup}>
                 <button onClick={() => setSelected('signup')} className={`btn ${selected === 'signup' && "bg-white text-black"} hover:bg-white hover:text-black text-white`}>Sign up</button>
+              </Link>
             </div>
         </div>
       </nav>

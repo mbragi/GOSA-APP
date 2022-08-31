@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 
 import AuthImage from '../images/auth-image.jpg';
 import AuthDecoration from '../images/auth-decoration.png';
+import Navigation from './component/Navigation';
 
 function Signin() {
   return (
-    <main className='min-h-screen' 
-    // style={{ background: 'linear-gradient(30deg, #a5e29c, #242424)'}}
-    >
+    <main className='min-h-screen'>
+      <Navigation />
 
         {/* Content */}
         <div className="flex  justify-center items-center p-4">
@@ -27,11 +27,11 @@ function Signin() {
                     <input id="password" className="form-input w-full" type="password" autoComplete="on" />
                   </div>
                 </div>
-                <div className="flex items-center justify-between mt-6">
+                <div className="mt-6">
+                  <Link style={{ width: '100%'}} className="btn bg-lime-800 text-white hover:bg-lime-900 text-white " to="/community/feed">Sign In</Link>
                   <div className="mr-1">
                     <Link className="text-sm underline hover:no-underline" to="/reset-password">Forgot Password?</Link>
                   </div>
-                  <Link className="btn bg-lime-800 text-white hover:bg-lime-900 text-white ml-3" to="/community/feed">Sign In</Link>
                 </div>
               </form>
               {/* Footer */}
