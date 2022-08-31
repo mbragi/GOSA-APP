@@ -27,7 +27,7 @@ function Signup() {
                 <input id="email" className="form-input w-full" type="email" />
               </div>
               <div>
-                <label className="block text-sm font-medium mb-1" htmlFor="role">Your Role <span className="text-rose-500">*</span></label>
+                <label className="block text-sm font-medium mb-1" htmlFor="role">HOUSE<span className="text-rose-500">*</span></label>
                 <select id="House" className="form-select w-full">
                   <option>Love</option>
                   <option>Peace</option>

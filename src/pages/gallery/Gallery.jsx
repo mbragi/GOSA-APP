@@ -74,6 +74,13 @@ function Gallery() {
             </div>
           </div>
         </div>
+        <footer className=' flex border-t-4 border-solid py-4 justify-center font-bold m-auto'>
+         
+         <p className='flex bg-white rounded-sm shadow-md shadow-black justify-center px-2'>&copy; </p>
+          <h2 className='indent-1 bg-white flex  ml-1 rounded-sm shadow-md shadow-black justify-center px-2'> Gosa set013</h2>
+        
+        
+        </footer>
       </section>
     </>
   );
