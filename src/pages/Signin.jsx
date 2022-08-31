@@ -6,13 +6,15 @@ import AuthDecoration from '../images/auth-decoration.png';
 
 function Signin() {
   return (
-    <main className='min-h-screen' style={{ background: 'linear-gradient(30deg, #a5e29c, #242424)'}}>
+    <main className='min-h-screen' 
+    // style={{ background: 'linear-gradient(30deg, #a5e29c, #242424)'}}
+    >
 
         {/* Content */}
-        <div className="flex  justify-center items-center ">
+        <div className="flex  justify-center items-center p-4">
             {/* Header */}
-            <div className="max-w-sm mt-10 px-10 m-auto py-10 border-2 border-black border-solid  rounded-xl shadow-lg shadow-black " style={{ background: 'white'}}>
-              <h1 className="text-3xl text-blue-800 font-bold mb-6">SIGN IN ✨</h1>
+            <div className="max-w-sm mt-10 px-10 m-auto py-10  rounded-xl shadow-md shadow-black " style={{ background: 'white'}}>
+              <h1 className="text-3xl  font-bold mb-6">SIGN IN ✨</h1>
               {/* Form */}
               <form>
                 <div className="space-y-4">
@@ -29,24 +31,24 @@ function Signin() {
                   <div className="mr-1">
                     <Link className="text-sm underline hover:no-underline" to="/reset-password">Forgot Password?</Link>
                   </div>
-                  <Link className="btn bg-emerald-500 hover:bg-emerald-600 text-white ml-3" to="/community/feed">Sign In</Link>
+                  <Link className="btn bg-lime-800 text-white hover:bg-lime-900 text-white ml-3" to="/community/feed">Sign In</Link>
                 </div>
               </form>
               {/* Footer */}
               <div className="pt-5 mt-6 border-t border-slate-200">
                 <div className="text-sm">
-                  Don’t you have an account? <Link className="font-medium text-emerald-500 hover:text-emerald-600" to="/signup">Sign Up</Link>
+                  Don’t you have an account? <Link className="font-medium text-lime-800 hover:text-lime-900" to="/signup">Sign Up</Link>
                 </div>
                 {/* Warning */}
                 <div className="mt-5">
-                  <div className="bg-amber-100 text-amber-600 px-3 py-2 rounded">
+                  {/* <div className="bg-amber-100 text-amber-600 px-3 py-2 rounded">
                     <svg className="inline w-3 h-3 shrink-0 fill-current mr-2" viewBox="0 0 12 12">
                       <path d="M10.28 1.28L3.989 7.575 1.695 5.28A1 1 0 00.28 6.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28 1.28z" />
                     </svg>
                     <span className="text-sm">
                       To support you during the pandemic super pro features are free until March 31st.
                     </span>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>
