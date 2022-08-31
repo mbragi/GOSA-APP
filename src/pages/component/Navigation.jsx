@@ -13,7 +13,7 @@ function Navigation() {
   return (
     <div>
       <nav className='bg-transparent flex justify-between items-center p-4' style={{ zIndex: '20', width: '100vw' }}>
-        <div className='' style={{ paddingLeft: '5rem' }}>
+        <div className='' >
             <img className="border-solid border-4 rounded-full border-white object-fill" src={logo} width="50" height="50"
             alt="Avatar" />
         </div>
