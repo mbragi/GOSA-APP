@@ -13,7 +13,7 @@ function Signup() {
     <main className='min-h-screen'>
       <Navigation />
       <div className='py-10 flex justify-center p-4'>
-        <div className="max-w-sm py-10  px-10  my-auto  rounded-xl shadow-md shadow-black" style={{ background: 'white' }}>
+        <div className=" py-10  px-20  my-auto  rounded-xl shadow-md shadow-black" style={{ background: 'white' }}>
           <h1 className="text-2xl text-slate-800 font-bold mb-6">Create your Account ✨</h1>
           {/* Form */}
           <form>
@@ -22,21 +22,29 @@ function Signup() {
                 <label className="block text-sm font-medium mb-1" htmlFor="name">Full Name <span className="text-rose-500">*</span></label>
                 <input id="name" className="form-input w-full" type="text" />
               </div>
-              <div>
+              <div>b
                 <label className="block text-sm font-medium mb-1" htmlFor="email">Email Address <span className="text-rose-500">*</span></label>
                 <input id="email" className="form-input w-full" type="email" />
               </div>
               <div>
-                <label className="block text-sm font-medium mb-1" htmlFor="role">HOUSE<span className="text-rose-500">*</span></label>
+                <label className="block text-sm font-medium mb-1" htmlFor="role">House<span className="text-rose-500">*</span></label>
                 <select id="House" className="form-select w-full">
-                  <option>Love</option>
-                  <option>Peace</option>
-                  <option>compassion</option>
+                  
+                  <option>Blue</option>
+                  <option>Green</option>
+                  <option>Grey</option>
+                  <option>Pink</option>
+                  <option>Yellow</option>
+                  <option>White</option>
                 </select>
               </div>
               <div>
                 <label className="block text-sm font-medium mb-1" htmlFor="password">Password</label>
                 <input id="password" className="form-input w-full" type="password" autoComplete="on" />
+              </div>
+              <div>
+                <label className="block text-sm font-medium mb-1" htmlFor="confirm-password">Confirm password</label>
+                <input id="confirm-password" className="form-input w-full" type="password" autoComplete="on" />
               </div>
             </div>
             <div className="mt-6">

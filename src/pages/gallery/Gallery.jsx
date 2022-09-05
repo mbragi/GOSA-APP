@@ -1,12 +1,45 @@
-import React from 'react'
+import axios from 'axios';
+import { Divide } from 'phosphor-react';
+import React, {useState, useEffect} from 'react'
 import Navigation from '../component/Navigation';
 
 function Gallery() {
+  const [users, setUsers] = useState([]);
+  
+  const getUsers = async () => {
+    const response = await fetch('https://unitygate.herokuapp.com/');
+    const users = await response.json();
+    setUsers(users);
+  }
+
+  useEffect(()=> {
+    getUsers();
+  }, [])
+    
+
+
+const year = users.filter(user => user.year === '2013')
+ 
+
+const people = year.map(person => {const {id, name, year, house, occupation, gender, mobile, email, social_media} = person 
+return(
+  <div  className=' border-2 m-2 w-60 h-60 text-center rounded-md bg-indigo-600 ... text-white shadow-md shadow-black hover:bg-sky-500 hover:ring-sky-500' key={person.id}>
+    <div className='flex items-center my-14  justify-center flex-col '>
+      <h1>{name}</h1>
+  <h3>{year}</h3>
+  <h2>{id}</h2>
+  <h2>{gender}</h2>
+  </div>
+  
+  </div>
+)
+})
+
   return (
     <>
       <section className="text-gray-600 body-font flex-wrap w-screen " style={{ background: 'linear-gradient(90deg, #a5e29c, #1b7b2c)'}}>
         <Navigation />
-        <div className="container px-5 py-24 mx-auto ">
+        {/* <div className="container px-5 py-24 mx-auto ">
           <div className="flex flex-col text-center w-full mb-20">
             <h1 className="sm:text-3xl text-6xl font-medium title-font mb-4 text-white">Pictures of our recent events and programs</h1>
             <p className="lg:w-2/3 mx-auto leading-relaxed text-white">Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical gentrify, subway tile poke farm-to-table. Franzen you probably haven't heard of them man bun deep jianbing selfies heirloom.</p>
@@ -73,14 +106,19 @@ function Gallery() {
               </div>
             </div>
           </div>
-        </div>
-        <footer className=' flex border-t-4 border-solid py-4 justify-center font-bold m-auto'>
+        </div> */}
+
+   <div className='flex flex-wrap item-center justify-center'>{people}</div>
+
+
+
+        {/* <footer className=' flex border-t-4 border-solid py-4 justify-center font-bold m-auto'>
          
          <p className='flex bg-white rounded-sm shadow-md shadow-black justify-center px-2'>&copy; </p>
           <h2 className='indent-1 bg-white flex  ml-1 rounded-sm shadow-md shadow-black justify-center px-2'> Gosa set013</h2>
         
         
-        </footer>
+        </footer> */}
       </section>
     </>
   );
