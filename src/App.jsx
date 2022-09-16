@@ -10,7 +10,6 @@ import pages from './pages';
 
 
 function App() {
-
   const location = useLocation();
 
   useEffect(() => {
