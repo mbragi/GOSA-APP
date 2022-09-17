@@ -1,6 +1,9 @@
-import axios from 'axios';
-import { Divide } from 'phosphor-react';
-import React, { useState, useEffect } from 'react'
+
+
+// import axios from 'axios';
+// import { Divide } from 'phosphor-react';
+import { BsSearch } from 'react-icons/Bs';
+import React, { useState, useEffect } from 'react';
 import Navigation from '../component/Navigation';
 
 function Gallery() {
@@ -18,12 +21,13 @@ function Gallery() {
 
 
 
-  const year = users.filter(user => user.year === `${2013}`)
+  const year = users.filter(user => user.year === '2013')
+
 
   const people = year.map(person => {
     const { id, name, year, house, occupation, gender, mobile, email, social_media } = person
     return (
-      <div className=' border-2 m-2 w-60 h-60 text-center rounded-md bg-indigo-600 ... text-white shadow-md shadow-black hover:bg-sky-500 hover:ring-sky-500' key={person.id}>
+      <div className='border-2 m-2 w-60 h-60 text-center rounded-md bg-emerald-900 ... text-white shadow-md shadow-black bg-green-900 ' key={person.id}>
         <div className='flex items-center my-14  justify-center flex-col '>
           <h1>{name}</h1>
           <h3>{year}</h3>
@@ -107,6 +111,15 @@ function Gallery() {
             </div>
           </div>
         </div> */}
+
+        <div className='flex items-center justify-center'>
+          <div className=' flex justify-center item-center border-2 border-solid  rounded-md'>
+            <BsSearch className='self-center ml-2' />
+            <input className='border-none bg-transparent' type="search" placeholder='search' />
+
+          </div>
+        </div>
+
 
         <div className='flex flex-wrap item-center justify-center'>{people}</div>
 
