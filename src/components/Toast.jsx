@@ -54,12 +54,12 @@ function Toast({
     <>
       {open &&
         <div className={className}>
-        <div className={`inline-flex min-w-80 px-4 py-2 rounded-sm text-sm text-white ${typeColor(type)}`}>
+          <div className={`inline-flex min-w-80 px-4 py-2 rounded-sm text-sm text-white ${typeColor(type)}`}>
             <div className="flex w-full justify-between items-start">
               <div className="flex">
                 {typeIcon(type)}
                 <div className="font-medium">
-                {children}
+                  {children}
                 </div>
               </div>
               <button className="opacity-70 hover:opacity-80 ml-3 mt-[3px]" onClick={() => setOpen(false)}>
