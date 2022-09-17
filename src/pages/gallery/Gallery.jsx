@@ -1,43 +1,43 @@
 import axios from 'axios';
 import { Divide } from 'phosphor-react';
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import Navigation from '../component/Navigation';
 
 function Gallery() {
   const [users, setUsers] = useState([]);
-  
+
   const getUsers = async () => {
     const response = await fetch('https://unitygate.herokuapp.com/');
     const users = await response.json();
     setUsers(users);
   }
 
-  useEffect(()=> {
+  useEffect(() => {
     getUsers();
   }, [])
-    
 
 
-const year = users.filter(user => user.year === '2013')
- 
 
-const people = year.map(person => {const {id, name, year, house, occupation, gender, mobile, email, social_media} = person 
-return(
-  <div  className=' border-2 m-2 w-60 h-60 text-center rounded-md bg-indigo-600 ... text-white shadow-md shadow-black hover:bg-sky-500 hover:ring-sky-500' key={person.id}>
-    <div className='flex items-center my-14  justify-center flex-col '>
-      <h1>{name}</h1>
-  <h3>{year}</h3>
-  <h2>{id}</h2>
-  <h2>{gender}</h2>
-  </div>
-  
-  </div>
-)
-})
+  const year = users.filter(user => user.year === `${2013}`)
+
+  const people = year.map(person => {
+    const { id, name, year, house, occupation, gender, mobile, email, social_media } = person
+    return (
+      <div className=' border-2 m-2 w-60 h-60 text-center rounded-md bg-indigo-600 ... text-white shadow-md shadow-black hover:bg-sky-500 hover:ring-sky-500' key={person.id}>
+        <div className='flex items-center my-14  justify-center flex-col '>
+          <h1>{name}</h1>
+          <h3>{year}</h3>
+          <h2>{id}</h2>
+          <h2>{gender}</h2>
+        </div>
+
+      </div>
+    )
+  })
 
   return (
     <>
-      <section className="text-gray-600 body-font flex-wrap w-screen " style={{ background: 'linear-gradient(90deg, #a5e29c, #1b7b2c)'}}>
+      <section className="text-gray-600 body-font flex-wrap w-screen " style={{ background: 'linear-gradient(90deg, #a5e29c, #1b7b2c)' }}>
         <Navigation />
         {/* <div className="container px-5 py-24 mx-auto ">
           <div className="flex flex-col text-center w-full mb-20">
@@ -108,7 +108,7 @@ return(
           </div>
         </div> */}
 
-   <div className='flex flex-wrap item-center justify-center'>{people}</div>
+        <div className='flex flex-wrap item-center justify-center'>{people}</div>
 
 
 

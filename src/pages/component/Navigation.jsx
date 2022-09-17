@@ -9,7 +9,6 @@ import { List } from 'phosphor-react';
 
 function Navigation() {
   const [selected, setSelected] = useState('signup');
-
   return (
     <div>
       <nav className='bg-transparent flex justify-between items-center p-4' style={{ zIndex: '20', width: '100%' }}>

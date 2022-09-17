@@ -1,11 +1,12 @@
 import React from 'react';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import routes from '../routes';
 import Navigation from './component/Navigation';
 import Toast from '../components/Toast';
 
-const URL = import.meta.env.VITE_GOSA_API
+// const URL = import.meta.env.VITE_GOSA_API
+const URL2 = import.meta.env.VITE_API_URL
 // import AuthImage from '../images/auth-image.jpg';
 // import AuthDecoration from '../images/auth-decoration.png';
 
@@ -13,8 +14,10 @@ const URL = import.meta.env.VITE_GOSA_API
 
 function Signup() {
   const [data, setData] = useState({})
-  const [resData, setResData] = useState({})
+  const [data2, setData2] = useState({})
+  const [message, setMessage] = useState('')
   const [openToast, setOpenToast] = useState(false)
+  const navigate = useNavigate()
   const [type, setType] = useState('')
   const signUpData = (e) => {
     const { name, value } = e.target
@@ -25,8 +28,7 @@ function Signup() {
   async function httpSignupMember(e) {
     e.preventDefault()
     let request = { ...data }
-    // console.log(request)
-    const response = await fetch(`${URL}/register`, {
+    const response = await fetch(`${URL2}/register`, {
       method: 'post',
       headers: {
         "content-type": "application/json"
@@ -35,10 +37,22 @@ function Signup() {
     })
     const allData = await response.json()
       .catch(err => { console.log(err.message) })
-    setType('success')
+    const type = allData.type
+    const message = allData.message
+    setType(`${type}`)
     setOpenToast(true)
-    setResData(allData)
-    console.log(allData)
+    setData2(allData)
+    setMessage(message)
+    if (type === 'error') {
+      return console.log('errr')
+    } else if (type === "warning") {
+      return console.log('warning')
+    } else {
+      console.log('success')
+      setTimeout(() => {
+        navigate('/')
+      }, 1500)
+    }
   }
 
   return (
@@ -50,7 +64,7 @@ function Signup() {
             <h1 className="text-2xl text-slate-800 font-bold mb-6">Create your Account ✨</h1>
             {/* Form */}
             <Toast open={openToast} type={type} setOpen={setOpenToast}>
-              <p>{resData.message}</p>
+              <p>{message}</p>
             </Toast>
             <form onSubmit={httpSignupMember}>
               <div className="space-y-4">
