@@ -16,11 +16,7 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-flatpickr": "^3.10.7",
-<<<<<<< Updated upstream
-    "react-redux": "^8.0.2",
-=======
     "react-icons": "^4.4.0",
->>>>>>> Stashed changes
     "react-router-dom": "^6.2.1",
     "react-toastify": "^9.0.8",
     "react-transition-group": "^4.4.1",
