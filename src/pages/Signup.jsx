@@ -14,7 +14,6 @@ const URL2 = import.meta.env.VITE_API_URL
 
 function Signup() {
   const [data, setData] = useState({})
-  const [data2, setData2] = useState({})
   const [message, setMessage] = useState('')
   const [openToast, setOpenToast] = useState(false)
   const navigate = useNavigate()
