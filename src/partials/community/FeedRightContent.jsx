@@ -37,7 +37,7 @@ function FeedRightContent() {
 
           {/* Blocks */}
           <div className="space-y-4">
-            
+
             {/* Block 1 */}
             <div className="bg-slate-50 p-4 rounded border border-slate-200">
               <div className="text-xs font-semibold text-slate-400 uppercase mb-4">Top Communities</div>
@@ -109,7 +109,7 @@ function FeedRightContent() {
                 <button className="btn-sm w-full bg-white border-slate-200 hover:border-slate-300 text-indigo-500 shadow-none">View All</button>
               </div>
             </div>
-            
+
             {/* Block 2 */}
             <div className="bg-slate-50 p-4 rounded border border-slate-200">
               <div className="text-xs font-semibold text-slate-400 uppercase mb-4">Who to follow</div>
@@ -179,7 +179,7 @@ function FeedRightContent() {
                 <button className="btn-sm w-full bg-white border-slate-200 hover:border-slate-300 text-indigo-500 shadow-none">View All</button>
               </div>
             </div>
-            
+
             {/* Block 3 */}
             <div className="bg-slate-50 p-4 rounded border border-slate-200">
               <div className="text-xs font-semibold text-slate-400 uppercase mb-4">Trends for you</div>

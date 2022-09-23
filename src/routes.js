@@ -2,7 +2,8 @@ export default Object.freeze({
   home: "/",
   contact: '/contact',
   gallery: "/gallery",
-  
+  feed: '/feed',
+
   haveAnIdea: "/idea/main",
   haveAnIdea02: "/idea/phase-02",
   haveAnIdea03: "/idea/phase-03",
