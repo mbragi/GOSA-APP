@@ -1,15 +1,19 @@
 import React from 'react';
-import axios from 'axios';
-import { Link } from 'react-router-dom';
-
+import { Link, useNavigate } from 'react-router-dom';
+import Toast from '../components/Toast';
 import Navigation from './component/Navigation';
+import routes from '../routes';
+
+// const URL2 = import.meta.env.VITE_API_URL
 
 function Signin() {
-  const URL2 = import.meta.env.VITE_API_URL
   const [data, setData] = React.useState({})
   const [data2, setData2] = React.useState({})
   const [message, setMessage] = React.useState('')
   const [type, setType] = React.useState('')
+  const navigate = useNavigate()
+
+  const [openToast, setOpenToast] = React.useState(false)
 
   async function onInputChange(event) {
     const { name, value } = event.target
@@ -30,18 +34,38 @@ function Signin() {
       body: request
     })
     const resData = await res.json()
+      .catch(err => { console.log(err.message) })
     console.log(resData)
+    const type = resData.type
+    const message = resData.message
+    setType(type)
+    setOpenToast(true)
+    setMessage(message)
+    setData2(resData)
+    if (type === 'error') {
+      return console.log(err.message)
+    } else if (type === "warning") {
+      return console.log(err.message)
+    } else {
+      console.log('success')
+      setTimeout(() => {
+        navigate(`${routes.feed}`)
+      }, 1000)
+    }
   }
   return (
     <main className='min-h-screen'>
       <Navigation />
-
       {/* Content */}
       <div className="flex  justify-center items-center p-4">
         {/* Header */}
         <div className="max-w-sm mt-10 px-10 m-auto py-10  rounded-xl shadow-md shadow-black " style={{ background: 'white' }}>
           <h1 className="text-3xl  font-bold mb-6">SIGN IN ✨</h1>
           {/* Form */}
+          <Toast open={openToast} type={type} setOpen=
+            {setOpenToast}>
+            <p>{message}</p>
+          </Toast>
           <form onSubmit={httpLoginUser}>
             <div className="space-y-4">
               <div>
@@ -54,7 +78,7 @@ function Signin() {
               </div>
             </div>
             <div className="mt-6">
-              <button style={{ width: '100%' }} className="btn bg-lime-800 text-white hover:bg-lime-900 text-white type=" type='submit'>Sign In</button>
+              <button style={{ width: '100%' }} className="btn bg-lime-800 text-white hover:bg-lime-900 text-white type=" type='submit'>Sign In </button>
               <div className="mr-1">
                 <Link className="text-sm underline hover:no-underline" to="/reset-password">Forgot Password?</Link>
               </div>

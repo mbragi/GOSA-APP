@@ -6,7 +6,7 @@ import Navigation from './component/Navigation';
 import Toast from '../components/Toast';
 
 // const URL = import.meta.env.VITE_GOSA_API
-const URL2 = import.meta.env.VITE_API_URL
+// const URL = ""
 // import AuthImage from '../images/auth-image.jpg';
 // import AuthDecoration from '../images/auth-decoration.png';
 
@@ -14,6 +14,7 @@ const URL2 = import.meta.env.VITE_API_URL
 
 function Signup() {
   const [data, setData] = useState({})
+  const [data2, setData2] = useState({})
   const [message, setMessage] = useState('')
   const [openToast, setOpenToast] = useState(false)
   const navigate = useNavigate()
@@ -26,8 +27,10 @@ function Signup() {
   }
   async function httpSignupMember(e) {
     e.preventDefault()
+    console.log(data)
+
     let request = { ...data }
-    const response = await fetch(`${URL2}/register`, {
+    const response = await fetch(`https://rocky-scrubland-70378.herokuapp.com/register`, {
       method: 'post',
       headers: {
         "content-type": "application/json"
@@ -43,13 +46,14 @@ function Signup() {
     setData2(allData)
     setMessage(message)
     if (type === 'error') {
-      return console.log('errr')
+      return console.log(err.message)
     } else if (type === "warning") {
-      return console.log('warning')
+      return console.log(err.message)
+      // alert(err.message)
     } else {
       console.log('success')
       setTimeout(() => {
-        navigate('/')
+        navigate(`${routes.feed}`)
       }, 1500)
     }
   }
