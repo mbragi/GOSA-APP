@@ -61,47 +61,36 @@ function Signup() {
   return (
     <>
       <Navigation />
-      <main style={{ width: '100%', }} >
-        <div className='py-10 flex justify-center p-4'>
-          <div className=" py-10  px-20  my-auto  rounded-xl shadow-md shadow-black" style={{ background: 'white' }}>
-            <h1 className="text-2xl text-slate-800 font-bold mb-6">Create your Account ✨</h1>
-            {/* Form */}
-            <Toast open={openToast} type={type} setOpen={setOpenToast}>
-              <p>{message}</p>
-            </Toast>
-            <form onSubmit={httpSignupMember}>
-              <div className="space-y-4">
-                <div>
-                  <label className="block text-sm font-medium mb-1" htmlFor="name">Full Name <span className="text-rose-500">*</span></label>
-                  <input id="name" name='fullName' onChange={signUpData} className="form-input w-full" type="text" />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium mb-1" htmlFor="email">Email Address <span className="text-rose-500">*</span></label>
-                  <input id="email" name='email' onChange={signUpData} className="form-input w-full" type="email" />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium mb-1" htmlFor="role">House<span className="text-rose-500">*</span></label>
-                  <select id="House" className="form-select w-full" onChange={signUpData}>
-                    <option value="Blue">Blue</option>
-                    <option value="Green">Green</option>
-                    <option value="Grey">Grey</option>
-                    <option value="Pink">Pink</option>
-                    <option value="Yellow">Yellow</option>
-                    <option value="White">White</option>
-                  </select>
-                </div>
-                <div>
-                  <label className="block text-sm font-medium mb-1" htmlFor="password">Password</label>
-                  <input id="password" name='password' onChange={signUpData} className="form-input w-full" type="password" autoComplete="on" />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium mb-1" htmlFor="confirm-password">Confirm password</label>
-                  <input id="confirmPassword" name='confirmPassword' onChange={signUpData} className="form-input w-full" type="password" autoComplete="on" />
-                </div>
+      <div className='py-10 flex justify-center p-4'>
+        <div className=" py-10  px-20  my-auto  rounded-xl shadow-md shadow-black" style={{ background: 'white' }}>
+          <h1 className="text-2xl text-slate-800 font-bold mb-6">Create your Account ✨</h1>
+          {/* Form */}
+          <form>
+            <div className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium mb-1" htmlFor="name">Full Name <span className="text-rose-500">*</span></label>
+                <input id="name" className="form-input w-full" type="text" />
+              </div>
+              <div>
+                <label className="block text-sm font-medium mb-1" htmlFor="email">Email Address <span className="text-rose-500">*</span></label>
+                <input id="email" className="form-input w-full" type="email" />
+              </div>
+              <div>
+                <label className="block text-sm font-medium mb-1" htmlFor="role">House<span className="text-rose-500">*</span></label>
+                <select id="House" className="form-select w-full">
+                  
+                  <option>Blue</option>
+                  <option>Green</option>
+                  <option>Grey</option>
+                  <option>Pink</option>
+                  <option>Yellow</option>
+                  <option>White</option>
+                </select>
               </div>
               <div className="mt-6">
 
                 <button style={{ width: '100%' }} className="btn bg-lime-800 hover:bg-lime-900 text-white whitespace-nowrap" type='submit'>Sign Up</button>
+              </div>
               </div>
             </form>
             {/* Footer */}
@@ -112,7 +101,6 @@ function Signup() {
             </div>
           </div>
         </div>
-      </main>
     </>
   );
 }
