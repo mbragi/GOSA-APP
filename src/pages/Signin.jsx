@@ -24,7 +24,7 @@ function Signin() {
   }
   async function httpLoginUser(e) {
     e.preventDefault()
-    console.log(data)
+    console.log(data)``
     let request = JSON.stringify(data)
     const res = await fetch(`https://rocky-scrubland-70378.herokuapp.com/login`, {
       method: 'post',

@@ -14,7 +14,7 @@ import { Image, Microphone, VideoCamera } from 'phosphor-react';
 
 function Feed() {
  const [text, setText] = useState({})
- const [data, setData] = useState([])
+ const [feeds, setFeeds] = useState([])
  const [loading, setLoading] = useState(false)
  useEffect(() => {
   setLoading(true)
@@ -22,8 +22,8 @@ function Feed() {
    const res = await fetch('http://localhost:8000/feeds')
    const feed = await res.json()
    console.log(feed)
-   const data = feed.alldata
-   setData(data)
+   const data = feed.allFeeds
+   setFeeds(data)
    setLoading(false)
   }
   fetchData()
@@ -37,11 +37,9 @@ function Feed() {
   setText(textData)
   console.log(textData)
  }
-
  async function httpCreateFeed(e) {
   e.preventDefault()
  }
-
  return (
   <div className="flex h-screen overflow-hidden">
    {/* Sidebar */}
@@ -96,7 +94,7 @@ function Feed() {
               type="text"
               placeholder="What's happening..."
               name='textDescription'
-              onChange={setData}
+              onChange={sendData}
              />
             </div>
            </div>
@@ -126,15 +124,18 @@ function Feed() {
            </div>
           </form>
 
-          {/* Posts */}
-          {loading ? <h1 className=''>loading...</h1> :
-           console.log(data)
-           // data.map((post, idx) => {
-           // return (
-           // <Post key={idx} post={post} />
-           // )
-           // })
-          }
+          <div className='w-full flex-column ' style={{ overflowY: 'no-scroll', height: '100%' }}>
+           {loading ? <h1 className='font-bold text-3xl text-center text-black-800'>loading...</h1> :
+            feeds.map((feed, idx) => {
+             // console.log(feed)
+             return (
+              <div className='m-2 ' >
+               < Post key={idx} post={feed} />
+              </div>
+             )
+            })
+           }
+          </div>
 
          </div>
 

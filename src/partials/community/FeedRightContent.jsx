@@ -11,33 +11,31 @@ import UserImage05 from '../../images/user-32-05.jpg';
 
 function FeedRightContent() {
   return (
-    <div className="w-full hidden xl:block xl:w-72">
-      <div className="lg:sticky lg:top-16 lg:h-[calc(100vh-64px)] lg:overflow-x-hidden lg:overflow-y-auto no-scrollbar">
-        <div className="md:py-8">
-
-          {/* Search form */}
-          <div className="mb-6">
-            <form className="relative">
-              <label htmlFor="feed-search-desktop" className="sr-only">
-                Search
-              </label>
-              <input id="feed-search-desktop" className="form-input w-full pl-9 focus:border-slate-300" type="search" placeholder="Search…" />
-              <button className="absolute inset-0 right-auto group" type="submit" aria-label="Search">
-                <svg
-                  className="w-4 h-4 shrink-0 fill-current text-slate-400 group-hover:text-slate-500 ml-3 mr-2"
-                  viewBox="0 0 16 16"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path d="M7 14c-3.86 0-7-3.14-7-7s3.14-7 7-7 7 3.14 7 7-3.14 7-7 7zM7 2C4.243 2 2 4.243 2 7s2.243 5 5 5 5-2.243 5-5-2.243-5-5-5z" />
-                  <path d="M15.707 14.293L13.314 11.9a8.019 8.019 0 01-1.414 1.414l2.393 2.393a.997.997 0 001.414 0 .999.999 0 000-1.414z" />
-                </svg>
-              </button>
-            </form>
-          </div>
-
+    <div className="w-full hidden xl:block xl:w-72 relative">
+      <div className="md:py-8 " >
+        {/* Search form */}
+        <div className="mb-6 absolute w-full" >
+          <form className="">
+            <label htmlFor="feed-search-desktop" className="sr-only">
+              Search
+            </label>
+            <input id="feed-search-desktop" className="form-input w-full pl-9 focus:border-slate-300" type="search" placeholder="Search…" />
+            <button className="absolute inset-0 right-auto group" type="submit"
+              aria-label="Search">
+              <svg
+                className="w-4 h-4 shrink-0 fill-current text-slate-400 group-hover:text-slate-500 ml-3 mr-2"
+                viewBox="0 0 16 16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M7 14c-3.86 0-7-3.14-7-7s3.14-7 7-7 7 3.14 7 7-3.14 7-7 7zM7 2C4.243 2 2 4.243 2 7s2.243 5 5 5 5-2.243 5-5-2.243-5-5-5z" />
+                <path d="M15.707 14.293L13.314 11.9a8.019 8.019 0 01-1.414 1.414l2.393 2.393a.997.997 0 001.414 0 .999.999 0 000-1.414z" />
+              </svg>
+            </button>
+          </form>
+        </div>
+        <div className="lg:sticky lg:top-36 lg:h-[calc(100vh-64px)] lg:overflow-x-hidden lg:overflow-y-auto no-scrollbar">
           {/* Blocks */}
-          <div className="space-y-4">
-
+          <div className="space-y-4 flex-column mt-10">
             {/* Block 1 */}
             <div className="bg-slate-50 p-4 rounded border border-slate-200">
               <div className="text-xs font-semibold text-slate-400 uppercase mb-4">Top Communities</div>

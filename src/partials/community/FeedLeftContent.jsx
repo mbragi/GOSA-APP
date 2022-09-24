@@ -41,33 +41,33 @@ function FeedLeftContent({ props }) {
               <ul className="flex flex-nowrap md:block mr-3 md:mr-0">
                 <li className="mr-0.5 md:mr-0 md:mb-0.5">
                   <a className="flex items-center px-2.5 py-2 rounded whitespace-nowrap bg-white" href="#0">
-                    <Article size={32} color="#587604" weight="bold" />
+                    <Article size={32} color="#254928" weight="bold" />
                     <span className="text-sm font-medium text-indigo-500">Feed</span>
                   </a>
                 </li>
                 <li className="mr-0.5 md:mr-0 md:mb-0.5">
                   <a className="flex items-center px-2.5 py-2 rounded whitespace-nowrap" href="/">
-                    <House size={32} color="#587604" weight="bold" />
-                    <span className="text-sm font-medium text-slate-600">Home</span>
+                    <House size={32} color="#254928" weight="bold" />
+                    <span className="text-l text-slate-800 font-bold">Home</span>
                   </a>
                 </li>
                 <li className="mr-0.5 md:mr-0 md:mb-0.5">
-                  <a className="flex items-center px-2.5 py-2 rounded whitespace-nowrap" href="#0">
+                  <a className="flex items-center px-2.5 py-2 rounded whitespace-nowrap" href="/gallery">
 
-                    <AddressBook size={32} color='#587604' weight='bold' />
-                    <span className="text-sm font-medium text-slate-600">Gallery</span>
+                    <AddressBook size={32} color='#254928' weight='bold' />
+                    <span className="text-l text-slate-800 font-bold">Gallery</span>
                   </a>
                 </li>
                 <li className="mr-0.5 md:mr-0 md:mb-0.5">
-                  <a className="flex items-center px-2.5 py-2 rounded whitespace-nowrap" href="#0">
-                    <User size={32} color='#587604' weight='bold' />
-                    <span className="text-sm font-medium text-slate-600">Profile</span>
+                  <a className="flex items-center px-2.5 py-2 rounded whitespace-nowrap" href="/profile">
+                    <User size={32} color='#254928' weight='bold' />
+                    <span className="text-l text-slate-800 font-bold">Profile</span>
                   </a>
                 </li>
                 <li className="mr-0.5 md:mr-0 md:mb-0.5">
-                  <a className="flex items-center px-2.5 py-2 rounded whitespace-nowrap" href="#0">
-                    <EnvelopeSimple size={32} color='#587604' weight='bold' />
-                    <span className="text-sm font-medium text-slate-600">Contact Us</span>
+                  <a className="flex items-center px-2.5 py-2 rounded whitespace-nowrap" href="/contact">
+                    <EnvelopeSimple size={32} color='#254928' weight='bold' />
+                    <span className="text-l text-slate-800 font-bold">Contact Us</span>
                   </a>
                 </li>
               </ul>
