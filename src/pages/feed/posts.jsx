@@ -42,11 +42,13 @@ function Post({ post }) {
      </EditMenu>
     </header>
     {/* Body */}
-    <div className="text-sm text-slate-800 space-y-2 mb-5">
-     <p>{post.title}</p>
-     <p>
-      {post.textDescription}
-     </p>
+    <div>
+     <h2 className='text-l font-bold text-black-500 mx-10 m-2 w-3/4'>{post.title}</h2>
+     <div className="text-sm text-slate-800 space-y-2 mb-5">
+      <p>
+       {post.textDescription}
+      </p>
+     </div>
     </div>
     {/* Footer */}
     <footer className="flex items-center space-x-4">
