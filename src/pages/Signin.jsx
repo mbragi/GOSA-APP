@@ -1,17 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import Toast from '../components/Toast';
 import Navigation from './component/Navigation';
 import routes from '../routes';
+import { httpLoginUser } from '../redux/Auth/auth.actions';
 
 // const URL2 = import.meta.env.VITE_API_URL
 
-function Signin() {
+function Signin(props) {
   const [data, setData] = React.useState({})
   const [data2, setData2] = React.useState({})
   const [message, setMessage] = React.useState('')
   const [type, setType] = React.useState('')
   const navigate = useNavigate()
+
+  console.log(props);
 
   const [openToast, setOpenToast] = React.useState(false)
 
@@ -22,37 +26,51 @@ function Signin() {
     setData(Data)
 
   }
+
+  
   async function httpLoginUser(e) {
     e.preventDefault()
-    console.log(data)``
-    let request = JSON.stringify(data)
-    const res = await fetch(`https://rocky-scrubland-70378.herokuapp.com/login`, {
-      method: 'post',
-      headers: {
-        "content-type": "application/json"
-      },
-      body: request
-    })
-    const resData = await res.json()
-      .catch(err => { console.log(err.message) })
-    console.log(resData)
-    const type = resData.type
-    const message = resData.message
-    setType(type)
-    setOpenToast(true)
-    setMessage(message)
-    setData2(resData)
-    if (type === 'error') {
-      return console.log(err.message)
-    } else if (type === "warning") {
-      return console.log(err.message)
-    } else {
-      console.log('success')
-      setTimeout(() => {
-        navigate(`${routes.feed}`)
-      }, 1000)
-    }
+    console.log(data);
+    props.httpLoginUser(data);
+    // let request = JSON.stringify(data)
+    // const res = await fetch(`https://rocky-scrubland-70378.herokuapp.com/login`, {
+    //   method: 'post',
+    //   headers: {
+    //     "content-type": "application/json"
+    //   },
+    //   body: request
+    // })
+    // const resData = await res.json()
+    //   .catch(err => { console.log(err.message) })
+    // console.log(resData)
+    // const type = resData.type
+    // const message = resData.message
+    // setType(type)
+    // setOpenToast(true)
+    // setMessage(message)
+    // setData2(resData)
+    // if (type === 'error') {
+    //   return console.log(err.message)
+    // } else if (type === "warning") {
+    //   return console.log(err.message)
+    // } else {
+    //   console.log('success')
+    //   setTimeout(() => {
+    //     navigate(`${routes.feed}`)
+    //   }, 1000)
+    // }
   }
+
+  useEffect(() => {
+
+    if (props?.auth?.user) {
+      navigate(routes.feed);
+      return;
+    }
+  }, [props?.auth?.user])
+
+
+
   return (
     <main className='min-h-screen'>
       <Navigation />
@@ -107,4 +125,15 @@ function Signin() {
   );
 }
 
-export default Signin;
+
+const mapDispatchToProps = dispatch => ({
+  httpLoginUser: data => dispatch(httpLoginUser(data))
+});
+
+
+const mapStateToProps = state => ({
+  auth: state.auth
+})
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Signin);
