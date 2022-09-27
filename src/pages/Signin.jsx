@@ -10,7 +10,6 @@ import { httpLoginUser } from '../redux/Auth/auth.actions';
 
 function Signin(props) {
   const [data, setData] = React.useState({})
-  // const [data2, setData2] = React.useState({})
   const [message, setMessage] = React.useState('')
   const [type, setType] = React.useState('')
   const navigate = useNavigate()
@@ -32,17 +31,17 @@ function Signin(props) {
     e.preventDefault()
     // console.log(data);
     props.httpLoginUser(data);
-    setOpenToast(true)
   }
 
   useEffect(() => {
-    console.log(props?.auth?.user)
+    // console.log(props?.auth?.user)
     if (props?.auth?.user) {
+      // setOpenToast(true)
       // const type = props?.auth?.message
       // setType(type)
       // setTimeout(() => {
+      //   setOpenToast(false)
       navigate(routes.feed);
-      // setOpenToast(false)
       // }, 1000)
       return;
     }
