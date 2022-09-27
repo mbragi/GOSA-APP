@@ -3,13 +3,14 @@ import React, { useState } from 'react';
 import Header from '../../partials/Header';
 import FeedLeftContent from '../../partials/community/FeedLeftContent';
 import FeedRightContent from '../../partials/community/FeedRightContent';
+import { connect } from 'react-redux';
 import Post from './posts';
 import Avatar from '../../images/user-40-02.jpg';
 import ModalBasic from '../../components/ModalBasic';
 import { useEffect } from 'react';
 
 
-function Feed() {
+function Feed({ props }) {
 
  const [sidebarOpen, setSidebarOpen] = useState(false);
  const [feedbackModalOpen, setFeedbackModalOpen] = useState(false)
@@ -28,6 +29,9 @@ function Feed() {
   }
   fetchPost()
  }, [])
+
+ console.log(props);
+
 
  const modalText = (e) => {
   e.preventDefault();
@@ -207,5 +211,8 @@ function Feed() {
   </div>
  );
 }
+const mapStateToProps = state => ({
+ auth: state.auth
+})
 
-export default Feed;
+export default connect(mapStateToProps)(Feed);
