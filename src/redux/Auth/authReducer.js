@@ -1,14 +1,10 @@
-
-import AuthTypes from "./Auth.types";
-
+import AuthTypes from "./auth.types";
 
 const INITIAL_STATE = {
   user: null,
   loading: false,
-  error: null
-}
-
-
+  error: null,
+};
 
 const authReducer = (state = INITIAL_STATE, action = {}) => {
   switch (action.type) {
@@ -17,31 +13,28 @@ const authReducer = (state = INITIAL_STATE, action = {}) => {
         ...state,
         loading: true,
         error: null,
-        user: null
-      }
+        user: null,
+      };
 
-    case AuthTypes.LOGIN_USER_SUCCESSFUL: 
+    case AuthTypes.LOGIN_USER_SUCCESSFUL:
       return {
         ...state,
         loading: false,
         error: null,
-        user: action.payload
-      }
-
+        user: action.payload,
+      };
 
     case AuthTypes.LOGIN_USER_FAILED:
       return {
         ...state,
         loading: false,
         user: null,
-        error: action.payload
-      }
-  
+        error: action.payload,
+      };
+
     default:
       return state;
   }
-}
-
-
+};
 
 export default authReducer;
