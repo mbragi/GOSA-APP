@@ -22,7 +22,7 @@ function App() {
     <>
       <Routes>
         {
-          pages.map(item => <Route key={item.path} exact path={item.path} element={item.element} />)
+          pages.map((item, idx) => <Route key={idx} exact path={item.path} element={item.element} />)
         }
       </Routes>
     </>

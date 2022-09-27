@@ -10,7 +10,7 @@ import { httpLoginUser } from '../redux/Auth/auth.actions';
 
 function Signin(props) {
   const [data, setData] = React.useState({})
-  const [data2, setData2] = React.useState({})
+  // const [data2, setData2] = React.useState({})
   const [message, setMessage] = React.useState('')
   const [type, setType] = React.useState('')
   const navigate = useNavigate()
@@ -27,44 +27,23 @@ function Signin(props) {
 
   }
 
-  
+
   async function httpLoginUser(e) {
     e.preventDefault()
-    console.log(data);
+    // console.log(data);
     props.httpLoginUser(data);
-    // let request = JSON.stringify(data)
-    // const res = await fetch(`https://rocky-scrubland-70378.herokuapp.com/login`, {
-    //   method: 'post',
-    //   headers: {
-    //     "content-type": "application/json"
-    //   },
-    //   body: request
-    // })
-    // const resData = await res.json()
-    //   .catch(err => { console.log(err.message) })
-    // console.log(resData)
-    // const type = resData.type
-    // const message = resData.message
-    // setType(type)
-    // setOpenToast(true)
-    // setMessage(message)
-    // setData2(resData)
-    // if (type === 'error') {
-    //   return console.log(err.message)
-    // } else if (type === "warning") {
-    //   return console.log(err.message)
-    // } else {
-    //   console.log('success')
-    //   setTimeout(() => {
-    //     navigate(`${routes.feed}`)
-    //   }, 1000)
-    // }
+    setOpenToast(true)
   }
 
   useEffect(() => {
-
+    console.log(props?.auth?.user)
     if (props?.auth?.user) {
+      // const type = props?.auth?.message
+      // setType(type)
+      // setTimeout(() => {
       navigate(routes.feed);
+      // setOpenToast(false)
+      // }, 1000)
       return;
     }
   }, [props?.auth?.user])
