@@ -1,18 +1,28 @@
 import React, { useState } from 'react';
-
-import Sidebar from '../../partials/Sidebar';
+// import Sidebar from '../../partials/Sidebar';
 import Header from '../../partials/Header';
 import FeedLeftContent from '../../partials/community/FeedLeftContent';
 import FeedRightContent from '../../partials/community/FeedRightContent';
 import Post from './posts';
 import Avatar from '../../images/user-40-02.jpg';
 import ModalBasic from '../../components/ModalBasic';
+import { useEffect } from 'react';
 
 
 function Feed() {
 
  const [sidebarOpen, setSidebarOpen] = useState(false);
  const [feedbackModalOpen, setFeedbackModalOpen] = useState(false)
+ const [feeds, setFeeds] = useState([])
+ useEffect(() => {
+  async function fetchPost() {
+   const httpGetPost = await fetch(`https://rocky-scrubland-70378.herokuapp.com/feeds`)
+   const res = await httpGetPost.json()
+   const data = res.allFeeds
+   setFeeds(data)
+  }
+  fetchPost()
+ }, [])
 
  async function httpCreatePost() {
   // console.log('httpcreatepost')
@@ -127,7 +137,11 @@ function Feed() {
            </form>
 
            {/* Posts */}
-           <Post />
+           {feeds.map((post, idx) => {
+            return (
+             <Post key={idx} post={post} />
+            )
+           })}
 
           </div>
 

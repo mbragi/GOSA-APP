@@ -43,10 +43,10 @@ function Post({ post }) {
     </header>
     {/* Body */}
     <div>
-     <h2 className='text-l font-bold text-black-500 mx-10 m-2 w-3/4'>title</h2>
+     <h2 className='text-l font-bold text-black-500 mx-10 m-2 w-3/4'>{post.title}</h2>
      <div className="text-sm text-slate-800 space-y-2 mb-5">
       <p>
-       textDescription
+       {post.textDescription}
       </p>
      </div>
     </div>
