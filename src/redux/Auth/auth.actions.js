@@ -1,5 +1,5 @@
 import axios from "axios";
-import AuthTypes from "./Auth.types";
+import AuthTypes from "./auth.types";
 
 export const httpLoginUser = (data) => async (dispatch) => {
   dispatch({ type: AuthTypes.LOGIN_USER_START });
