@@ -14,7 +14,7 @@ function Signin(props) {
   const [type, setType] = React.useState('')
   const navigate = useNavigate()
 
-  console.log(props);
+  // console.log(props);
 
   const [openToast, setOpenToast] = React.useState(false)
 
@@ -29,23 +29,25 @@ function Signin(props) {
 
   async function httpLoginUser(e) {
     e.preventDefault()
-    // console.log(data);
     props.httpLoginUser(data);
+    await fetchData()
   }
 
-  useEffect(() => {
-    // console.log(props?.auth?.user)
-    if (props?.auth?.user) {
-      // setOpenToast(true)
-      // const type = props?.auth?.message
-      // setType(type)
-      // setTimeout(() => {
-      //   setOpenToast(false)
-      navigate(routes.feed);
-      // }, 1000)
+  const fetchData = () => {
+    if (props?.auth?.error) {
+      // console.log(props?.auth?.error)
+      const message = props?.auth?.error.message
+      const type = props?.auth?.error.type
+      setOpenToast(true)
+      setMessage(message)
+      setType(type)
       return;
+    } else if (props?.auth?.user) {
+      setTimeout(() => {
+        navigate(routes.feed);
+      }, 1000)
     }
-  }, [props?.auth?.user])
+  }
 
 
 
@@ -58,8 +60,7 @@ function Signin(props) {
         <div className="max-w-sm mt-10 px-10 m-auto py-10  rounded-xl shadow-md shadow-black " style={{ background: 'white' }}>
           <h1 className="text-3xl  font-bold mb-6">SIGN IN ✨</h1>
           {/* Form */}
-          <Toast open={openToast} type={type} setOpen=
-            {setOpenToast}>
+          <Toast open={openToast} type={type} setOpen={setOpenToast}>
             <p>{message}</p>
           </Toast>
           <form onSubmit={httpLoginUser}>
