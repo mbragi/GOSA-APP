@@ -45,6 +45,7 @@ function Signin(props) {
       <div className="flex  justify-center items-center p-4">
         {/* Header */}
         <div className="max-w-sm mt-10 px-10 m-auto py-10  rounded-xl shadow-md shadow-black " style={{ background: 'white' }}>
+          {user?.fullName}
           <h1 className="text-3xl  font-bold mb-6">SIGN IN ✨</h1>
           {/* Form */}
 
