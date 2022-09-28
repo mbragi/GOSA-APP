@@ -16,7 +16,7 @@ function Post({ post }) {
       <div>
        <div className="leading-tight">
         <a className="text-sm font-semibold text-slate-800" href="#0">
-         Dominik Lamakani
+         {post.fullName}
         </a>
        </div>
        <div className="text-xs text-slate-500">Yesterday at 10:48 AM</div>
