@@ -46,13 +46,13 @@ function Feed(props) {
  const { auth: { user } } = props
  function createPost(e) {
   const { name, value } = e.target
+  // console.log(user.fullName)
   const post = {
    ...data,
-   author: user._id,
-   // fullName: user.fullName
+   author: user._id
   }
   post[name] = value
-  console.log(post)
+  // console.log(post)
   setData(post)
  }
 
@@ -67,8 +67,8 @@ function Feed(props) {
    body: request
   })
   const Data = await res.json()
-  console.log(Data)
-
+  // console.log(Data)
+  fetchPost()
  }
 
  return (

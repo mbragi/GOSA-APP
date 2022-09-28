@@ -6,16 +6,6 @@ import EditMenu from "../../components/DropdownEditMenu"
 import UserImage03 from '../../images/user-40-03.jpg';
 
 function Post({ post }) {
- // const [name, setName] = useState('')
- // const { auth: { user } } = props
- // useEffect(() => {
- //  if (user) {
- //   const fullName = user.fullName
- //   console.log(fullName)
- //   setName(fullName)
-
- //  }
- // }, [])
  return (
   <>
    {/* Post 1 */}
@@ -28,23 +18,17 @@ function Post({ post }) {
       <div>
        <div className="leading-tight">
         <a className="text-sm font-semibold text-slate-800" href="#0">
-         {/* make this dynamic */}
-         John Doe
+         {post.name}
         </a>
        </div>
-       <div className="text-xs text-slate-500">Yesterday at 10:48 AM</div>
+       <div className="text-xs text-slate-500">{post.date}</div>
       </div>
      </div>
      {/* Menu button */}
      <EditMenu align="right" className="relative inline-flex shrink-0">
       <li>
        <Link className="font-medium text-sm text-slate-600 hover:text-slate-800 flex py-1 px-3" to="#0">
-        Option 1
-       </Link>
-      </li>
-      <li>
-       <Link className="font-medium text-sm text-slate-600 hover:text-slate-800 flex py-1 px-3" to="#0">
-        Option 2
+        Edit
        </Link>
       </li>
       <li>
