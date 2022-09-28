@@ -10,7 +10,7 @@ import ModalBasic from '../../components/ModalBasic';
 import { useEffect } from 'react';
 // import { store } from '../../redux/store'
 
-function Feed({ props }) {
+function Feed(props) {
 
  const [sidebarOpen, setSidebarOpen] = useState(false);
  const [feedbackModalOpen, setFeedbackModalOpen] = useState(false)
@@ -32,7 +32,7 @@ function Feed({ props }) {
 
 
  // store.subscribe()
- // console.log(store)
+ console.log(props)
 
  const modalText = (e) => {
   e.preventDefault();

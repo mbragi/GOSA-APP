@@ -19,6 +19,8 @@ function Signup() {
   const [openToast, setOpenToast] = useState(false)
   const navigate = useNavigate()
   const [type, setType] = useState('')
+
+
   const signUpData = (e) => {
     const { name, value } = e.target
     let postdata = { ...data }
@@ -65,42 +67,49 @@ function Signup() {
         <div className=" py-10  px-20  my-auto  rounded-xl shadow-md shadow-black" style={{ background: 'white' }}>
           <h1 className="text-2xl text-slate-800 font-bold mb-6">Create your Account ✨</h1>
           {/* Form */}
-          <form>
+          <form onSubmit={httpSignupMember}>
             <div className="space-y-4">
               <div>
                 <label className="block text-sm font-medium mb-1" htmlFor="name">Full Name <span className="text-rose-500">*</span></label>
-                <input id="name" className="form-input w-full" type="text" />
+                <input id="name" className="form-input w-full" name='fullName' type="text" onChange={signUpData} />
               </div>
               <div>
                 <label className="block text-sm font-medium mb-1" htmlFor="email">Email Address <span className="text-rose-500">*</span></label>
-                <input id="email" className="form-input w-full" type="email" />
+                <input id="email" className="form-input w-full" name='email' type="email" onChange={signUpData} />
               </div>
               <div>
                 <label className="block text-sm font-medium mb-1" htmlFor="role">House<span className="text-rose-500">*</span></label>
-                <select id="House" className="form-select w-full">
-                  
-                  <option>Blue</option>
-                  <option>Green</option>
-                  <option>Grey</option>
-                  <option>Pink</option>
-                  <option>Yellow</option>
-                  <option>White</option>
+                <select id="House" name='House' className="form-select w-full" onChange={signUpData}>
+
+                  <option value='blue'>Blue</option>
+                  <option value='green'>Green</option>
+                  <option value='grey'>Grey</option>
+                  <option value='pink'>Pink</option>
+                  <option value='yellow'>Yellow</option>
+                  <option value='white'>White</option>
                 </select>
               </div>
               <div className="mt-6">
-
+                <div>
+                  <label className="block text-sm font-medium mb-1" htmlFor="password">Password</label>
+                  <input name='password' className="form-input w-full" type="password" autoComplete="on" onChange={signUpData} />
+                </div>
+                <div className='mb-4 mt-4'>
+                  <label className="block text-sm font-medium mb-1" htmlFor="password">Confirm Password</label>
+                  <input name='confirmPassword' className="form-input w-full" type="password" autoComplete="on" onChange={signUpData} />
+                </div>
                 <button style={{ width: '100%' }} className="btn bg-lime-800 hover:bg-lime-900 text-white whitespace-nowrap" type='submit'>Sign Up</button>
               </div>
-              </div>
-            </form>
-            {/* Footer */}
-            <div className="pt-5 mt-6 border-t border-slate-200">
-              <div className="text-sm">
-                Have an account? <Link className="font-medium text-lime-800 hover:text-lime-900" to={routes.signin}>Sign In</Link>
-              </div>
+            </div>
+          </form>
+          {/* Footer */}
+          <div className="pt-5 mt-6 border-t border-slate-200">
+            <div className="text-sm">
+              Have an account? <Link className="font-medium text-lime-800 hover:text-lime-900" to={routes.signin}>Sign In</Link>
             </div>
           </div>
         </div>
+      </div>
     </>
   );
 }
