@@ -25,9 +25,9 @@ function Home(props) {
             <section className="flex bg-block" >
                 <div className=" box-gosa">
                     <div className="w-1/2" style={{ padding: '3rem'}}>
-                        <h1 style={{lineHeight: 0.9, color: '#fff'}} className="max-w-2xl text-4xl font-extrabold leading-none md:text-5xl xl:text-6xl dark:text-white">GOSA Set 2013 Community</h1>
-                <hr style={{ width: '18rem', border: '2px solid #fff', marginBottom: '1rem'}}></hr>
-                        <p className="max-w-2xl mb-6 font-light text-gray-800 lg:mb-8 md:text-lg lg:text-xl dark:text-white-400">For Light and Truth.</p>
+                        <h1 style={{lineHeight: 0.9, color: '#fff'}} className="max-w-2xl text-4xl font-extrabold leading-none md:text-5xl xl:text-6xl dark:text-white">Set 2013</h1>
+                {/* <hr style={{ width: '18rem', border: '2px solid #fff', marginBottom: '1rem'}}></hr> */}
+                        <p style={{ color: 'white'}} className="max-w-2xl mb-6 font-light text-gray-800 lg:mb-8 md:text-lg lg:text-xl dark:text-white-400">For Light and Truth.</p>
                         <Link to={routes.signin}>
                             {/* <button className="btn bg-emerald-500 hover:bg-emerald-600 text-white mx-6 cursor-pointer ">Get Started</button> */}
                             <button className="button-52 animate-bounce" role="button">Get Started</button>
