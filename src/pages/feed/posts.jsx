@@ -1,9 +1,21 @@
 import React from 'react';
+// import { useState } from 'react';
+// import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import EditMenu from "../../components/DropdownEditMenu"
 import UserImage03 from '../../images/user-40-03.jpg';
 
 function Post({ post }) {
+ // const [name, setName] = useState('')
+ // const { auth: { user } } = props
+ // useEffect(() => {
+ //  if (user) {
+ //   const fullName = user.fullName
+ //   console.log(fullName)
+ //   setName(fullName)
+
+ //  }
+ // }, [])
  return (
   <>
    {/* Post 1 */}
@@ -16,7 +28,7 @@ function Post({ post }) {
       <div>
        <div className="leading-tight">
         <a className="text-sm font-semibold text-slate-800" href="#0">
-         Dominik Lamakani
+         {/* {console.log(name)} */}John Doe
         </a>
        </div>
        <div className="text-xs text-slate-500">Yesterday at 10:48 AM</div>
@@ -78,4 +90,8 @@ function Post({ post }) {
   </>
  )
 }
+// const mapStateToProps = state => ({
+//  auth: state.auth
+// })
+
 export default Post

@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import Toast from '../components/Toast';
 import Navigation from './component/Navigation';
 import routes from '../routes';
 import { httpLoginUser } from '../redux/Auth/auth.actions';
@@ -10,14 +9,9 @@ import { httpLoginUser } from '../redux/Auth/auth.actions';
 
 function Signin(props) {
   const [data, setData] = React.useState({})
-  const [message, setMessage] = React.useState('')
-  const [type, setType] = React.useState('')
   const navigate = useNavigate()
 
   // console.log(props);
-
-  const [openToast, setOpenToast] = React.useState(false)
-
   const { auth: { user } } = props;
 
   async function onInputChange(event) {
@@ -32,24 +26,9 @@ function Signin(props) {
   async function httpLoginUser(e) {
     e.preventDefault()
     props.httpLoginUser(data);
-    // await fetchData()
   }
 
-  const fetchData = () => {
-    if (props?.auth?.error) {
-      // console.log(props?.auth?.error)
-      const message = props?.auth?.error.message
-      const type = props?.auth?.error.type
-      setOpenToast(true)
-      setMessage(message)
-      setType(type)
-      return;
-    } else if (props?.auth?.user) {
-      setTimeout(() => {
-      }, 1000)
-    }
-  }
-  
+
   useEffect(() => {
     if (user) {
       navigate(routes.feed);
@@ -69,9 +48,7 @@ function Signin(props) {
           {user?.fullName}
           <h1 className="text-3xl  font-bold mb-6">SIGN IN ✨</h1>
           {/* Form */}
-          <Toast open={openToast} type={type} setOpen={setOpenToast}>
-            <p>{message}</p>
-          </Toast>
+
           <form onSubmit={httpLoginUser}>
             <div className="space-y-4">
               <div>
@@ -109,7 +86,7 @@ function Signin(props) {
           </div>
         </div>
       </div >
-    
+
     </main >
   );
 }

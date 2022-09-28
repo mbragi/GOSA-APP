@@ -32,7 +32,6 @@ function Feed(props) {
 
 
  // store.subscribe()
- console.log(props)
 
  const modalText = (e) => {
   e.preventDefault();
@@ -44,13 +43,32 @@ function Feed(props) {
   e.stopPropagation();
   setModalOpen(true)
  }
-
+ const { auth: { user } } = props
  function createPost(e) {
   const { name, value } = e.target
-  const req = { ...data }
-  req[name] = value
-  console.log(req)
-  setData(req)
+  const post = {
+   ...data,
+   author: user._id,
+   // fullName: user.fullName
+  }
+  post[name] = value
+  console.log(post)
+  setData(post)
+ }
+
+ async function httpPostFeed() {
+  let request = JSON.stringify({ ...data })
+  // console.log(req)
+  const res = await fetch('https://rocky-scrubland-70378.herokuapp.com/feed', {
+   method: 'post',
+   headers: {
+    'content-Type': 'application/json'
+   },
+   body: request
+  })
+  const Data = await res.json()
+  console.log(Data)
+
  }
 
  return (
@@ -83,7 +101,7 @@ function Feed(props) {
 
            {/* video && photo && audio url */}
 
-           <form className="m-1.5">
+           <form onSubmit={httpPostFeed} className="m-1.5">
             {/* Start */}
             <ModalBasic id="feedback-modal" modalOpen={modalOpen} setModalOpen={setModalOpen} title="select media">
              {/* Modal content */}
@@ -95,7 +113,7 @@ function Feed(props) {
                </div>
                <div>
                 {/* <label className="block text-sm font-medium mb-1" htmlFor="feedback">Message <span className="text-rose-500">*</span></label> */}
-                <input className="font-bold text-center w-full px-2 py-1 p-8" style={{ height: '14rem' }} placeholder='Click to select a Media' required />
+                <input className="font-bold text-center w-full px-2 py-1 p-8" type='file' placeholder='Click to select a Media' required />
                </div>
               </div>
              </div>
@@ -111,7 +129,7 @@ function Feed(props) {
            </form >
 
            {/* textDescription */}
-           <form className="m-1.5">
+           <form onSubmit={httpPostFeed} className="m-1.5">
             <ModalBasic id="feedback-modal" modalOpen={feedbackModalOpen} setModalOpen={setFeedbackModalOpen} title="Create Post">
              {/* Modal content */}
              <div className="px-5 py-4">
@@ -122,7 +140,7 @@ function Feed(props) {
                </div>
                <div>
                 <label className="block text-sm font-medium mb-1" htmlFor="feedback">Message <span className="text-rose-500">*</span></label>
-                <textarea name='textDescription' className="form-textarea w-full px-2 py-1" onChange={createPost} required></textarea>
+                <textarea name='textDescription' className="form-textarea w-full px-2 py-1" onChange={createPost} rows='10' required></textarea>
                </div>
               </div>
              </div>

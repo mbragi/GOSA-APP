@@ -43,7 +43,7 @@ function Signup() {
       .catch(err => { console.log(err.message) })
     const type = allData.type
     const message = allData.message
-    setType(`${type}`)
+    setType(type)
     setOpenToast(true)
     setData2(allData)
     setMessage(message)
@@ -55,8 +55,8 @@ function Signup() {
     } else {
       console.log('success')
       setTimeout(() => {
-        navigate(`${routes.feed}`)
-      }, 1500)
+        navigate(`${routes.home}`)
+      }, 1000)
     }
   }
 
@@ -67,6 +67,9 @@ function Signup() {
         <div className=" py-10  px-20  my-auto  rounded-xl shadow-md shadow-black" style={{ background: 'white' }}>
           <h1 className="text-2xl text-slate-800 font-bold mb-6">Create your Account ✨</h1>
           {/* Form */}
+          <Toast open={openToast} type={type} setOpen={setOpenToast}>
+            <p>{message}</p>
+          </Toast>
           <form onSubmit={httpSignupMember}>
             <div className="space-y-4">
               <div>
