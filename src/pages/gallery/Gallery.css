@@ -2,6 +2,7 @@
   width: 100%;
   padding-top: 50px;
   padding-bottom: 50px;
+  z-index: -1;
 }
 
 .swiper-slide {
@@ -15,10 +16,11 @@
   align-items: center;
   border-radius: 10px;
   position: relative;
-
+  z-index: -1;
   
 }
 .blob { 
+  
   position: absolute;
   z-index: -1;
   width: 100%;
