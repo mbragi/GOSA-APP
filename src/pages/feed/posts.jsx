@@ -1,12 +1,12 @@
-import React, { useEffect } from 'react';
-import { useState } from 'react';
-import { connect } from 'react-redux';
+import React from 'react';
+// import { useState } from 'react';
+// import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import EditMenu from "../../components/DropdownEditMenu"
 import UserImage03 from '../../images/user-40-03.jpg';
 
 function Post({ post }) {
- const [name, setName] = useState('')
+ // const [name, setName] = useState('')
  // const { auth: { user } } = props
  // useEffect(() => {
  //  if (user) {
