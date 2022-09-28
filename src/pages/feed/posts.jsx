@@ -28,6 +28,7 @@ function Post({ post }) {
       <div>
        <div className="leading-tight">
         <a className="text-sm font-semibold text-slate-800" href="#0">
+         {/* make this dynamic */}
          John Doe
         </a>
        </div>
