@@ -1,5 +1,5 @@
 export default Object.freeze({
-  loadFeed: "loadFeed",
-  feedCreated: "feedCreated",
+  loadUser: "loadUser",
+  createFeed: "createFeed",
   createFeedsFailed: "createFeedsFailed",
 });

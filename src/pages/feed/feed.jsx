@@ -8,7 +8,7 @@ import Post from './posts';
 import Avatar from '../../images/user-40-02.jpg';
 import ModalBasic from '../../components/ModalBasic';
 import { useEffect } from 'react';
-
+// import { store } from '../../redux/store'
 
 function Feed({ props }) {
 
@@ -30,8 +30,9 @@ function Feed({ props }) {
   fetchPost()
  }, [])
 
- console.log(props);
 
+ // store.subscribe()
+ // console.log(store)
 
  const modalText = (e) => {
   e.preventDefault();
@@ -214,5 +215,6 @@ function Feed({ props }) {
 const mapStateToProps = state => ({
  auth: state.auth
 })
+
 
 export default connect(mapStateToProps)(Feed);
