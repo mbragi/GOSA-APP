@@ -18,6 +18,8 @@ function Signin(props) {
 
   const [openToast, setOpenToast] = React.useState(false)
 
+  const { auth: { user } } = props;
+
   async function onInputChange(event) {
     const { name, value } = event.target
     let Data = { ...data }
@@ -30,7 +32,7 @@ function Signin(props) {
   async function httpLoginUser(e) {
     e.preventDefault()
     props.httpLoginUser(data);
-    await fetchData()
+    // await fetchData()
   }
 
   const fetchData = () => {
@@ -44,10 +46,16 @@ function Signin(props) {
       return;
     } else if (props?.auth?.user) {
       setTimeout(() => {
-        navigate(routes.feed);
       }, 1000)
     }
   }
+  
+  useEffect(() => {
+    if (user) {
+      navigate(routes.feed);
+      return;
+    }
+  }, [props.auth])
 
 
 

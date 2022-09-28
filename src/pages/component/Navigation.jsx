@@ -33,7 +33,7 @@ function Navigation() {
           </div>
         </div>
         <div className='mobile-menu'>
-          <List size={32} color="white" />
+          <List size={32} color="rgb(63 98 18)" />
         </div>
       </nav>
     </div>

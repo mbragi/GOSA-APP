@@ -1,8 +1,9 @@
 body {
-  background-color: #353b33;
-  opacity: 0.8;
-  background-image: radial-gradient(circle at center center, #ffffff, #1e4520), repeating-radial-gradient(circle at center center, #ffffff, #ffffff, 10px, transparent 20px, transparent 10px);
-  background-blend-mode: multiply;
+  /* background-color: #353b33; */
+  background: linear-gradient(90deg, rgba(63,98,08,1), rgba(255, 251, 232, 1))
+  /* opacity: 0.8; */
+  /* background-image: radial-gradient(circle at center center, #ffffff, #1e4520), repeating-radial-gradient(circle at center center, #ffffff, #ffffff, 10px, transparent 20px, transparent 10px); */
+  /* background-blend-mode: multiply; */
   /* position: relative;
   min-height: 100vh;
   width: 100%; */

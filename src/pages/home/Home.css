@@ -24,19 +24,21 @@
   letter-spacing: 1px;
   padding: 13px 20px 13px;
   outline: 0;
-  border: 1px solid white;
+  border: 1px solid #353b33;
   cursor: pointer;
   position: relative;
   background-color: rgba(0, 0, 0, 0);
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
+  color: white;
 }
 
 .button-52:after {
   content: "";
-  /* background-color: #ffe54c; */
-  background-color: #fff;
+  background-color: rgb(63 98 18);
+  /* background-color: #fff; */
+  /* background-color: #fff; */
   width: 100%;
   z-index: -1;
   position: absolute;
