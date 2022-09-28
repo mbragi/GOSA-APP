@@ -49,7 +49,7 @@ function Feed(props) {
   const post = {
    ...data,
    author: user._id,
-   fullName: user.fullName
+   // fullName: user.fullName
   }
   post[name] = value
   console.log(post)

@@ -12,9 +12,6 @@ function Signin(props) {
   const navigate = useNavigate()
 
   // console.log(props);
-
-  const [openToast, setOpenToast] = React.useState(false)
-
   const { auth: { user } } = props;
 
   async function onInputChange(event) {
@@ -88,7 +85,7 @@ function Signin(props) {
           </div>
         </div>
       </div >
-    
+
     </main >
   );
 }
