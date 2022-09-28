@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
-
+import { connect } from 'react-redux';
 import SearchModal from '../components/ModalSearch';
 import Notifications from '../components/DropdownNotifications';
 import Help from '../components/DropdownHelp';
 import UserMenu from '../components/DropdownProfile';
+import { logoutUser } from '../redux/Auth/auth.actions';
 
 function Header({
   sidebarOpen,
-  setSidebarOpen
+  setSidebarOpen,
+  logoutuser
 }) {
 
   const [searchModalOpen, setSearchModalOpen] = useState(false)
@@ -50,9 +52,9 @@ function Header({
                 <path className="fill-current text-slate-400" d="M15.707 14.293L13.314 11.9a8.019 8.019 0 01-1.414 1.414l2.393 2.393a.997.997 0 001.414 0 .999.999 0 000-1.414z" />
               </svg>
             </button>
-            <SearchModal id="search-modal" searchId="search" modalOpen={searchModalOpen} setModalOpen={setSearchModalOpen} />
-            <Notifications align="right" />
-            <Help align="right" />
+            {/* <SearchModal id="search-modal" searchId="search" modalOpen={searchModalOpen} setModalOpen={setSearchModalOpen} /> */}
+            {/* <Notifications align="right" /> */}
+            {/* <Help align="right" /> */}
             {/*  Divider */}
             <hr className="w-px h-6 bg-slate-200 mx-3" />
             <UserMenu align="right" />
@@ -65,4 +67,12 @@ function Header({
   );
 }
 
-export default Header;
+const mapStateToProps = state => ({
+  auth: state.auth
+})
+
+const mapDispatchToProps = dispatch => ({
+  logoutuser: () => dispatch(logoutUser())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

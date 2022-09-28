@@ -22,3 +22,9 @@ export const httpLoginUser = (data) => async (dispatch) => {
     });
   }
 };
+
+
+
+export const logoutUser = () => ({
+  type: AuthTypes.LOGOUT_USER,
+})
