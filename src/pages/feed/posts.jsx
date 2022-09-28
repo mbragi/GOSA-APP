@@ -24,8 +24,7 @@ function Post({ post }) {
        <div className="text-xs text-slate-500">{post.date}</div>
       </div>
      </div>
-     {/* Menu button */}
-     <EditMenu align="right" className="relative inline-flex shrink-0">
+     <EditMenu>
       <li>
        <Link className="font-medium text-sm text-slate-600 hover:text-slate-800 flex py-1 px-3" to="#0">
         Edit
@@ -75,8 +74,4 @@ function Post({ post }) {
   </>
  )
 }
-// const mapStateToProps = state => ({
-//  auth: state.auth
-// })
-
 export default Post

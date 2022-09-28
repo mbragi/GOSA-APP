@@ -70,7 +70,7 @@ function Signin(props) {
           {/* Footer */}
           <div className="pt-5 mt-6 border-t border-slate-200">
             <div className="text-sm">
-              Don’t you have an account? <button className="font-medium text-lime-800 hover:text-lime-900" to="/signup">Sign Up</button>
+              Don’t you have an account? <Link className="font-medium text-lime-800 hover:text-lime-900" to={routes.signup}>Sign Up</Link>
             </div>
             {/* Warning */}
             <div className="mt-5">
