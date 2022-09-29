@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import Navigation from './component/Navigation';
 import routes from '../routes';
 import { httpLoginUser } from '../redux/Auth/auth.actions';
+import Toast from '../components/Toast';
 
 // const URL2 = import.meta.env.VITE_API_URL
 
@@ -12,7 +13,7 @@ function Signin(props) {
   const navigate = useNavigate()
 
   // console.log(props);
-  const { auth: { user, loading } } = props;
+  const { auth: { user, loading, error } } = props;
 
   async function onInputChange(event) {
     const { name, value } = event.target
@@ -45,7 +46,12 @@ function Signin(props) {
       <div className="flex  justify-center items-center p-4">
         {/* Header */}
         <div className="max-w-sm mt-10 px-10 m-auto py-10  rounded-xl shadow-md shadow-black " style={{ background: 'white' }}>
-          {user?.fullName}
+          {
+            error &&
+            <Toast type="error" open={true}>
+              {error.message}
+            </Toast>
+          }
           <h1 className="text-3xl  font-bold mb-6">SIGN IN ✨</h1>
           {/* Form */}
 
