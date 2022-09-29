@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import Navigation from './component/Navigation';
 import routes from '../routes';
 import { httpLoginUser } from '../redux/Auth/auth.actions';
+import Toast from '../components/Toast';
 
 // const URL2 = import.meta.env.VITE_API_URL
 
@@ -12,7 +13,7 @@ function Signin(props) {
   const navigate = useNavigate()
 
   // console.log(props);
-  const { auth: { user } } = props;
+  const { auth: { user, loading, error } } = props;
 
   async function onInputChange(event) {
     const { name, value } = event.target
@@ -45,7 +46,12 @@ function Signin(props) {
       <div className="flex  justify-center items-center p-4">
         {/* Header */}
         <div className="max-w-sm mt-10 px-10 m-auto py-10  rounded-xl shadow-md shadow-black " style={{ background: 'white' }}>
-          {user?.fullName}
+          {
+            error &&
+            <Toast type="error" open={true}>
+              {error.message}
+            </Toast>
+          }
           <h1 className="text-3xl  font-bold mb-6">SIGN IN ✨</h1>
           {/* Form */}
 
@@ -61,7 +67,16 @@ function Signin(props) {
               </div>
             </div>
             <div className="mt-6">
-              <button style={{ width: '100%' }} className="btn bg-lime-800 text-white hover:bg-lime-900 text-white type=" type='submit'>Sign In </button>
+              {
+                loading ?
+                <button style={{ width: '100%'}} className="btn bg-emerald-500 hover:bg-emerald-600 text-white disabled:border-slate-200 disabled:bg-slate-100 disabled:text-slate-400 disabled:cursor-not-allowed shadow-none" disabled>
+                  <svg className="animate-spin w-4 h-4 fill-current shrink-0" viewBox="0 0 16 16">
+                    <path d="M8 16a7.928 7.928 0 01-3.428-.77l.857-1.807A6.006 6.006 0 0014 8c0-3.309-2.691-6-6-6a6.006 6.006 0 00-5.422 8.572l-1.806.859A7.929 7.929 0 010 8c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8z" />
+                  </svg>
+                  <span className="ml-2">Loading</span>
+                </button> :
+                <button style={{ width: '100%' }} className="btn bg-lime-800 text-white hover:bg-lime-900 text-white type=" type='submit'>Sign In </button>
+              }
               <div className="mr-1">
                 <Link className="text-sm underline hover:no-underline" to="/reset-password">Forgot Password?</Link>
               </div>
