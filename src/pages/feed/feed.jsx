@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-// import Sidebar from '../../partials/Sidebar';
+import { useNavigate } from 'react-router-dom';
+
 import Header from '../../partials/Header';
 import FeedLeftContent from '../../partials/community/FeedLeftContent';
 import FeedRightContent from '../../partials/community/FeedRightContent';
@@ -11,27 +12,13 @@ import { useEffect } from 'react';
 // import { store } from '../../redux/store'
 
 function Feed(props) {
-
+ const navigate = useNavigate()
  const [sidebarOpen, setSidebarOpen] = useState(false);
  const [feedbackModalOpen, setFeedbackModalOpen] = useState(false)
  const [modalOpen, setModalOpen] = useState(false)
  const [feeds, setFeeds] = useState([])
  const [loading, setLoading] = useState(false)
  const [data, setData] = useState({})
- useEffect(() => {
-  setLoading(true)
-  async function fetchPost() {
-   const httpGetPost = await fetch(`https://rocky-scrubland-70378.herokuapp.com/feeds`)
-   const res = await httpGetPost.json()
-   const data = res.allFeeds
-   setFeeds(data)
-   setLoading(false)
-  }
-  fetchPost()
- }, [])
-
-
- // store.subscribe()
 
  const modalText = (e) => {
   e.preventDefault();
@@ -56,10 +43,11 @@ function Feed(props) {
   setData(post)
  }
 
- async function httpPostFeed() {
+ async function httpPostFeed(e) {
+  e.preventDefault()
   let request = JSON.stringify({ ...data })
   // console.log(req)
-  const res = await fetch('https://rocky-scrubland-70378.herokuapp.com/feed', {
+  const res = await fetch('http://localhost:8000/feed', {
    method: 'post',
    headers: {
     'content-Type': 'application/json'
@@ -67,9 +55,24 @@ function Feed(props) {
    body: request
   })
   const Data = await res.json()
-  // console.log(Data)
-  fetchPost()
+  console.log(Data)
+  // e.stopPropagation()
+  setModalOpen(false)
+  setFeedbackModalOpen(false)
+  // fetchPost();
  }
+
+ useEffect(() => {
+  setLoading(true)
+  async function fetchPost() {
+   const httpGetPost = await fetch(`https://rocky-scrubland-70378.herokuapp.com/feeds`)
+   const res = await httpGetPost.json()
+   const data = res.allFeeds
+   setFeeds(data)
+   setLoading(false)
+  }
+  fetchPost()
+ }, [])
 
  return (
   <div className="flex h-screen overflow-hidden">
@@ -209,7 +212,7 @@ function Feed(props) {
              return (
               <Post key={idx} post={post} />
              )
-            })}
+            }).reverse()}
 
           </div>
 
