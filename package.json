@@ -25,6 +25,8 @@
     "redux-logger": "^3.0.6",
     "redux-persist": "^6.0.0",
     "redux-thunk": "^2.4.1",
+    "slate": "^0.82.1",
+    "slate-react": "^0.83.0",
     "swiper": "^8.4.2"
   },
   "devDependencies": {
