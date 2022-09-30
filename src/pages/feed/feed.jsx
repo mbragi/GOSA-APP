@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 
 import Header from '../../partials/Header';
 import FeedLeftContent from '../../partials/community/FeedLeftContent';
@@ -12,13 +12,13 @@ import { useEffect } from 'react';
 // import { store } from '../../redux/store'
 
 function Feed(props) {
- const navigate = useNavigate()
  const [sidebarOpen, setSidebarOpen] = useState(false);
  const [feedbackModalOpen, setFeedbackModalOpen] = useState(false)
  const [modalOpen, setModalOpen] = useState(false)
  const [feeds, setFeeds] = useState([])
  const [loading, setLoading] = useState(false)
  const [data, setData] = useState({})
+ const [newData, setNewData] = useState({})
 
  const modalText = (e) => {
   e.preventDefault();
@@ -55,10 +55,13 @@ function Feed(props) {
    body: request
   })
   const Data = await res.json()
-  console.log(Data)
-  // e.stopPropagation()
-  setModalOpen(false)
-  setFeedbackModalOpen(false)
+  // console.log(Data)
+  const newdata = Data.feed
+  if (newdata) {
+   setNewData(newdata)
+   setModalOpen(false)
+   setFeedbackModalOpen(false)
+  }
   // fetchPost();
  }
 
@@ -70,6 +73,9 @@ function Feed(props) {
    const data = res.allFeeds
    setFeeds(data)
    setLoading(false)
+  }
+  if (newData) {
+   console.log('no data')
   }
   fetchPost()
  }, [])
