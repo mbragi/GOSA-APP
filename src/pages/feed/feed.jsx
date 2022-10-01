@@ -75,7 +75,7 @@ function Feed(props) {
    setLoading(false)
   }
   if (newData) {
-   console.log('no data')
+   fetchPost()
   }
   fetchPost()
  }, [])

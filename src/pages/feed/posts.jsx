@@ -1,11 +1,19 @@
+import axios from 'axios';
 import React from 'react';
-// import { useState } from 'react';
+import { useState } from 'react';
 // import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import EditMenu from "../../components/DropdownEditMenu"
 import UserImage03 from '../../images/user-40-03.jpg';
-
 function Post({ post }) {
+ // const [del, setDel] = useState('')
+ async function deletePost(e) {
+  const { id } = e.target
+  // console.log()
+  const request = await axios.delete(`http://localhost:8000/feed/${id}`)
+  console.log(request)
+  // setDel(id)
+ }
  return (
   <>
    {/* Post 1 */}
@@ -24,17 +32,17 @@ function Post({ post }) {
        <div className="text-xs text-slate-500">{post.date}</div>
       </div>
      </div>
-     <EditMenu>
-      <li>
-       <Link className="font-medium text-sm text-slate-600 hover:text-slate-800 flex py-1 px-3" to="#0">
+     <EditMenu align="right" className="relative inline-flex shrink-0">
+      <Link className="font-medium text-sm text-rose-500 hover:text-rose-600 flex py-1 px-3" to='#0'  >
+       <li>
         Edit
-       </Link>
-      </li>
-      <li>
-       <Link className="font-medium text-sm text-rose-500 hover:text-rose-600 flex py-1 px-3" to="#0">
+       </li>
+      </Link>
+      <Link className="font-medium text-sm text-rose-500 hover:text-rose-600 flex py-1 px-3" to='#0'  >
+       <li id={post._id} onClick={deletePost}>
         Remove
-       </Link>
-      </li>
+       </li>
+      </Link>
      </EditMenu>
     </header>
     {/* Body */}

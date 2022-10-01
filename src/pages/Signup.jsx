@@ -29,7 +29,7 @@ function Signup() {
   }
   async function httpSignupMember(e) {
     e.preventDefault()
-    console.log(data)
+    // console.log(data)
 
     let request = { ...data }
     const response = await fetch(`https://rocky-scrubland-70378.herokuapp.com/register`, {
