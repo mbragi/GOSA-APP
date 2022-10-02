@@ -3,6 +3,7 @@ export default Object.freeze({
   contact: '/contact',
   gallery: "/gallery",
   feed: '/feed',
+  profile:'/profile',
 
   haveAnIdea: "/idea/main",
   haveAnIdea02: "/idea/phase-02",

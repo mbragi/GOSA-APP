@@ -1,6 +1,6 @@
 // Import pages
 import Home from './pages/home/Home';
-import Dashboard from './pages/Dashboard';
+// import Dashboard from './pages/Dashboard';
 import Analytics from './pages/Analytics';
 import Fintech from './pages/Fintech';
 import Customers from './pages/ecommerce/Customers';
@@ -16,7 +16,7 @@ import Pay from './pages/ecommerce/Pay';
 import Campaigns from './pages/Campaigns';
 import UsersTabs from './pages/community/UsersTabs';
 import UsersTiles from './pages/community/UsersTiles';
-import Profile from './pages/community/Profile';
+// import Profile from './pages/community/Profile';
 // import Feed from './pages/community/Feed';
 import Forum from './pages/community/Forum';
 import ForumPost from './pages/community/ForumPost';
@@ -69,7 +69,7 @@ import IconsPage from './pages/component/IconsPage';
 import routes from './routes';
 import Gallery from './pages/gallery/Gallery';
 import Feed from './pages/feed/feed';
-// import Main from './pages/haveAnIdea/main';
+import Profile from './pages/Profile/Profile';
 // import Phase02 from './pages/haveAnIdea/Phase02';
 // import Phase03 from './pages/haveAnIdea/Phase03';
 // import Finished from './pages/haveAnIdea/Done.jsx';
@@ -77,14 +77,15 @@ import Feed from './pages/feed/feed';
 // import StudentMain from './pages/becomeAStudent/StudentMain';
 // import StudentPath from './pages/becomeAStudent/StudentPath';
 
-
-
-
-const pages = [
+const isSignedIn = [
   { path: routes.home, element: <Home /> },
   { path: routes.gallery, element: <Gallery /> },
   { path: routes.feed, element: <Feed /> },
+  { path: routes.profile, element: <Profile /> },
+]
 
+
+const pages = [
   {/*{ path: routes.haveAnIdea, element: <Main /> },
   { path: routes.haveAnIdea02, element: <Phase02 /> },
   { path: routes.haveAnIdea03, element: <Phase03 /> },
@@ -93,6 +94,7 @@ const pages = [
   { path: routes.studentMain, element: <StudentMain /> },
 { path: routes.studentPath, element: <StudentPath /> },*/},
 
+  { path: routes.home, element: <Home /> },
 
   // { path: routes.home, element: <Dashboard /> },
   { path: routes.dashBoardAnalytics, element: <Analytics /> },
@@ -164,4 +166,4 @@ const pages = [
 ]
 
 
-export default pages;
+export default { isSignedIn, pages };
