@@ -1,6 +1,6 @@
 // Import pages
 import Home from './pages/home/Home';
-// import Dashboard from './pages/Dashboard';
+import Dashboard from './pages/Dashboard';
 import Analytics from './pages/Analytics';
 import Fintech from './pages/Fintech';
 import Customers from './pages/ecommerce/Customers';
@@ -43,11 +43,7 @@ import Changelog from './pages/utility/Changelog';
 import Roadmap from './pages/utility/Roadmap';
 import Faqs from './pages/utility/Faqs';
 import EmptyState from './pages/utility/EmptyState';
-import PageNotFound from './pages/utility/PageNotFound';
 import KnowledgeBase from './pages/utility/KnowledgeBase';
-import Signin from './pages/Signin';
-import Signup from './pages/Signup';
-import ResetPassword from './pages/ResetPassword';
 import Onboarding01 from './pages/Onboarding01';
 import Onboarding02 from './pages/Onboarding02';
 import Onboarding03 from './pages/Onboarding03';
@@ -65,11 +61,6 @@ import AvatarPage from './pages/component/AvatarPage';
 import TooltipPage from './pages/component/TooltipPage';
 import AccordionPage from './pages/component/AccordionPage';
 import IconsPage from './pages/component/IconsPage';
-
-import routes from './routes';
-import Gallery from './pages/gallery/Gallery';
-import Feed from './pages/feed/feed';
-import Profile from './pages/Profile/Profile';
 // import Phase02 from './pages/haveAnIdea/Phase02';
 // import Phase03 from './pages/haveAnIdea/Phase03';
 // import Finished from './pages/haveAnIdea/Done.jsx';
@@ -77,26 +68,37 @@ import Profile from './pages/Profile/Profile';
 // import StudentMain from './pages/becomeAStudent/StudentMain';
 // import StudentPath from './pages/becomeAStudent/StudentPath';
 
+import routes from './routes';
+import Gallery from './pages/gallery/Gallery';
+import Feed from './pages/feed/feed';
+import Profile from './pages/Profile/Profile';
+import PageNotFound from './pages/utility/PageNotFound';
+import Signin from './pages/Signin';
+import Signup from './pages/Signup';
+import ResetPassword from './pages/ResetPassword';
+
 const isSignedIn = [
   { path: routes.home, element: <Home /> },
   { path: routes.gallery, element: <Gallery /> },
   { path: routes.feed, element: <Feed /> },
   { path: routes.profile, element: <Profile /> },
+  { path: routes.notFound, element: <PageNotFound /> },
 ]
 
-
 const pages = [
-  {/*{ path: routes.haveAnIdea, element: <Main /> },
-  { path: routes.haveAnIdea02, element: <Phase02 /> },
-  { path: routes.haveAnIdea03, element: <Phase03 /> },
-  { path: routes.haveAnIdea04, element: <Finished /> },
-  { path: routes.haveAnIdea04, element: <Finished /> },
-  { path: routes.studentMain, element: <StudentMain /> },
-{ path: routes.studentPath, element: <StudentPath /> },*/},
-
   { path: routes.home, element: <Home /> },
-
-  // { path: routes.home, element: <Dashboard /> },
+  { path: routes.signin, element: <Signin /> },
+  { path: routes.signup, element: <Signup /> },
+  { path: routes.resetPassword, element: <ResetPassword /> },
+  { path: routes.notFound, element: <PageNotFound /> },
+  // { path: routes.haveAnIdea, element: <Main /> },
+  // { path: routes.haveAnIdea02, element: <Phase02 /> },
+  // { path: routes.haveAnIdea03, element: <Phase03 /> },
+  // { path: routes.haveAnIdea04, element: <Finished /> },
+  // { path: routes.haveAnIdea04, element: <Finished /> },
+  // { path: routes.studentMain, element: <StudentMain /> },
+  // { path: routes.studentPath, element: <StudentPath /> },
+  { path: routes.home, element: <Dashboard /> },
   { path: routes.dashBoardAnalytics, element: <Analytics /> },
   { path: routes.dashBoardFintech, element: <Fintech /> },
   { path: routes.ecommerceCustomers, element: <Customers /> },
@@ -141,10 +143,7 @@ const pages = [
   { path: routes.utilityEmptyState, element: <EmptyState /> },
   { path: routes.utility404, element: <PageNotFound /> },
   { path: routes.utilityKnowledgeBase, element: <KnowledgeBase /> },
-  {/*{ path: routes.video, element: <Video /> }*/ },
-  { path: routes.signin, element: <Signin /> },
-  { path: routes.signup, element: <Signup /> },
-  { path: routes.resetPassword, element: <ResetPassword /> },
+  // {/*{ path: routes.video, element: <Video /> }*/ },
   { path: routes.onBoarding01, element: <Onboarding01 /> },
   { path: routes.onBoarding02, element: <Onboarding02 /> },
   { path: routes.onBoarding03, element: <Onboarding03 /> },
@@ -162,7 +161,6 @@ const pages = [
   { path: routes.componentTooltip, element: <TooltipPage /> },
   { path: routes.componentAccordion, element: <AccordionPage /> },
   { path: routes.componentIcons, element: <IconsPage /> },
-  { path: routes.notFound, element: <PageNotFound /> },
 ]
 
 
