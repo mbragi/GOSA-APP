@@ -85,12 +85,12 @@ const isSignedIn = [
   { path: routes.notFound, element: <PageNotFound /> },
 ]
 
+
 const pages = [
   { path: routes.home, element: <Home /> },
   { path: routes.signin, element: <Signin /> },
   { path: routes.signup, element: <Signup /> },
   { path: routes.resetPassword, element: <ResetPassword /> },
-  { path: routes.notFound, element: <PageNotFound /> },
   // { path: routes.haveAnIdea, element: <Main /> },
   // { path: routes.haveAnIdea02, element: <Phase02 /> },
   // { path: routes.haveAnIdea03, element: <Phase03 /> },
@@ -161,6 +161,7 @@ const pages = [
   { path: routes.componentTooltip, element: <TooltipPage /> },
   { path: routes.componentAccordion, element: <AccordionPage /> },
   { path: routes.componentIcons, element: <IconsPage /> },
+  { path: routes.notFound, element: <PageNotFound /> },
 ]
 
 

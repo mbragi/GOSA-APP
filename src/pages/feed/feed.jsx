@@ -21,15 +21,19 @@ function Feed(props) {
   const [loading, setLoading] = useState(false)
   const [data, setData] = useState({})
 
-  useEffect(() => {
+  async function fetchPost() {
     setLoading(true)
-    async function fetchPost() {
-      const httpGetPost = await fetch(`https://rocky-scrubland-70378.herokuapp.com/feeds`)
-      const res = await httpGetPost.json()
-      const data = res.allFeeds
-      setFeeds(data)
-      setLoading(false)
-    }
+    const httpGetPost = await fetch(`https://rocky-scrubland-70378.herokuapp.com/feeds`)
+
+    const res = await httpGetPost.json()
+    const data = res.allFeeds
+    setFeeds(data)
+    setLoading(false)
+  }
+
+
+
+  useEffect(() => {
     fetchPost()
   }, [])
 
@@ -64,6 +68,7 @@ function Feed(props) {
     let request = JSON.stringify({ ...data })
     console.log(request)
     props.httpPostFeed(data)
+    fetchPost()
   }
 
   return (
@@ -202,7 +207,7 @@ function Feed(props) {
                       {loading ? <h1 className='text-3xl font-bold text-center bg-black-500'>Loading...</h1> :
                         feeds.map((post, idx) => {
                           return (
-                            <Post key={idx} post={post} />
+                            <Post key={idx} post={post} fetchPost={fetchPost} />
                           )
                         })}
 

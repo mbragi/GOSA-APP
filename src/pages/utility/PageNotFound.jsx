@@ -1,20 +1,32 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
 import Sidebar from '../../partials/Sidebar';
 import Header from '../../partials/Header';
 
 import NotFoundImage from '../../images/404-illustration.svg';
+import { connect } from 'react-redux';
+import routes from '../../routes';
 
-function PageNotFound() {
+
+function PageNotFound(props) {
+
+  const { auth: { user } } = props;
+
+  const navigate = useNavigate();
 
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
+  useEffect(() => {
+    if (user) {
+      navigate(routes.feed);
+    }
+  }, [user])
   return (
     <div className="flex h-screen overflow-hidden">
 
       {/* Sidebar */}
-      <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
+      {/* <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} /> */}
 
       {/* Content area */}
       <div className="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden bg-white">
@@ -46,4 +58,8 @@ function PageNotFound() {
   );
 }
 
-export default PageNotFound;
+const mapStateToProps = state => ({
+  auth: state.auth
+})
+
+export default connect(mapStateToProps)(PageNotFound);

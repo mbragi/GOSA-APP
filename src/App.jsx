@@ -19,26 +19,23 @@ function App(props) {
     window.scroll({ top: 0 })
     document.querySelector('html').style.scrollBehavior = ''
   }, [location.pathname]); // triggered on route change
-  if (!user) {
-    return (
-      <Routes>
-        {
-          routes?.pages.map((item, idx) => <Route key={idx} exact path={item.path} element={item.element} />)
-        }
-      </Routes>
-    )
 
-  } else {
-    return (
-      <>
-        <Routes>
-          {
-            routes?.isSignedIn.map((item, idx) => <Route key={idx} exact path={item.path} element={item.element} />)
-          }
-        </Routes>
-      </>
-    );
+  console.log(user)
+
+  const loggedInAs = !user ? "noUser" : "user"
+
+  const renderRoutes = {
+    noUser: routes?.pages.map((item, idx) => <Route key={idx} exact path={item.path} element={item.element} />),
+    user: routes?.isSignedIn.map((item, idx) => <Route key={idx} exact path={item.path} element={item.element} />)
   }
+
+  return (
+    <>
+      <Routes>
+        {renderRoutes[loggedInAs]}
+      </Routes>
+    </>
+  );
 }
 
 const mapStateToProps = state => ({

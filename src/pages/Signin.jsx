@@ -11,10 +11,8 @@ import Toast from '../components/Toast';
 function Signin(props) {
   const [data, setData] = React.useState({})
   const navigate = useNavigate()
-
   // console.log(props);
   const { auth: { user, loading, error } } = props;
-
   async function onInputChange(event) {
     const { name, value } = event.target
     let Data = { ...data }
@@ -29,13 +27,12 @@ function Signin(props) {
     props.httpLoginUser(data);
   }
 
-
-  useEffect(() => {
-    if (user) {
-      navigate(routes.feed);
-      return;
-    }
-  }, [props.auth])
+  // useEffect(() => {
+  //   if (user) {
+  //     navigate(routes.feed);
+  //     return;
+  //   }
+  // }, [props.auth])
 
 
 

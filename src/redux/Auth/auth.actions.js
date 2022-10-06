@@ -9,7 +9,7 @@ export const httpLoginUser = (data) => async (dispatch) => {
       `https://rocky-scrubland-70378.herokuapp.com/login`,
       data
     );
-    console.log("Login successful: ", response.data);
+    // console.log("Login successful: ", response.data);
     dispatch({
       type: AuthTypes.LOGIN_USER_SUCCESSFUL,
       payload: response.data.data,
