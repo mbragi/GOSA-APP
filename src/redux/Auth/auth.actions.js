@@ -15,7 +15,6 @@ export const httpLoginUser = (data) => async (dispatch) => {
       payload: response.data.data,
     });
   } catch (error) {
-    // console.log(error.response.data);
     dispatch({
       type: AuthTypes.LOGIN_USER_FAILED,
       payload: error.response.data,
@@ -23,8 +22,6 @@ export const httpLoginUser = (data) => async (dispatch) => {
   }
 };
 
-
-
 export const logoutUser = () => ({
   type: AuthTypes.LOGOUT_USER,
-})
+});
