@@ -5,16 +5,15 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import EditMenu from "../../components/DropdownEditMenu"
 import UserImage03 from '../../images/user-40-03.jpg';
+import Comments from './comments';
 function Post({ post, fetchPost }) {
- // const [del, setDel] = useState('')
+ const [openComments, setOpenComments] = useState(false);
  async function deletePost(e) {
   const { id } = e.target
-  // console.log()
-  const request = await axios.delete(`https:///feed/${id}`)
-  fetchPost()
-  console.log(request)
-  // setDel(id)
+  const request = await axios.delete(`https://rocky-scrubland-70378.herokuapp.com/feed/${id}`)
  }
+
+ console.table(post);
  return (
   <>
    {/* Post 1 */}
@@ -26,13 +25,17 @@ function Post({ post, fetchPost }) {
       <img className="rounded-full shrink-0" src={UserImage03} width="40" height="40" alt="User 03" />
       <div>
        <div className="leading-tight">
-        <a className="text-sm font-semibold text-slate-800" href="#0">
+        <a className="text-sm  font-semibold text-slate-800" href="#0">
          {post.name}
         </a>
+        <p className='' style={{ fontSize: '0.6rem'}}>{post.createdAt.split('T')[0]}</p>
        </div>
-       <div className="text-xs text-slate-500">{post.date}</div>
+       {/* <div className="text-xs text-slate-500">{post?.createdAt?.split('T')[0]}</div> */}
       </div>
      </div>
+     {
+
+     }
      <EditMenu align="right" className="relative inline-flex shrink-0">
       <Link className="font-medium text-sm text-rose-500 hover:text-rose-600 flex py-1 px-3" to='#0'  >
        <li>
@@ -48,7 +51,7 @@ function Post({ post, fetchPost }) {
     </header>
     {/* Body */}
     <div>
-     <h2 className='text-l font-bold text-black-500 mx-10 m-2 w-3/4'>{post.title}</h2>
+     <h2 className='text-l font-bold text-black-500 mx-10 ml-0 m-2 w-3/4'>{post.title}</h2>
      <div className="text-sm text-slate-800 space-y-2 mb-5">
       <p>
        {post.textDescription}
@@ -65,20 +68,23 @@ function Post({ post, fetchPost }) {
       <div className="text-sm text-slate-500">4</div>
      </button>
      {/* Share button */}
-     <button className="flex items-center text-slate-400 hover:text-indigo-500">
+     {/* <button className="flex items-center text-slate-400 hover:text-indigo-500">
       <svg className="w-4 h-4 shrink-0 fill-current mr-1.5" viewBox="0 0 16 16">
        <path d="M13 7h2v6a1 1 0 0 1-1 1H4v2l-4-3 4-3v2h9V7ZM3 9H1V3a1 1 0 0 1 1-1h10V0l4 3-4 3V4H3v5Z" />
       </svg>
       <div className="text-sm text-slate-500">44</div>
-     </button>
+     </button> */}
      {/* Replies button */}
-     <button className="flex items-center text-slate-400 hover:text-indigo-500">
+     <button onClick={() => {
+      setOpenComments(!openComments)
+     }} className="flex items-center text-slate-400 hover:text-indigo-500">
       <svg className="w-4 h-4 shrink-0 fill-current mr-1.5" viewBox="0 0 16 16">
        <path d="M8 0C3.6 0 0 3.1 0 7s3.6 7 8 7h.6l5.4 2v-4.4c1.2-1.2 2-2.8 2-4.6 0-3.9-3.6-7-8-7zm4 10.8v2.3L8.9 12H8c-3.3 0-6-2.2-6-5s2.7-5 6-5 6 2.2 6 5c0 2.2-2 3.8-2 3.8z" />
       </svg>
       <div className="text-sm text-slate-500">7</div>
      </button>
     </footer>
+      {openComments && <Comments />}
    </div>
   </>
  )

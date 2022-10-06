@@ -14,7 +14,7 @@ const middlewares = [thunk];
 const persistConfig = {
   key: "root",
   storage: storageSession,
-  whitelist: ["auth"], // only keys defined in rootReducer will be persisted
+  whitelist: ["auth", "feed"], // only keys defined in rootReducer will be persisted
 };
 
 if (process.env.NODE_ENV === "development") {

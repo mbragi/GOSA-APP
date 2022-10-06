@@ -9,33 +9,38 @@ import Post from './posts';
 import Avatar from '../../images/user-40-02.jpg';
 import ModalBasic from '../../components/ModalBasic';
 import { useEffect } from 'react';
-import { httpPostFeed } from '../../redux/Feed/feed.actions';
+import { httpPostFeed, httpGetFeed } from '../../redux/Feed/feed.actions';
+import axios from 'axios';
 // import { store } from '../../redux/store'
 
 function Feed(props) {
-
+  
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [feedbackModalOpen, setFeedbackModalOpen] = useState(false)
   const [modalOpen, setModalOpen] = useState(false)
   const [feeds, setFeeds] = useState([])
   const [loading, setLoading] = useState(false)
   const [data, setData] = useState({})
+  
+  const { auth: { user }, feed: { feed }, httpGetFeed } = props;
 
   async function fetchPost() {
-    setLoading(true)
-    const httpGetPost = await fetch(`https://rocky-scrubland-70378.herokuapp.com/feeds`)
-
-    const res = await httpGetPost.json()
-    const data = res.allFeeds
-    setFeeds(data)
-    setLoading(false)
+    setLoading(true);
+    httpGetFeed();
+    setLoading(false);
+    // console.log('Getting Feeds...')
+    // try {
+      
+    //   const response = await axios.get(`https://rocky-scrubland-70378.herokuapp.com/feeds`);
+    //   // console.log(response.data.allFeeds);
+    //   setFeeds(response.data.allFeeds)
+    // } catch (error) {
+    //   console.log(error?.message);
+    // }
+    // console.log("Finished getting feeds...")
   }
 
 
-
-  useEffect(() => {
-    fetchPost()
-  }, [])
 
 
 
@@ -50,27 +55,37 @@ function Feed(props) {
     e.stopPropagation();
     setModalOpen(true)
   }
-  const { auth: { user } } = props
+
   function createPost(e) {
     const { name, value } = e.target
-    // console.log(user.fullName)
     const post = {
       ...data,
       author: user._id
     }
     post[name] = value
-    // console.log(post)
     setData(post)
+
+    
   }
 
   async function httpPostFeed(e) {
     e.preventDefault()
-    let request = JSON.stringify({ ...data })
-    console.log(request)
-    props.httpPostFeed(data)
-    fetchPost()
+    try {
+      props.httpPostFeed(data)
+    } catch (error) {
+      console.log(error.message);
+    }
+    setModalOpen(false);
+    setFeedbackModalOpen(false);
   }
 
+
+  useEffect(() => {
+    fetchPost();
+  }, [feed.length])
+
+
+  console.log(feed);
   return (
     <div className="flex h-screen overflow-hidden">
       {/* Sidebar */}
@@ -204,12 +219,18 @@ function Feed(props) {
                       </form>
 
                       {/* Posts */}
-                      {loading ? <h1 className='text-3xl font-bold text-center bg-black-500'>Loading...</h1> :
-                        feeds.map((post, idx) => {
-                          return (
-                            <Post key={idx} post={post} fetchPost={fetchPost} />
-                          )
-                        })}
+                      {loading && <h1 className='text-md font-bold text-center bg-black-500'>Loading...</h1>}
+                      {
+                          feed.length > 0 && feed.map((post, idx) => {
+                            return (
+                              <Post 
+                                key={idx} 
+                                post={post} 
+                                fetchPost={fetchPost}
+                              />
+                            )
+                          }).reverse()
+                      }
 
                     </div>
 
@@ -231,10 +252,12 @@ function Feed(props) {
   );
 }
 const mapDispatchToProps = dispatch => ({
-  httpPostFeed: data => dispatch(httpPostFeed(data))
+  httpPostFeed: data => dispatch(httpPostFeed(data)),
+  httpGetFeed: () => dispatch(httpGetFeed())
 })
 const mapStateToProps = state => ({
-  auth: state.auth
+  auth: state.auth,
+  feed: state.feed
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Feed);
