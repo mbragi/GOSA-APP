@@ -28,7 +28,7 @@ function FeedRightContent() {
                         <img className="w-8 h-8 rounded-full" src={GroupAvatar01} width="32" height="32" alt="Group 01" />
                       </div>
                       <div className="truncate">
-                        <span className="text-sm font-medium text-slate-800">Introductions</span>
+                        <span className="text-sm font-medium text-slate-800">Business</span>
                       </div>
                     </div>
                     <button className="text-xs inline-flex font-medium bg-indigo-100 text-indigo-600 rounded-full text-center px-2.5 py-1">
@@ -43,7 +43,7 @@ function FeedRightContent() {
                         <img className="w-8 h-8 rounded-full" src={GroupAvatar02} width="32" height="32" alt="Group 02" />
                       </div>
                       <div className="truncate">
-                        <span className="text-sm font-medium text-slate-800">HackerNews</span>
+                        <span className="text-sm font-medium text-slate-800">IBC</span>
                       </div>
                     </div>
                     <button className="text-xs inline-flex font-medium bg-indigo-100 text-indigo-600 rounded-full text-center px-2.5 py-1">
@@ -58,7 +58,7 @@ function FeedRightContent() {
                         <img className="w-8 h-8 rounded-full" src={GroupAvatar03} width="32" height="32" alt="Group 03" />
                       </div>
                       <div className="truncate">
-                        <span className="text-sm font-medium text-slate-800">ReactJs</span>
+                        <span className="text-sm font-medium text-slate-800">Football</span>
                       </div>
                     </div>
                     <button className="text-xs inline-flex font-medium bg-emerald-100 text-emerald-600 rounded-full text-center px-2.5 py-1">
@@ -75,7 +75,7 @@ function FeedRightContent() {
                         <img className="w-8 h-8 rounded-full" src={GroupAvatar04} width="32" height="32" alt="Group 04" />
                       </div>
                       <div className="truncate">
-                        <span className="text-sm font-medium text-slate-800">JustChatting</span>
+                        <span className="text-sm font-medium text-slate-800">Movies</span>
                       </div>
                     </div>
                     <button className="text-xs inline-flex font-medium bg-indigo-100 text-indigo-600 rounded-full text-center px-2.5 py-1">
