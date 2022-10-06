@@ -150,7 +150,7 @@ function Feed(props) {
                           <div className="px-5 py-4">
                             <div className="space-y-3">
                               <div>
-                                <label className="block text-sm font-medium mb-1" htmlFor="name">Title <span className="text-rose-500">*</span></label>
+                                <label className="block text-sm font-medium mb-1" htmlFor="name">Heading <span className="text-rose-500">*</span></label>
                                 <input name='title' className="form-input w-full px-2 py-1" type="text" onChange={createPost} required />
                               </div>
                               <div>

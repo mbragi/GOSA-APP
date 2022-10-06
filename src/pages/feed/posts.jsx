@@ -22,6 +22,11 @@ function Post({ post, fetchPost, auth: { user } }) {
   }
  }
 
+ function findUser() {
+  const findUser = post?.likes?.find(item => item === user._id);
+  return findUser ? true : false
+ }
+
  
 
  console.table(post);
@@ -73,10 +78,10 @@ function Post({ post, fetchPost, auth: { user } }) {
     <footer className="flex items-center space-x-4">
      {/* Like button */}
      <button className="flex items-center text-slate-400 hover:text-indigo-500">
-      <svg className="w-4 h-4 shrink-0 fill-current mr-1.5" viewBox="0 0 16 16">
+      <svg className={`w-4 h-4 shrink-0 ${findUser() ? "fill-red-700" : "fill-current"} mr-1.5`} viewBox="0 0 16 16">
        <path d="M14.682 2.318A4.485 4.485 0 0011.5 1 4.377 4.377 0 008 2.707 4.383 4.383 0 004.5 1a4.5 4.5 0 00-3.182 7.682L8 15l6.682-6.318a4.5 4.5 0 000-6.364zm-1.4 4.933L8 12.247l-5.285-5A2.5 2.5 0 014.5 3c1.437 0 2.312.681 3.5 2.625C9.187 3.681 10.062 3 11.5 3a2.5 2.5 0 011.785 4.251h-.003z" />
       </svg>
-      <div className="text-sm text-slate-500">0</div>
+      <div className="text-sm text-slate-500">{post?.likes?.length}</div>
      </button>
      {/* Share button */}
      {/* <button className="flex items-center text-slate-400 hover:text-indigo-500">
