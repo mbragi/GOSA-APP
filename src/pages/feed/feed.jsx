@@ -11,6 +11,7 @@ import ModalBasic from '../../components/ModalBasic';
 import { useEffect } from 'react';
 import { httpPostFeed, httpGetFeed } from '../../redux/Feed/feed.actions';
 import axios from 'axios';
+import { SpeakerSimpleHigh, Image, YoutubeLogo } from 'phosphor-react'
 // import { store } from '../../redux/store'
 
 function Feed(props) {
@@ -119,12 +120,30 @@ function Feed(props) {
                           <div className="px-5 py-4">
                             <div className="space-y-3">
                               <div>
-                                <label className="block text-sm font-medium mb-1" htmlFor="name">Title <span className="text-rose-500">*</span></label>
-                                <input name='title' className="form-input w-full px-2 py-1" type="text" required />
+                                <textarea name='textDescription' className="form-textarea w-full px-2 py-1 border-none shadow-md" onChange={createPost} rows='10' placeholder="What's on your mind?"></textarea>
                               </div>
-                              <div>
-                                {/* <label className="block text-sm font-medium mb-1" htmlFor="feedback">Message <span className="text-rose-500">*</span></label> */}
-                                <input className="font-bold text-center w-full px-2 py-1 p-8" type='file' placeholder='Click to select a Media' required />
+                              <div className='flex items-center '>
+                                  <label className="cursor-pointer relative bg-indigo-300 p-2 mr-2 rounded-md text-white">
+                                    <input type="file" style={{ opacity: 0, position: 'absolute', width: '1rem'}} />
+                                    <span className="file-custom flex items-center" >
+                                      <SpeakerSimpleHigh size={18} color="white"/>
+                                      <span className=''>Audio</span>
+                                    </span>
+                                </label>
+                                  <label className="cursor-pointer relative bg-indigo-300 p-2 mr-2 rounded-md text-white">
+                                    <input type="file" style={{ opacity: 0, position: 'absolute', width: '1rem'}} />
+                                    <span className="file-custom flex items-center" >
+                                      <Image size={18} color="white"/>
+                                      <span>Image</span>
+                                    </span>
+                                </label>
+                                  <label className="cursor-pointer relative bg-indigo-300 p-2 mr-2 rounded-md text-white">
+                                    <input type="file" style={{ opacity: 0, position: 'absolute', width: '1rem'}} />
+                                    <span className="file-custom flex items-center" >
+                                    <YoutubeLogo size={18} color="white"/>
+                                      <span>Video</span>
+                                    </span>
+                                </label>
                               </div>
                             </div>
                           </div>
@@ -132,7 +151,7 @@ function Feed(props) {
                           <div className="px-5 py-4 border-t border-slate-200">
                             <div className="flex flex-wrap justify-end space-x-2">
                               <button className="btn-sm border-slate-200 hover:border-slate-300 text-slate-600" onClick={(e) => { e.stopPropagation(); setFeedbackModalOpen(false); }}>Cancel</button>
-                              <button className="btn-sm bg-indigo-500 hover:bg-indigo-600 text-white" type='submit'>Send</button>
+                              <button className="btn-sm bg-indigo-500 hover:bg-indigo-600 text-white" type='submit'>Post</button>
                             </div>
                           </div>
                         </ModalBasic>
@@ -186,14 +205,20 @@ function Feed(props) {
                         </div>
                         <div className="flex justify-between items-center">
                           <div className="grow flex space-x-5">
-                            <button className="inline-flex items-center text-sm font-medium text-slate-600 hover:text-slate-700"
+                          <button className="inline-flex items-center text-sm font-medium text-slate-600 hover:text-slate-700"
                               onClick={modalMedia}
                             >
-                              <svg className="w-4 h-4 fill-indigo-400 mr-2" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M0 0h2v16H0V0Zm14 0h2v16h-2V0Zm-3 7H5c-.6 0-1-.4-1-1V1c0-.6.4-1 1-1h6c.6 0 1 .4 1 1v5c0 .6-.4 1-1 1ZM6 5h4V2H6v3Zm5 11H5c-.6 0-1-.4-1-1v-5c0-.6.4-1 1-1h6c.6 0 1 .4 1 1v5c0 .6-.4 1-1 1Zm-5-2h4v-3H6v3Z" />
-                              </svg>
-                              <span>Audio</span>
+                              <label className="cursor-pointer relative">
+                                {/* <input type="file" style={{ opacity: 0, position: 'absolute', width: '1rem'}} /> */}
+                                <span className="file-custom flex" >
+                                  <svg className="w-4 h-4 fill-indigo-400 mr-2" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M0 0h2v16H0V0Zm14 0h2v16h-2V0Zm-3 7H5c-.6 0-1-.4-1-1V1c0-.6.4-1 1-1h6c.6 0 1 .4 1 1v5c0 .6-.4 1-1 1ZM6 5h4V2H6v3Zm5 11H5c-.6 0-1-.4-1-1v-5c0-.6.4-1 1-1h6c.6 0 1 .4 1 1v5c0 .6-.4 1-1 1Zm-5-2h4v-3H6v3Z" />
+                                  </svg>
+                                  <span>Audio</span>
+                                </span>
+                            </label>
                             </button>
+                       
                             <button className="inline-flex items-center text-sm font-medium text-slate-600 hover:text-slate-700"
                               onClick={modalMedia}
                             >
