@@ -84,8 +84,6 @@ function Feed(props) {
     fetchPost();
   }, [feed.length])
 
-
-  console.log(feed);
   return (
     <div className="flex h-screen overflow-hidden">
       {/* Sidebar */}

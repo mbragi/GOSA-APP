@@ -39,3 +39,25 @@ export const httpGetFeed = () => async (dispatch) => {
     })
   }
 };
+
+export const httpLikePost = data => async dispatch => {
+  dispatch({ type: feedTypes.LIKE_POST_START });
+  try {
+    const response = await axios.put("https://rocky-scrubland-70378.herokuapp.com/like", data);
+    dispatch({
+      type: feedTypes.LIKE_POST_SUCCESS,
+      payload: response.data.allFeeds,
+    });
+  } catch (error) {
+    console.log(error?.response?.data);
+    dispatch({
+      type: feedTypes.LIKE_POST_FAILED,
+      payload: error?.response?.data
+    })
+  }
+};
+
+export const loadFeed = feed => ({
+  type: feedTypes.LOAD_FEED,
+  payload: feed
+})

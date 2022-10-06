@@ -8,9 +8,17 @@ import UserImage03 from '../../images/user-40-03.jpg';
 import UserImage02 from '../../images/user-40-02.jpg';
 import Comments from './comments';
 import { connect } from 'react-redux';
+import { httpLikePost, loadFeed } from '../../redux/Feed/feed.actions';
+import { Heart } from 'phosphor-react';
 
-
-function Post({ post, fetchPost, auth: { user } }) {
+function Post({ 
+  post, 
+  fetchPost,
+   auth: { user }, 
+   httpLikePost, 
+   loadFeed,
+   feed: { feed }
+  }) {
  const [openComments, setOpenComments] = useState(false);
 
  async function deletePost() {
@@ -27,9 +35,25 @@ function Post({ post, fetchPost, auth: { user } }) {
   return findUser ? true : false
  }
 
+
+ function updatePostLike(userId) {
+  const newFeed = [...feed];
+  const postIndex = newFeed.findIndex(item => item._id === post._id);
+  const likeExist = post.likes.find(item => item === userId);
+  if (!likeExist) {
+    newFeed[postIndex].likes.push(userId);
+  } else {
+    const filterLike = newFeed[postIndex].likes.filter(item => item !== userId);
+    newFeed[postIndex].likes = filterLike;
+  }
+
+  console.log(newFeed);
+  loadFeed(newFeed);
+ }
+
  
 
- console.table(post);
+//  console.table(post);
  return (
   <>
    {/* Post 1 */}
@@ -44,7 +68,7 @@ function Post({ post, fetchPost, auth: { user } }) {
         <a className="text-sm  font-semibold text-slate-800" href="#0">
          {post.name}
         </a>
-        <p className='' style={{ fontSize: '0.6rem'}}>{post.createdAt.split('T')[0]}</p>
+        <p className='' style={{ fontSize: '0.6rem'}}>{post?.createdAt?.split('T')[0]}</p>
        </div>
        {/* <div className="text-xs text-slate-500">{post?.createdAt?.split('T')[0]}</div> */}
       </div>
@@ -77,8 +101,12 @@ function Post({ post, fetchPost, auth: { user } }) {
     {/* Footer */}
     <footer className="flex items-center space-x-4">
      {/* Like button */}
-     <button className="flex items-center text-slate-400 hover:text-indigo-500">
-      <svg className={`w-4 h-4 shrink-0 ${findUser() ? "fill-red-700" : "fill-current"} mr-1.5`} viewBox="0 0 16 16">
+     <button onClick={() => {
+        httpLikePost({userId: user._id, postId: post._id});
+        updatePostLike(user._id);
+      }} className="flex items-center text-slate-400 hover:text-indigo-500">
+      {/* <Heart size={18} color="red"/> */}
+      <svg className={`w-4 h-4 shrink-0 ${findUser() ? "fill-red-500" : "fill-current"} mr-1.5`} viewBox="0 0 16 16">
        <path d="M14.682 2.318A4.485 4.485 0 0011.5 1 4.377 4.377 0 008 2.707 4.383 4.383 0 004.5 1a4.5 4.5 0 00-3.182 7.682L8 15l6.682-6.318a4.5 4.5 0 000-6.364zm-1.4 4.933L8 12.247l-5.285-5A2.5 2.5 0 014.5 3c1.437 0 2.312.681 3.5 2.625C9.187 3.681 10.062 3 11.5 3a2.5 2.5 0 011.785 4.251h-.003z" />
       </svg>
       <div className="text-sm text-slate-500">{post?.likes?.length}</div>
@@ -124,7 +152,13 @@ function Post({ post, fetchPost, auth: { user } }) {
 
 
 const mapStateToProps = state => ({
-  auth: state.auth
+  auth: state.auth,
+  feed: state.feed
+});
+
+const mapDispatchToProps = dispatch => ({
+  httpLikePost: data => dispatch(httpLikePost(data)),
+  loadFeed: feed => dispatch(loadFeed(feed))
 })
 
-export default connect(mapStateToProps)(Post)
+export default connect(mapStateToProps, mapDispatchToProps)(Post)
