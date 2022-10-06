@@ -11,7 +11,7 @@ import ModalBasic from '../../components/ModalBasic';
 import { useEffect } from 'react';
 import { httpPostFeed, httpGetFeed } from '../../redux/Feed/feed.actions';
 import axios from 'axios';
-import { SpeakerSimpleHigh, Image, YoutubeLogo } from 'phosphor-react'
+import { SpeakerSimpleHigh, Image, YoutubeLogo, TextH } from 'phosphor-react'
 // import { store } from '../../redux/store'
 
 function Feed(props) {
@@ -22,6 +22,7 @@ function Feed(props) {
   const [feeds, setFeeds] = useState([])
   const [loading, setLoading] = useState(false)
   const [data, setData] = useState({})
+  const [showHeading, setShowHeading] = useState(false);
   
   const { auth: { user }, feed: { feed }, httpGetFeed } = props;
 
@@ -121,31 +122,54 @@ function Feed(props) {
                           {/* Modal content */}
                           <div className="px-5 py-4">
                             <div className="space-y-3">
+                              {
+                                showHeading &&
+                                  <div>
+                                    <input
+                                      id="status-input"
+                                      className="form-input w-full bg-slate-100 border-transparent focus:bg-white focus:border-slate-300 placeholder-slate-500"
+                                      type="text"
+                                      placeholder="Enter heading"
+                                      name='textDescription'
+                                    />
+                                  </div>
+                              }
                               <div>
-                                <textarea name='textDescription' className="form-textarea w-full px-2 py-1 border-none shadow-md" onChange={createPost} rows='10' placeholder="What's on your mind?"></textarea>
+                                <textarea name='textDescription' className="form-input w-full bg-slate-100 border-transparent focus:bg-white focus:border-slate-300 placeholder-slate-500" onChange={createPost} rows='10' placeholder="What's on your mind?"></textarea>
                               </div>
-                              <div className='flex items-center '>
-                                  <label className="cursor-pointer relative bg-indigo-300 p-2 mr-2 rounded-md text-white">
-                                    <input type="file" style={{ opacity: 0, position: 'absolute', width: '1rem'}} />
-                                    <span className="file-custom flex items-center" >
-                                      <SpeakerSimpleHigh size={18} color="white"/>
-                                      <span className=''>Audio</span>
-                                    </span>
-                                </label>
-                                  <label className="cursor-pointer relative bg-indigo-300 p-2 mr-2 rounded-md text-white">
-                                    <input type="file" style={{ opacity: 0, position: 'absolute', width: '1rem'}} />
-                                    <span className="file-custom flex items-center" >
-                                      <Image size={18} color="white"/>
-                                      <span>Image</span>
-                                    </span>
-                                </label>
-                                  <label className="cursor-pointer relative bg-indigo-300 p-2 mr-2 rounded-md text-white">
-                                    <input type="file" style={{ opacity: 0, position: 'absolute', width: '1rem'}} />
-                                    <span className="file-custom flex items-center" >
-                                    <YoutubeLogo size={18} color="white"/>
-                                      <span>Video</span>
-                                    </span>
-                                </label>
+                              <div className='flex items-center justify-between'>
+                                <div className='flex items-center '>
+
+                                    <label className="cursor-pointer relative bg-indigo-300 p-2 mr-2 rounded-md text-white">
+                                      <input type="file" style={{ opacity: 0, position: 'absolute', width: '1rem'}} />
+                                      <span className="file-custom flex items-center" >
+                                        <SpeakerSimpleHigh size={18} color="white"/>
+                                        {/* <span className=''>Audio</span> */}
+                                      </span>
+                                  </label>
+                                    <label className="cursor-pointer relative bg-indigo-300 p-2 mr-2 rounded-md text-white">
+                                      <input type="file" style={{ opacity: 0, position: 'absolute', width: '1rem'}} />
+                                      <span className="file-custom flex items-center" >
+                                        <Image size={18} color="white"/>
+                                        {/* <span>Image</span> */}
+                                      </span>
+                                  </label>
+                                    <label className="cursor-pointer relative bg-indigo-300 p-2 mr-2 rounded-md text-white">
+                                      <input type="file" style={{ opacity: 0, position: 'absolute', width: '1rem'}} />
+                                      <span className="file-custom flex items-center" >
+                                      <YoutubeLogo size={18} color="white"/>
+                                        {/* <span>Video</span> */}
+                                      </span>
+                                  </label>
+                                </div>
+                                <div className='flex justify-center items-center'>
+                                    <label onClick={() => setShowHeading(!showHeading)} className={`cursor-pointer relative ${showHeading ? "bg-indigo-600" : "bg-indigo-300"} p-2 mr-2 rounded-md text-white`}>
+                                      <span className="file-custom flex items-center" >
+                                      <TextH size={18} color="white"/>
+                                        {/* <span>Video</span> */}
+                                      </span>
+                                    </label>
+                                </div>
                               </div>
                             </div>
                           </div>
@@ -200,7 +224,7 @@ function Feed(props) {
                               className="form-input w-full bg-slate-100 border-transparent focus:bg-white focus:border-slate-300 placeholder-slate-500"
                               type="text"
                               placeholder="What's happening..."
-                              onClick={modalText}
+                              onClick={modalMedia}
                               name='textDescription'
                             />
                           </div>
