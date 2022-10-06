@@ -14,10 +14,6 @@ function FeedRightContent() {
     <div className="w-full hidden xl:block xl:w-72 relative">
       <div className="md:py-2 " >
         {/* Search form */}
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
         <div className="lg:sticky lg:top-36 lg:h-[calc(100vh-64px)] lg:overflow-x-hidden lg:overflow-y-auto no-scrollbar">
           {/* Blocks */}
           <div className="space-y-4 flex-column mt-4">
