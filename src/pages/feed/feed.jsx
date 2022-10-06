@@ -14,14 +14,14 @@ import axios from 'axios';
 // import { store } from '../../redux/store'
 
 function Feed(props) {
-  
+
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [feedbackModalOpen, setFeedbackModalOpen] = useState(false)
   const [modalOpen, setModalOpen] = useState(false)
   const [feeds, setFeeds] = useState([])
   const [loading, setLoading] = useState(false)
   const [data, setData] = useState({})
-  
+
   const { auth: { user }, feed: { feed }, httpGetFeed } = props;
 
   async function fetchPost() {
@@ -30,7 +30,7 @@ function Feed(props) {
     setLoading(false);
     // console.log('Getting Feeds...')
     // try {
-      
+
     //   const response = await axios.get(`https://rocky-scrubland-70378.herokuapp.com/feeds`);
     //   // console.log(response.data.allFeeds);
     //   setFeeds(response.data.allFeeds)
@@ -65,7 +65,7 @@ function Feed(props) {
     post[name] = value
     setData(post)
 
-    
+
   }
 
   async function httpPostFeed(e) {
@@ -88,8 +88,6 @@ function Feed(props) {
   console.log(feed);
   return (
     <div className="flex h-screen overflow-hidden">
-      {/* Sidebar */}
-      {/* <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} /> */}
 
       {/* Content area */}
       <div className="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
@@ -221,15 +219,15 @@ function Feed(props) {
                       {/* Posts */}
                       {loading && <h1 className='text-md font-bold text-center bg-black-500'>Loading...</h1>}
                       {
-                          feed.length > 0 && feed.map((post, idx) => {
-                            return (
-                              <Post 
-                                key={idx} 
-                                post={post} 
-                                fetchPost={fetchPost}
-                              />
-                            )
-                          }).reverse()
+                        feed.length > 0 && feed.map((post, idx) => {
+                          return (
+                            <Post
+                              key={idx}
+                              post={post}
+                              fetchPost={fetchPost}
+                            />
+                          )
+                        }).reverse()
                       }
 
                     </div>
