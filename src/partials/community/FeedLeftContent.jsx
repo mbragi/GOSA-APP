@@ -2,7 +2,7 @@ import React from 'react';
 
 function FeedLeftContent() {
   return (
-    <div className="w-full md:w-60 mb-8 md:mb-0">
+    <div className="w-full md:w-60 mb-8 md:mb-0" >
       <div className="md:sticky md:top-16 md:h-[calc(100vh-64px)] md:overflow-x-hidden md:overflow-y-auto no-scrollbar">
         <div className="md:py-8">
 
@@ -12,7 +12,7 @@ function FeedLeftContent() {
           </header>
 
           {/* Search form */}
-          <div className="xl:hidden mb-6">
+          {/* <div className="xl:hidden mb-6">
             <form className="relative">
               <label htmlFor="feed-search-mobile" className="sr-only">
                 Search
@@ -29,7 +29,7 @@ function FeedLeftContent() {
                 </svg>
               </button>
             </form>
-          </div>
+          </div> */}
 
           {/* Links */}
           <div className="flex flex-nowrap overflow-x-scroll no-scrollbar md:block md:overflow-auto px-4 md:space-y-3 -mx-4">

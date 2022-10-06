@@ -5,13 +5,24 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import EditMenu from "../../components/DropdownEditMenu"
 import UserImage03 from '../../images/user-40-03.jpg';
+import UserImage02 from '../../images/user-40-02.jpg';
 import Comments from './comments';
-function Post({ post, fetchPost }) {
+import { connect } from 'react-redux';
+
+
+function Post({ post, fetchPost, auth: { user } }) {
  const [openComments, setOpenComments] = useState(false);
- async function deletePost(e) {
-  const { id } = e.target
-  const request = await axios.delete(`https://rocky-scrubland-70378.herokuapp.com/feed/${id}`)
+
+ async function deletePost() {
+  try {
+    const response = await axios.delete(`https://rocky-scrubland-70378.herokuapp.com/feed/${post._id}`);
+    console.log(response)
+  } catch (error) {
+    console.log(error.message);
+  }
  }
+
+ 
 
  console.table(post);
  return (
@@ -34,20 +45,20 @@ function Post({ post, fetchPost }) {
       </div>
      </div>
      {
-
+        (user._id === post.author) && 
+        <EditMenu align="right" className="relative inline-flex shrink-0">
+          <Link className="font-medium text-sm text-rose-500 hover:text-rose-600 flex py-1 px-3" to='#0'  >
+          <li>
+            Edit
+          </li>
+          </Link>
+          <Link className="font-medium text-sm text-rose-500 hover:text-rose-600 flex py-1 px-3" to='#0'  >
+          <li onClick={deletePost}>
+            Remove
+          </li>
+          </Link>
+        </EditMenu>
      }
-     <EditMenu align="right" className="relative inline-flex shrink-0">
-      <Link className="font-medium text-sm text-rose-500 hover:text-rose-600 flex py-1 px-3" to='#0'  >
-       <li>
-        Edit
-       </li>
-      </Link>
-      <Link className="font-medium text-sm text-rose-500 hover:text-rose-600 flex py-1 px-3" to='#0'  >
-       <li id={post._id} onClick={deletePost}>
-        Remove
-       </li>
-      </Link>
-     </EditMenu>
     </header>
     {/* Body */}
     <div>
@@ -65,7 +76,7 @@ function Post({ post, fetchPost }) {
       <svg className="w-4 h-4 shrink-0 fill-current mr-1.5" viewBox="0 0 16 16">
        <path d="M14.682 2.318A4.485 4.485 0 0011.5 1 4.377 4.377 0 008 2.707 4.383 4.383 0 004.5 1a4.5 4.5 0 00-3.182 7.682L8 15l6.682-6.318a4.5 4.5 0 000-6.364zm-1.4 4.933L8 12.247l-5.285-5A2.5 2.5 0 014.5 3c1.437 0 2.312.681 3.5 2.625C9.187 3.681 10.062 3 11.5 3a2.5 2.5 0 011.785 4.251h-.003z" />
       </svg>
-      <div className="text-sm text-slate-500">4</div>
+      <div className="text-sm text-slate-500">0</div>
      </button>
      {/* Share button */}
      {/* <button className="flex items-center text-slate-400 hover:text-indigo-500">
@@ -81,12 +92,34 @@ function Post({ post, fetchPost }) {
       <svg className="w-4 h-4 shrink-0 fill-current mr-1.5" viewBox="0 0 16 16">
        <path d="M8 0C3.6 0 0 3.1 0 7s3.6 7 8 7h.6l5.4 2v-4.4c1.2-1.2 2-2.8 2-4.6 0-3.9-3.6-7-8-7zm4 10.8v2.3L8.9 12H8c-3.3 0-6-2.2-6-5s2.7-5 6-5 6 2.2 6 5c0 2.2-2 3.8-2 3.8z" />
       </svg>
-      <div className="text-sm text-slate-500">7</div>
+      <div className="text-sm text-slate-500">view comments</div>
      </button>
     </footer>
-      {openComments && <Comments />}
+      <div>
+        {openComments && <Comments />}
+        <div className="flex items-center space-x-3 mt-3">
+        <img className="rounded-full shrink-0" src={UserImage02} width="32" height="32" alt="User 02" />
+        <div className="grow">
+          <label htmlFor="comment-form" className="sr-only">
+            Write a comment…
+          </label>
+          <input
+            id="comment-form"
+            className="form-input w-full bg-slate-100 border-transparent focus:bg-white focus:border-slate-300 placeholder-slate-500"
+            type="text"
+            placeholder="Write a comment…"
+          />
+        </div>
+      </div>
+      </div>
    </div>
   </>
  )
 }
-export default Post
+
+
+const mapStateToProps = state => ({
+  auth: state.auth
+})
+
+export default connect(mapStateToProps)(Post)

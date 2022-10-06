@@ -55,7 +55,7 @@ function Comments(props) {
         <button className="text-sm  font-medium text-indigo-500 hover:text-indigo-600">View More Comments</button>
       </div>
       {/* Comment form */}
-      <div className="flex items-center space-x-3 mt-3">
+      {/* <div className="flex items-center space-x-3 mt-3">
         <img className="rounded-full shrink-0" src={UserImage02} width="32" height="32" alt="User 02" />
         <div className="grow">
           <label htmlFor="comment-form" className="sr-only">
@@ -68,7 +68,7 @@ function Comments(props) {
             placeholder="Write a comment…"
           />
         </div>
-      </div>
+      </div> */}
     </div>
   )
 }
