@@ -10,7 +10,7 @@ import Toast from '../components/Toast';
 
 function Signin(props) {
   const [data, setData] = React.useState({})
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
   // console.log(props);
   const { auth: { user, loading, error } } = props;
   async function onInputChange(event) {
@@ -26,15 +26,6 @@ function Signin(props) {
     e.preventDefault()
     props.httpLoginUser(data);
   }
-
-  // useEffect(() => {
-  //   if (user) {
-  //     navigate(routes.feed);
-  //     return;
-  //   }
-  // }, [props.auth])
-
-
 
   return (
     <main className='min-h-screen'>

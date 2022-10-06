@@ -6,14 +6,17 @@ import { Link } from 'react-router-dom';
 import EditMenu from "../../components/DropdownEditMenu"
 import UserImage03 from '../../images/user-40-03.jpg';
 function Post({ post, fetchPost }) {
- // const [del, setDel] = useState('')
+
  async function deletePost(e) {
-  const { id } = e.target
-  // console.log()
-  const request = await axios.delete(`https:///feed/${id}`)
-  fetchPost()
-  console.log(request)
-  // setDel(id)
+  try {
+   const { id } = e.target
+   const request = await axios.delete(`https://rocky-scrubland-70378.herokuapp.com/feed/${id}`)
+   console.log(request)
+   fetchPost()
+  } catch (error) {
+   console.log(error.message)
+  }
+
  }
  return (
   <>
