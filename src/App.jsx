@@ -11,7 +11,6 @@ import pages from './pages';
 
 function App() {
   const location = useLocation();
-
   useEffect(() => {
     document.querySelector('html').style.scrollBehavior = 'auto'
     window.scroll({ top: 0 })
@@ -28,5 +27,4 @@ function App() {
     </>
   );
 }
-
 export default App;
