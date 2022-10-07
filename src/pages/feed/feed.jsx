@@ -9,9 +9,10 @@ import Post from './posts';
 import Avatar from '../../images/user-40-02.jpg';
 import ModalBasic from '../../components/ModalBasic';
 import { useEffect } from 'react';
-import { httpPostFeed, httpGetFeed } from '../../redux/Feed/feed.actions';
+import { httpPostFeed, httpGetFeed, loadFeed } from '../../redux/Feed/feed.actions';
 import axios from 'axios';
-import { SpeakerSimpleHigh, Image, YoutubeLogo } from 'phosphor-react'
+import { SpeakerSimpleHigh, Image, YoutubeLogo, TextH } from 'phosphor-react'
+import { uploadFile } from '../../utils/Utils';
 // import { store } from '../../redux/store'
 
 function Feed(props) {
@@ -22,8 +23,10 @@ function Feed(props) {
   const [feeds, setFeeds] = useState([])
   const [loading, setLoading] = useState(false)
   const [data, setData] = useState({})
+  const [showHeading, setShowHeading] = useState(false);
+  const [counter, setCounter] = useState(0);
 
-  const { auth: { user }, feed: { feed }, httpGetFeed } = props;
+  const { auth: { user }, feed: { feed }, httpGetFeed, loadFeed } = props;
 
   async function fetchPost() {
     setLoading(true);
@@ -59,26 +62,44 @@ function Feed(props) {
 
   function createPost(e) {
     const { name, value } = e.target
-    const post = {
-      ...data,
-      author: user._id
+    const post = { ...data }
+    post[name] = value;
+    setData(post);
+  }
+
+  async function addFile(e) {
+    if (data.audioUrl || data.photoUrl || data.videoUrl) {
+      return alert('Upload either audio, photo or video!');
     }
-    post[name] = value
-    setData(post)
-
-
+    const { name } = e.target;
+    const url = await uploadFile(e.target.files[0], setCounter);
+    const newData = { ...data }
+    newData[name] = url;
+    setData(newData);
+    setCounter(0);
   }
 
   async function httpPostFeed(e) {
-    e.preventDefault()
-    try {
-      props.httpPostFeed(data)
-    } catch (error) {
-      console.log(error.message);
+    e.preventDefault();
+    if (
+      !data.title &&
+      !data.textDescription &&
+      !data.audioUrl &&
+      !data.photoUrl &&
+      !data.videoUrl
+    ) {
+      setModalOpen(false);
+      setFeedbackModalOpen(false);
+      return;
     }
+    props.httpPostFeed({ ...data, author: user._id });
+    const feeds = [...feed];
+    feeds.push({ ...data, author: user._id });
+    loadFeed(feeds);
     setModalOpen(false);
     setFeedbackModalOpen(false);
   }
+
 
 
   useEffect(() => {
@@ -115,35 +136,70 @@ function Feed(props) {
 
                       <form onSubmit={httpPostFeed} className="m-1.5">
                         {/* Start */}
-                        <ModalBasic id="feedback-modal" modalOpen={modalOpen} setModalOpen={setModalOpen} title="select media">
+                        <ModalBasic id="feedback-modal" modalOpen={modalOpen} setModalOpen={setModalOpen} title="Share what's on your mind!">
                           {/* Modal content */}
                           <div className="px-5 py-4">
                             <div className="space-y-3">
+                              {
+                                showHeading &&
+                                <div>
+                                  <input
+                                    id="status-input"
+                                    className="form-input w-full bg-slate-100 border-transparent focus:bg-white focus:border-slate-300 placeholder-slate-500"
+                                    type="text"
+                                    placeholder="Enter heading"
+                                    onChange={createPost}
+                                    name='title'
+                                  />
+                                </div>
+                              }
                               <div>
-                                <textarea name='textDescription' className="form-textarea w-full px-2 py-1 border-none shadow-md" onChange={createPost} rows='10' placeholder="What's on your mind?"></textarea>
+                                <textarea name='textDescription' className="form-input w-full bg-slate-100 border-transparent focus:bg-white focus:border-slate-300 placeholder-slate-500" onChange={createPost} rows='10' placeholder={`Hi ${user.fullName}, What's on your mind?`}></textarea>
                               </div>
-                              <div className='flex items-center '>
-                                  <label className="cursor-pointer relative bg-indigo-300 p-2 mr-2 rounded-md text-white">
-                                    <input type="file" style={{ opacity: 0, position: 'absolute', width: '1rem'}} />
+                              {counter > 0 && <p>Loading...{Math.floor(counter)}%</p>}
+                              <div className='flex items-center justify-between'>
+                                <div className='flex items-center '>
+
+
+                                  <label className={`cursor-pointer relative ${data.audioUrl ? "bg-indigo-600" : "bg-indigo-300"} p-2 mr-2 rounded-md text-white`}>
+                                    {
+                                      // !data.photoUrl && !data.videoUrl && data.audioUrl &&
+                                    }
+                                    <input onChange={addFile} name='audioUrl' type="file" style={{ opacity: 0, position: 'absolute', width: '1rem' }} />
                                     <span className="file-custom flex items-center" >
-                                      <SpeakerSimpleHigh size={18} color="white"/>
-                                      <span className=''>Audio</span>
+                                      <SpeakerSimpleHigh size={18} color="white" />
+                                      {/* <span className=''>Audio</span> */}
                                     </span>
-                                </label>
-                                  <label className="cursor-pointer relative bg-indigo-300 p-2 mr-2 rounded-md text-white">
-                                    <input type="file" style={{ opacity: 0, position: 'absolute', width: '1rem'}} />
+                                  </label>
+                                  <label className={`cursor-pointer relative ${data.photoUrl ? "bg-indigo-600" : "bg-indigo-300"} p-2 mr-2 rounded-md text-white`}>
+                                    {
+                                      // data.photoUrl && !data.videoUrl && !data.audioUrl &&
+                                    }
+                                    <input onChange={addFile} name='photoUrl' type="file" style={{ opacity: 0, position: 'absolute', width: '1rem' }} />
                                     <span className="file-custom flex items-center" >
-                                      <Image size={18} color="white"/>
-                                      <span>Image</span>
+                                      <Image size={18} color="white" />
+                                      {/* <span>Image</span> */}
                                     </span>
-                                </label>
-                                  <label className="cursor-pointer relative bg-indigo-300 p-2 mr-2 rounded-md text-white">
-                                    <input type="file" style={{ opacity: 0, position: 'absolute', width: '1rem'}} />
+                                  </label>
+                                  <label className={`cursor-pointer relative ${data.videoUrl ? "bg-indigo-600" : "bg-indigo-300"} p-2 mr-2 rounded-md text-white`}>
+                                    {
+                                      // !data.photoUrl && data.videoUrl && !data.audioUrl &&
+                                    }
+                                    <input onChange={addFile} name='videoUrl' type="file" style={{ opacity: 0, position: 'absolute', width: '1rem' }} />
                                     <span className="file-custom flex items-center" >
-                                    <YoutubeLogo size={18} color="white"/>
-                                      <span>Video</span>
+                                      <YoutubeLogo size={18} color="white" />
+                                      {/* <span>Video</span> */}
                                     </span>
-                                </label>
+                                  </label>
+                                </div>
+                                <div className='flex justify-center items-center'>
+                                  <label onClick={() => setShowHeading(!showHeading)} className={`cursor-pointer relative ${showHeading ? "bg-indigo-600" : "bg-indigo-300"} p-2 mr-2 rounded-md text-white`}>
+                                    <span className="file-custom flex items-center" >
+                                      <TextH size={18} color="white" />
+                                      {/* <span>Video</span> */}
+                                    </span>
+                                  </label>
+                                </div>
                               </div>
                             </div>
                           </div>
@@ -198,14 +254,14 @@ function Feed(props) {
                               className="form-input w-full bg-slate-100 border-transparent focus:bg-white focus:border-slate-300 placeholder-slate-500"
                               type="text"
                               placeholder="What's happening..."
-                              onClick={modalText}
+                              onClick={modalMedia}
                               name='textDescription'
                             />
                           </div>
                         </div>
                         <div className="flex justify-between items-center">
                           <div className="grow flex space-x-5">
-                          <button className="inline-flex items-center text-sm font-medium text-slate-600 hover:text-slate-700"
+                            <button className="inline-flex items-center text-sm font-medium text-slate-600 hover:text-slate-700"
                               onClick={modalMedia}
                             >
                               <label className="cursor-pointer relative">
@@ -216,9 +272,9 @@ function Feed(props) {
                                   </svg>
                                   <span>Audio</span>
                                 </span>
-                            </label>
+                              </label>
                             </button>
-                       
+
                             <button className="inline-flex items-center text-sm font-medium text-slate-600 hover:text-slate-700"
                               onClick={modalMedia}
                             >
@@ -274,7 +330,8 @@ function Feed(props) {
 }
 const mapDispatchToProps = dispatch => ({
   httpPostFeed: data => dispatch(httpPostFeed(data)),
-  httpGetFeed: () => dispatch(httpGetFeed())
+  httpGetFeed: () => dispatch(httpGetFeed()),
+  loadFeed: feed => dispatch(loadFeed(feed))
 })
 const mapStateToProps = state => ({
   auth: state.auth,

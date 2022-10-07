@@ -10,11 +10,17 @@ import UserImage03 from '../../images/avatar-03.jpg';
 import UserImage04 from '../../images/avatar-04.jpg';
 import UserImage05 from '../../images/avatar-05.jpg';
 import UserImage06 from '../../images/avatar-06.jpg';
+import { connect } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import routes from '../../routes';
+
 
 function ProfileBody({
   profileSidebarOpen,
-  setProfileSidebarOpen
+  setProfileSidebarOpen,
+  auth: { user }
 }) {
+  const navigate = useNavigate();
   return (
     <div className={`grow flex flex-col md:translate-x-0 transform transition-transform duration-300 ease-in-out ${profileSidebarOpen ? 'translate-x-1/3' : 'translate-x-0'}`}>
 
@@ -24,11 +30,14 @@ function ProfileBody({
         {/* Close button */}
         <button
           className="md:hidden absolute top-4 left-4 sm:left-6 text-white opacity-80 hover:opacity-100"
-          onClick={() => setProfileSidebarOpen(!profileSidebarOpen)}
+          onClick={() => {
+            // setProfileSidebarOpen(!profileSidebarOpen)
+            navigate(routes.feed);
+          }}
           aria-controls="profile-sidebar" 
           aria-expanded={profileSidebarOpen}
         >
-          <span className="sr-only">Close sidebar</span>
+          <span className="sr-only">Feed</span>
           <svg className="w-6 h-6 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path d="M10.7 18.7l1.4-1.4L7.8 13H20v-2H7.8l4.3-4.3-1.4-1.4L4 12z" />
           </svg>
@@ -78,7 +87,7 @@ function ProfileBody({
         <header className="text-center sm:text-left mb-6">
           {/* Name */}
           <div className="inline-flex items-start mb-2">
-            <h1 className="text-2xl text-slate-800 font-bold">Carolyn McNeail</h1>
+            <h1 className="text-2xl text-slate-800 font-bold">{user?.fullName}</h1>
             <svg className="w-4 h-4 fill-current shrink-0 text-amber-500 ml-2" viewBox="0 0 16 16">
               <path d="M13 6a.75.75 0 0 1-.75-.75 1.5 1.5 0 0 0-1.5-1.5.75.75 0 1 1 0-1.5 1.5 1.5 0 0 0 1.5-1.5.75.75 0 1 1 1.5 0 1.5 1.5 0 0 0 1.5 1.5.75.75 0 1 1 0 1.5 1.5 1.5 0 0 0-1.5 1.5A.75.75 0 0 1 13 6ZM6 16a1 1 0 0 1-1-1 4 4 0 0 0-4-4 1 1 0 0 1 0-2 4 4 0 0 0 4-4 1 1 0 1 1 2 0 4 4 0 0 0 4 4 1 1 0 0 1 0 2 4 4 0 0 0-4 4 1 1 0 0 1-1 1Z" />
             </svg>
@@ -97,7 +106,7 @@ function ProfileBody({
               <svg className="w-4 h-4 fill-current shrink-0 text-slate-400" viewBox="0 0 16 16">
                 <path d="M11 0c1.3 0 2.6.5 3.5 1.5 1 .9 1.5 2.2 1.5 3.5 0 1.3-.5 2.6-1.4 3.5l-1.2 1.2c-.2.2-.5.3-.7.3-.2 0-.5-.1-.7-.3-.4-.4-.4-1 0-1.4l1.1-1.2c.6-.5.9-1.3.9-2.1s-.3-1.6-.9-2.2C12 1.7 10 1.7 8.9 2.8L7.7 4c-.4.4-1 .4-1.4 0-.4-.4-.4-1 0-1.4l1.2-1.1C8.4.5 9.7 0 11 0ZM8.3 12c.4-.4 1-.5 1.4-.1.4.4.4 1 0 1.4l-1.2 1.2C7.6 15.5 6.3 16 5 16c-1.3 0-2.6-.5-3.5-1.5C.5 13.6 0 12.3 0 11c0-1.3.5-2.6 1.5-3.5l1.1-1.2c.4-.4 1-.4 1.4 0 .4.4.4 1 0 1.4L2.9 8.9c-.6.5-.9 1.3-.9 2.1s.3 1.6.9 2.2c1.1 1.1 3.1 1.1 4.2 0L8.3 12Zm1.1-6.8c.4-.4 1-.4 1.4 0 .4.4.4 1 0 1.4l-4.2 4.2c-.2.2-.5.3-.7.3-.2 0-.5-.1-.7-.3-.4-.4-.4-1 0-1.4l4.2-4.2Z" />
               </svg>
-              <a className="text-sm font-medium whitespace-nowrap text-indigo-500 hover:text-indigo-600 ml-2" href="#0">carolinmcneail.com</a>
+              <a className="text-sm font-medium whitespace-nowrap text-indigo-500 hover:text-indigo-600 ml-2" href="#0">{user?.email}</a>
             </div>
           </div>
         </header>
@@ -113,7 +122,7 @@ function ProfileBody({
               <a className="block pb-3 text-slate-500 hover:text-slate-600 whitespace-nowrap" href="#0">Connections</a>
             </li>
             <li className="mr-6 last:mr-0 first:pl-4 sm:first:pl-6 lg:first:pl-8 last:pr-4 sm:last:pr-6 lg:last:pr-8">
-              <a className="block pb-3 text-slate-500 hover:text-slate-600 whitespace-nowrap" href="#0">Contributions</a>
+              <a className="block pb-3 text-slate-500 hover:text-slate-600 whitespace-nowrap" href="#0">Posts</a>
             </li>
           </ul>
         </div>
@@ -135,7 +144,7 @@ function ProfileBody({
 
             {/* Departments */}
             <div>
-              <h2 className="text-slate-800 font-semibold mb-2">Departments</h2>
+              <h2 className="text-slate-800 font-semibold mb-2">Education</h2>
               {/* Cards */}
               <div className="grid xl:grid-cols-2 gap-4">
 
@@ -320,7 +329,7 @@ function ProfileBody({
             </div>
             <div className="text-sm">
               <h3 className="font-medium text-slate-800">Email</h3>
-              <div>carolinmcneail@acme.com</div>
+              <div>{user?.email}</div>
             </div>
             <div className="text-sm">
               <h3 className="font-medium text-slate-800">Birthdate</h3>
@@ -340,4 +349,9 @@ function ProfileBody({
   );
 }
 
-export default ProfileBody;
+
+const mapStateToProps = state => ({
+  auth: state.auth
+})
+
+export default connect(mapStateToProps)(ProfileBody);

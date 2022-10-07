@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import routes from '../routes';
 import Navigation from './component/Navigation';
 import Toast from '../components/Toast';
+import { connect } from 'react-redux';
 
 // const URL = import.meta.env.VITE_GOSA_API
 // const URL = ""
@@ -12,7 +13,7 @@ import Toast from '../components/Toast';
 
 
 
-function Signup() {
+function Signup(props) {
   const [data, setData] = useState({})
   const [data2, setData2] = useState({})
   const [message, setMessage] = useState('')
@@ -20,6 +21,7 @@ function Signup() {
   const navigate = useNavigate()
   const [type, setType] = useState('')
 
+  const { auth: { user, loading, error } } = props;
 
   const signUpData = (e) => {
     const { name, value } = e.target
@@ -101,7 +103,16 @@ function Signup() {
                   <label className="block text-sm font-medium mb-1" htmlFor="password">Confirm Password</label>
                   <input name='confirmPassword' className="form-input w-full" type="password" autoComplete="on" onChange={signUpData} />
                 </div>
+                {
+                loading ?
+                  <button style={{ width: '100%' }} className="btn bg-emerald-500 hover:bg-emerald-600 text-white disabled:border-slate-200 disabled:bg-slate-100 disabled:text-slate-400 disabled:cursor-not-allowed shadow-none" disabled>
+                    <svg className="animate-spin w-4 h-4 fill-current shrink-0" viewBox="0 0 16 16">
+                      <path d="M8 16a7.928 7.928 0 01-3.428-.77l.857-1.807A6.006 6.006 0 0014 8c0-3.309-2.691-6-6-6a6.006 6.006 0 00-5.422 8.572l-1.806.859A7.929 7.929 0 010 8c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8z" />
+                    </svg>
+                    <span className="ml-2">Loading</span>
+                  </button> :  
                 <button style={{ width: '100%' }} className="btn bg-lime-800 hover:bg-lime-900 text-white whitespace-nowrap" type='submit'>Sign Up</button>
+              }
               </div>
             </div>
           </form>
@@ -117,4 +128,8 @@ function Signup() {
   );
 }
 
-export default Signup;
+const mapStateToProps = state => ({
+  auth: state.auth
+})
+
+export default connect(mapStateToProps)(Signup);

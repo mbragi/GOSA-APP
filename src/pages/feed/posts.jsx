@@ -95,6 +95,56 @@ function Post({
        {post.textDescription}
       </p>
      </div>
+     {
+      post?.videoUrl &&
+      <div className="text-sm text-slate-800 space-y-2 mb-5 flex justify-center" style={{
+        overflow: 'hidden',
+        background: 'black',
+        height: '20rem'
+      }}>
+          
+          {
+            post?.videoUrl && 
+            <video 
+              id="my-player" 
+              className="video-js vjs-theme-sea" 
+              src={post?.videoUrl}
+              controls
+              autoPlay
+              preload="auto"
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'contain'
+              }}
+            />
+          }
+      </div>
+     }
+     {
+      post?.photoUrl &&
+      <div className="text-sm text-slate-800 space-y-2 mb-5 " style={{
+        overflow: 'hidden',
+        height: '100%'
+      }}>
+        {post?.photoUrl && <img src={post?.photoUrl} style={{ width: '100%', objectFit: 'contain'}} alt="..."/>}
+      </div>
+     }
+     {
+      post?.audioUrl &&
+      <div className="text-sm text-slate-800 space-y-2 mb-5 " style={{
+        overflow: 'hidden',
+      }}>
+        
+          {
+            post?.audioUrl && 
+            <audio controls>
+              <source src={post?.audioUrl} type="audio/ogg"/>
+              Your browser does not support the audio tag.
+            </audio>
+          }
+      </div>
+     }
     </div>
     {/* Footer */}
     <footer className="flex items-center space-x-4">

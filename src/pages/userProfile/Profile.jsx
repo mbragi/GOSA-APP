@@ -14,7 +14,7 @@ function Profile() {
   <div className="flex h-screen overflow-hidden">
 
    {/* Sidebar */}
-   {/* <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} /> */}
+   <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
 
    {/* Content area */}
    <div className="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden bg-white">
@@ -23,10 +23,10 @@ function Profile() {
     <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
 
     <main>
-     <div className="relative flex shadow">
+     <div className="relative flex">
 
       {/* Profile sidebar */}
-      {/* <ProfileSidebar profileSidebarOpen={profileSidebarOpen} setProfileSidebarOpen={setProfileSidebarOpen} /> */}
+      <ProfileSidebar profileSidebarOpen={profileSidebarOpen} setProfileSidebarOpen={setProfileSidebarOpen} />
 
       {/* Profile body */}
       <ProfileBody profileSidebarOpen={profileSidebarOpen} setProfileSidebarOpen={setProfileSidebarOpen} />
