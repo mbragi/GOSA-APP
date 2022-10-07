@@ -58,11 +58,11 @@ function FeedLeftContent() {
                     <svg className="w-4 h-4 shrink-0 fill-current text-slate-400 mr-2" viewBox="0 0 16 16">
                       <path d="M5 9h11v2H5V9zM0 9h3v2H0V9zm5 4h6v2H5v-2zm-5 0h3v2H0v-2zm5-8h7v2H5V5zM0 5h3v2H0V5zm5-4h11v2H5V1zM0 1h3v2H0V1z" />
                     </svg>
-                    <span className="text-sm font-medium text-slate-600">Gallery</span>
+                    <span className="text-sm font-medium text-slate-600">Catalog</span>
                   </a>
                 </li>
                 <li className="mr-0.5 md:mr-0 md:mb-0.5">
-                  <a className="flex items-center px-2.5 py-2 rounded whitespace-nowrap" href="#0">
+                  <a className="flex items-center px-2.5 py-2 rounded whitespace-nowrap" href="/profile">
                     <svg className="w-4 h-4 shrink-0 fill-current text-slate-400 mr-2" viewBox="0 0 16 16">
                       <path d="M10.59 7.658 8 5.5 5.41 7.658A.25.25 0 0 1 5 7.466V0h6v7.466a.25.25 0 0 1-.41.192Z" />
                       <path d="M14 16H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h2v2H2v12h12V2h-2V0h2a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2Z" />
@@ -70,14 +70,14 @@ function FeedLeftContent() {
                     <span className="text-sm font-medium text-slate-600">Profile</span>
                   </a>
                 </li>
-                <li className="mr-0.5 md:mr-0 md:mb-0.5">
+                {/* <li className="mr-0.5 md:mr-0 md:mb-0.5">
                   <a className="flex items-center px-2.5 py-2 rounded whitespace-nowrap" href="#0">
                     <svg className="w-4 h-4 shrink-0 fill-current text-slate-400 mr-2" viewBox="0 0 16 16">
                       <path d="M12.311 9.527c-1.161-.393-1.85-.825-2.143-1.175A3.991 3.991 0 0012 5V4c0-2.206-1.794-4-4-4S4 1.794 4 4v1c0 1.406.732 2.639 1.832 3.352-.292.35-.981.782-2.142 1.175A3.942 3.942 0 001 13.26V16h14v-2.74c0-1.69-1.081-3.19-2.689-3.733zM6 4c0-1.103.897-2 2-2s2 .897 2 2v1c0 1.103-.897 2-2 2s-2-.897-2-2V4zm7 10H3v-.74c0-.831.534-1.569 1.33-1.838 1.845-.624 3-1.436 3.452-2.422h.436c.452.986 1.607 1.798 3.453 2.422A1.943 1.943 0 0113 13.26V14z" />
                     </svg>
                     <span className="text-sm font-medium text-slate-600">Contact Us</span>
                   </a>
-                </li>
+                </li> */}
               </ul>
             </div>
             {/* Group 2 */}
