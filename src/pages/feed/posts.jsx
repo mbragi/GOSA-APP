@@ -97,21 +97,28 @@ function Post({
      </div>
      <div className="text-sm text-slate-800 space-y-2 mb-5">
         {post?.photoUrl && <img src={post?.photoUrl} alt="..."/>}
-        {post?.videoUrl && 
-        <video 
-          id="my-player" 
-          className="video-js vjs-theme-sea" 
-          src={post?.videoUrl}
-          controls
-          autoPlay
-          preload="auto"
-          style={{
-            width: '100%',
-            height: '100%'
-          }}
-        />
+        {
+          post?.videoUrl && 
+          <video 
+            id="my-player" 
+            className="video-js vjs-theme-sea" 
+            src={post?.videoUrl}
+            controls
+            autoPlay
+            preload="auto"
+            style={{
+              width: '100%',
+              height: '100%'
+            }}
+          />
         }
-        {post?.audioUrl && <img src={post?.photoUrl} alt="..."/>}
+        {
+          post?.audioUrl && 
+          <audio controls>
+            <source src={post?.audioUrl} type="audio/ogg"/>
+            Your browser does not support the audio tag.
+          </audio>
+        }
      </div>
     </div>
     {/* Footer */}
