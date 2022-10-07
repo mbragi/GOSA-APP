@@ -1,4 +1,5 @@
 import resolveConfig from 'tailwindcss/resolveConfig';
+import axios from 'axios';
 
 export const tailwindConfig = () => {
   // Tailwind config
@@ -32,3 +33,22 @@ export const formatThousands = (value) => Intl.NumberFormat('en-US', {
   maximumSignificantDigits: 3,
   notation: 'compact',
 }).format(value);
+
+
+export const uploadFile = async (imageData, setFunc) => {
+  const data = new FormData();
+		const cloudName = "dk64z2qlu";
+	
+		data.append("file", imageData);
+		data.append("upload_preset", "my_default");
+	
+		return axios.post(`https://api.cloudinary.com/v1_1/${cloudName}/upload`, data, {
+			onUploadProgress: ProgressEvent => {
+				console.log(ProgressEvent.loaded / ProgressEvent.total*100);
+				setFunc(ProgressEvent.loaded / ProgressEvent.total*100);
+			}
+		}).then(async (res) => {
+			 console.log(res.data.secure_url);
+       return res.data.secure_url;
+		}).catch(console.log);
+}

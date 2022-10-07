@@ -12,6 +12,7 @@ import { useEffect } from 'react';
 import { httpPostFeed, httpGetFeed } from '../../redux/Feed/feed.actions';
 import axios from 'axios';
 import { SpeakerSimpleHigh, Image, YoutubeLogo, TextH } from 'phosphor-react'
+import { uploadFile } from '../../utils/Utils';
 // import { store } from '../../redux/store'
 
 function Feed(props) {
@@ -23,6 +24,7 @@ function Feed(props) {
   const [loading, setLoading] = useState(false)
   const [data, setData] = useState({})
   const [showHeading, setShowHeading] = useState(false);
+  const [counter, setCounter] = useState(0);
   
   const { auth: { user }, feed: { feed }, httpGetFeed } = props;
 
@@ -60,27 +62,28 @@ function Feed(props) {
 
   function createPost(e) {
     const { name, value } = e.target
-    const post = {
-      ...data,
-      author: user._id
-    }
-    post[name] = value
-    setData(post)
+    const post = {...data}
+    post[name] = value;
+    setData(post);
+  }
 
-    
+  async function addFile(e) {
+    const { name } = e.target;
+    const url = await uploadFile(e.target.files[0], setCounter);
+    const newData = {...data}
+    newData[name] = url;
+    setData(newData);
+    setCounter(0);
   }
 
   async function httpPostFeed(e) {
     e.preventDefault()
-    try {
-      props.httpPostFeed(data)
-    } catch (error) {
-      console.log(error.message);
-    }
+    props.httpPostFeed({...data, author: user._id});
     setModalOpen(false);
     setFeedbackModalOpen(false);
   }
 
+  
 
   useEffect(() => {
     fetchPost();
@@ -130,7 +133,8 @@ function Feed(props) {
                                       className="form-input w-full bg-slate-100 border-transparent focus:bg-white focus:border-slate-300 placeholder-slate-500"
                                       type="text"
                                       placeholder="Enter heading"
-                                      name='textDescription'
+                                      onChange={createPost}
+                                      name='title'
                                     />
                                   </div>
                               }
@@ -141,21 +145,21 @@ function Feed(props) {
                                 <div className='flex items-center '>
 
                                     <label className="cursor-pointer relative bg-indigo-300 p-2 mr-2 rounded-md text-white">
-                                      <input type="file" style={{ opacity: 0, position: 'absolute', width: '1rem'}} />
+                                      <input onChange={addFile} name='audioUrl' type="file" style={{ opacity: 0, position: 'absolute', width: '1rem'}} />
                                       <span className="file-custom flex items-center" >
                                         <SpeakerSimpleHigh size={18} color="white"/>
                                         {/* <span className=''>Audio</span> */}
                                       </span>
                                   </label>
                                     <label className="cursor-pointer relative bg-indigo-300 p-2 mr-2 rounded-md text-white">
-                                      <input type="file" style={{ opacity: 0, position: 'absolute', width: '1rem'}} />
+                                      <input onChange={addFile}  name='photoUrl' type="file" style={{ opacity: 0, position: 'absolute', width: '1rem'}} />
                                       <span className="file-custom flex items-center" >
                                         <Image size={18} color="white"/>
                                         {/* <span>Image</span> */}
                                       </span>
                                   </label>
                                     <label className="cursor-pointer relative bg-indigo-300 p-2 mr-2 rounded-md text-white">
-                                      <input type="file" style={{ opacity: 0, position: 'absolute', width: '1rem'}} />
+                                      <input onChange={addFile}  name='videoUrl' type="file" style={{ opacity: 0, position: 'absolute', width: '1rem'}} />
                                       <span className="file-custom flex items-center" >
                                       <YoutubeLogo size={18} color="white"/>
                                         {/* <span>Video</span> */}

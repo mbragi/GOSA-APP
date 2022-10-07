@@ -95,6 +95,9 @@ function Post({
        {post.textDescription}
       </p>
      </div>
+     <div className="text-sm text-slate-800 space-y-2 mb-5">
+        {post?.photoUrl && <img src={post?.photoUrl} alt="..."/>}
+     </div>
     </div>
     {/* Footer */}
     <footer className="flex items-center space-x-4">
