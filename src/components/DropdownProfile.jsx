@@ -5,6 +5,7 @@ import Transition from '../utils/Transition';
 import UserAvatar from '../images/user-avatar-32.png';
 import { connect } from 'react-redux';
 import { logoutUser } from '../redux/Auth/auth.actions';
+import routes from '../routes';
 
 function DropdownProfile({
   align,
@@ -79,10 +80,10 @@ function DropdownProfile({
             <li>
               <Link
                 className="font-medium text-sm text-indigo-500 hover:text-indigo-600 flex items-center py-1 px-3"
-                to="/settings"
+                to={routes.profile}
                 onClick={() => setDropdownOpen(!dropdownOpen)}
               >
-                Settings
+                Profile
               </Link>
             </li>
             <li>

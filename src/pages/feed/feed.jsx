@@ -68,6 +68,9 @@ function Feed(props) {
   }
 
   async function addFile(e) {
+    if (data.audioUrl || data.photoUrl || data.videoUrl) {
+      return alert('Upload either audio, photo or video!');
+    }
     const { name } = e.target;
     const url = await uploadFile(e.target.files[0], setCounter);
     const newData = {...data}
@@ -145,21 +148,31 @@ function Feed(props) {
                               <div className='flex items-center justify-between'>
                                 <div className='flex items-center '>
 
-                                    <label className="cursor-pointer relative bg-indigo-300 p-2 mr-2 rounded-md text-white">
-                                      <input onChange={addFile} name='audioUrl' type="file" style={{ opacity: 0, position: 'absolute', width: '1rem'}} />
-                                      <span className="file-custom flex items-center" >
-                                        <SpeakerSimpleHigh size={18} color="white"/>
-                                        {/* <span className=''>Audio</span> */}
-                                      </span>
-                                  </label>
-                                    <label className="cursor-pointer relative bg-indigo-300 p-2 mr-2 rounded-md text-white">
+                                    
+                                    <label className={`cursor-pointer relative ${data.audioUrl ? "bg-indigo-600": "bg-indigo-300"} p-2 mr-2 rounded-md text-white`}>
+                                        {
+                                          // !data.photoUrl && !data.videoUrl && data.audioUrl &&
+                                        }
+                                        <input onChange={addFile} name='audioUrl' type="file" style={{ opacity: 0, position: 'absolute', width: '1rem'}} />
+                                        <span className="file-custom flex items-center" >
+                                          <SpeakerSimpleHigh size={18} color="white"/>
+                                          {/* <span className=''>Audio</span> */}
+                                        </span>
+                                    </label>
+                                    <label className={`cursor-pointer relative ${data.photoUrl ? "bg-indigo-600": "bg-indigo-300"} p-2 mr-2 rounded-md text-white`}>
+                                      {
+                                        // data.photoUrl && !data.videoUrl && !data.audioUrl &&
+                                      }
                                       <input onChange={addFile}  name='photoUrl' type="file" style={{ opacity: 0, position: 'absolute', width: '1rem'}} />
                                       <span className="file-custom flex items-center" >
                                         <Image size={18} color="white"/>
                                         {/* <span>Image</span> */}
                                       </span>
                                   </label>
-                                    <label className="cursor-pointer relative bg-indigo-300 p-2 mr-2 rounded-md text-white">
+                                    <label className={`cursor-pointer relative ${data.videoUrl ? "bg-indigo-600": "bg-indigo-300"} p-2 mr-2 rounded-md text-white`}>
+                                      {
+                                        // !data.photoUrl && data.videoUrl && !data.audioUrl &&
+                                      }
                                       <input onChange={addFile}  name='videoUrl' type="file" style={{ opacity: 0, position: 'absolute', width: '1rem'}} />
                                       <span className="file-custom flex items-center" >
                                       <YoutubeLogo size={18} color="white"/>
