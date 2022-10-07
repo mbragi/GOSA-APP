@@ -23,7 +23,7 @@ function Profile() {
     <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
 
     <main>
-     <div className="relative flex px-10 shadow">
+     <div className="relative flex shadow">
 
       {/* Profile sidebar */}
       {/* <ProfileSidebar profileSidebarOpen={profileSidebarOpen} setProfileSidebarOpen={setProfileSidebarOpen} /> */}

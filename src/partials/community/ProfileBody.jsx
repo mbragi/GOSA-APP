@@ -122,7 +122,7 @@ function ProfileBody({
               <a className="block pb-3 text-slate-500 hover:text-slate-600 whitespace-nowrap" href="#0">Connections</a>
             </li>
             <li className="mr-6 last:mr-0 first:pl-4 sm:first:pl-6 lg:first:pl-8 last:pr-4 sm:last:pr-6 lg:last:pr-8">
-              <a className="block pb-3 text-slate-500 hover:text-slate-600 whitespace-nowrap" href="#0">Contributions</a>
+              <a className="block pb-3 text-slate-500 hover:text-slate-600 whitespace-nowrap" href="#0">Posts</a>
             </li>
           </ul>
         </div>
@@ -144,7 +144,7 @@ function ProfileBody({
 
             {/* Departments */}
             <div>
-              <h2 className="text-slate-800 font-semibold mb-2">Departments</h2>
+              <h2 className="text-slate-800 font-semibold mb-2">Education</h2>
               {/* Cards */}
               <div className="grid xl:grid-cols-2 gap-4">
 
