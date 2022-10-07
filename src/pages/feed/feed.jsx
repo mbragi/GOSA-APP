@@ -141,6 +141,7 @@ function Feed(props) {
                               <div>
                                 <textarea name='textDescription' className="form-input w-full bg-slate-100 border-transparent focus:bg-white focus:border-slate-300 placeholder-slate-500" onChange={createPost} rows='10' placeholder="What's on your mind?"></textarea>
                               </div>
+                              {counter > 0 && <p>Loading...{Math.floor(counter)}%</p>}
                               <div className='flex items-center justify-between'>
                                 <div className='flex items-center '>
 
