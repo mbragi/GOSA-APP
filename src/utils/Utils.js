@@ -37,7 +37,7 @@ export const formatThousands = (value) => Intl.NumberFormat('en-US', {
 
 export const uploadFile = async (imageData, setFunc) => {
   const data = new FormData();
-		const cloudName = "dk64z2qlu";
+		const cloudName = "gosa-2013";
 	
 		data.append("file", imageData);
 		data.append("upload_preset", "my_default");

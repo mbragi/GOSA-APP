@@ -13,7 +13,7 @@ import { connect } from 'react-redux';
 
 
 
-function Signup() {
+function Signup(props) {
   const [data, setData] = useState({})
   const [data2, setData2] = useState({})
   const [message, setMessage] = useState('')
@@ -22,7 +22,7 @@ function Signup() {
   const [type, setType] = useState('')
 
   const { auth: { user, loading, error } } = props;
-  
+
   const signUpData = (e) => {
     const { name, value } = e.target
     let postdata = { ...data }
