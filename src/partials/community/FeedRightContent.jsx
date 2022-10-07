@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import GroupAvatar01 from '../../images/group-avatar-01.png';
 import GroupAvatar02 from '../../images/group-avatar-02.png';
@@ -10,6 +10,23 @@ import UserImage04 from '../../images/user-32-04.jpg';
 import UserImage05 from '../../images/user-32-05.jpg';
 
 function FeedRightContent() {
+  const [users, setUsers] = useState([]);
+  const [numberOfMembers, setNumberOfMembers] = useState(5)
+
+  const getUsers = async () => {
+    const response = await fetch('https://unitygate.herokuapp.com/');
+    const users = await response.json();
+    // console.table(users);
+    setUsers(users);
+  }
+
+  const filteredUsers = users.filter(each => each.year === '2013')
+
+  useEffect(() => {
+    getUsers();
+  }, [users.length]);
+
+  console.log(filteredUsers)
   return (
     <div className="w-full hidden xl:block xl:w-72 relative">
       <div className="md:py-2 " >
@@ -93,22 +110,27 @@ function FeedRightContent() {
             <div className="bg-slate-50 p-4 rounded border border-slate-200">
               <div className="text-xs font-semibold text-slate-400 uppercase mb-4">Who to follow</div>
               <ul className="space-y-3">
-                <li>
-                  <div className="flex items-center justify-between">
-                    <div className="grow flex items-center">
-                      <div className="relative mr-3">
-                        <img className="w-8 h-8 rounded-full" src={UserImage02} width="32" height="32" alt="User 02" />
+                {
+                  filteredUsers.map((item, index) => (
+                    <li>
+                      {console.log(item)}
+                      <div className="flex items-center justify-between">
+                        <div className="grow flex items-center">
+                          <div className="relative mr-3">
+                            <img className="w-8 h-8 rounded-full" src={UserImage02} width="32" height="32" alt="User 02" />
+                          </div>
+                          <div className="truncate">
+                            <span className="text-sm font-medium text-slate-800">{item?.name}</span>
+                          </div>
+                        </div>
+                        <button className="text-xs inline-flex font-medium bg-indigo-100 text-indigo-600 rounded-full text-center px-2.5 py-1">
+                          Follow
+                        </button>
                       </div>
-                      <div className="truncate">
-                        <span className="text-sm font-medium text-slate-800">Elly Boutin</span>
-                      </div>
-                    </div>
-                    <button className="text-xs inline-flex font-medium bg-indigo-100 text-indigo-600 rounded-full text-center px-2.5 py-1">
-                      Follow
-                    </button>
-                  </div>
-                </li>
-                <li>
+                    </li>
+                  )).splice(0, numberOfMembers)
+                }
+                {/* <li>
                   <div className="flex items-center justify-between">
                     <div className="grow flex items-center">
                       <div className="relative mr-3">
@@ -152,15 +174,21 @@ function FeedRightContent() {
                       Follow
                     </button>
                   </div>
-                </li>
+                </li> */}
               </ul>
               <div className="mt-4">
-                <button className="btn-sm w-full bg-white border-slate-200 hover:border-slate-300 text-indigo-500 shadow-none">View All</button>
+                <button onClick={() => {
+                  if(numberOfMembers === 5) {
+                    setNumberOfMembers(filteredUsers.length);
+                    return;
+                  } 
+                  setNumberOfMembers(5);
+                  }} className="btn-sm w-full bg-white border-slate-200 hover:border-slate-300 text-indigo-500 shadow-none">View All</button>
               </div>
             </div>
 
             {/* Block 3 */}
-            <div className="bg-slate-50 p-4 rounded border border-slate-200">
+            {/* <div className="bg-slate-50 p-4 rounded border border-slate-200">
               <div className="text-xs font-semibold text-slate-400 uppercase mb-4">Trends for you</div>
               <ul className="space-y-3">
                 <li>
@@ -207,7 +235,7 @@ function FeedRightContent() {
               <div className="mt-4">
                 <button className="btn-sm w-full bg-white border-slate-200 hover:border-slate-300 text-indigo-500 shadow-none">View All</button>
               </div>
-            </div>
+            </div> */}
 
           </div>
         </div>

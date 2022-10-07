@@ -125,7 +125,7 @@ function Post({
       post?.photoUrl &&
       <div className="text-sm text-slate-800 space-y-2 mb-5 " style={{
         overflow: 'hidden',
-        height: '20rem'
+        height: '100%'
       }}>
         {post?.photoUrl && <img src={post?.photoUrl} style={{ width: '100%', objectFit: 'contain'}} alt="..."/>}
       </div>
