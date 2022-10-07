@@ -81,6 +81,17 @@ function Feed(props) {
 
   async function httpPostFeed(e) {
     e.preventDefault();
+    if (
+      !data.title && 
+      !data.textDescription && 
+      !data.audioUrl && 
+      !data.photoUrl && 
+      !data.videoUrl
+    ) {
+      setModalOpen(false);
+      setFeedbackModalOpen(false);
+      return;
+    }
     props.httpPostFeed({...data, author: user._id});
     const feeds = [...feed];
     feeds.push({...data, author: user._id});
