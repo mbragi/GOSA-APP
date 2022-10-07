@@ -183,7 +183,7 @@ function FeedRightContent() {
                     return;
                   } 
                   setNumberOfMembers(5);
-                  }} className="btn-sm w-full bg-white border-slate-200 hover:border-slate-300 text-indigo-500 shadow-none">View All</button>
+                  }} className="btn-sm w-full bg-white border-slate-200 hover:border-slate-300 text-indigo-500 shadow-none">{numberOfMembers === 5 ? "View All" : "Collapse"}</button>
               </div>
             </div>
 

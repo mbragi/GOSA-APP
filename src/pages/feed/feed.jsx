@@ -9,7 +9,7 @@ import Post from './posts';
 import Avatar from '../../images/user-40-02.jpg';
 import ModalBasic from '../../components/ModalBasic';
 import { useEffect } from 'react';
-import { httpPostFeed, httpGetFeed } from '../../redux/Feed/feed.actions';
+import { httpPostFeed, httpGetFeed, loadFeed } from '../../redux/Feed/feed.actions';
 import axios from 'axios';
 import { SpeakerSimpleHigh, Image, YoutubeLogo, TextH } from 'phosphor-react'
 import { uploadFile } from '../../utils/Utils';
@@ -26,7 +26,7 @@ function Feed(props) {
   const [showHeading, setShowHeading] = useState(false);
   const [counter, setCounter] = useState(0);
   
-  const { auth: { user }, feed: { feed }, httpGetFeed } = props;
+  const { auth: { user }, feed: { feed }, httpGetFeed, loadFeed } = props;
 
   async function fetchPost() {
     setLoading(true);
@@ -80,8 +80,11 @@ function Feed(props) {
   }
 
   async function httpPostFeed(e) {
-    e.preventDefault()
+    e.preventDefault();
     props.httpPostFeed({...data, author: user._id});
+    const feeds = [...feed];
+    feeds.push({...data, author: user._id});
+    loadFeed(feeds);
     setModalOpen(false);
     setFeedbackModalOpen(false);
   }
@@ -318,7 +321,8 @@ function Feed(props) {
 }
 const mapDispatchToProps = dispatch => ({
   httpPostFeed: data => dispatch(httpPostFeed(data)),
-  httpGetFeed: () => dispatch(httpGetFeed())
+  httpGetFeed: () => dispatch(httpGetFeed()),
+  loadFeed: feed => dispatch(loadFeed(feed))
 })
 const mapStateToProps = state => ({
   auth: state.auth,
