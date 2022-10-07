@@ -127,7 +127,7 @@ function Feed(props) {
 
                       <form onSubmit={httpPostFeed} className="m-1.5">
                         {/* Start */}
-                        <ModalBasic id="feedback-modal" modalOpen={modalOpen} setModalOpen={setModalOpen} title="select media">
+                        <ModalBasic id="feedback-modal" modalOpen={modalOpen} setModalOpen={setModalOpen} title="Share what's on your mind!">
                           {/* Modal content */}
                           <div className="px-5 py-4">
                             <div className="space-y-3">
@@ -145,7 +145,7 @@ function Feed(props) {
                                   </div>
                               }
                               <div>
-                                <textarea name='textDescription' className="form-input w-full bg-slate-100 border-transparent focus:bg-white focus:border-slate-300 placeholder-slate-500" onChange={createPost} rows='10' placeholder="What's on your mind?"></textarea>
+                                <textarea name='textDescription' className="form-input w-full bg-slate-100 border-transparent focus:bg-white focus:border-slate-300 placeholder-slate-500" onChange={createPost} rows='10' placeholder={`Hi ${user.fullName}, What's on your mind?`}></textarea>
                               </div>
                               {counter > 0 && <p>Loading...{Math.floor(counter)}%</p>}
                               <div className='flex items-center justify-between'>
