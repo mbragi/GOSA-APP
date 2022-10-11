@@ -9,6 +9,7 @@ import UserImage02 from '../../images/user-40-02.jpg';
 import Comments from './comments';
 import { connect } from 'react-redux';
 import { httpLikePost, loadFeed } from '../../redux/Feed/feed.actions';
+import { httpGetComment } from '../../redux/Comment/comment.actions';
 import { Heart } from 'phosphor-react';
 import { data } from 'autoprefixer';
 
@@ -17,12 +18,12 @@ function Post({
   fetchPost,
   auth: { user },
   httpLikePost,
+  httpGetComment,
   loadFeed,
   feed: { feed }
 }) {
   const [openComments, setOpenComments] = useState(false);
   const [comment, setComment] = useState({})
-  const [data, setData] = useState([])
   async function deletePost() {
     try {
       const response = await axios.delete(`https://rocky-scrubland-70378.herokuapp.com/feed/${post._id}`);
@@ -71,12 +72,6 @@ function Post({
     loadFeed(newFeed);
   }
 
-  async function loadComments() {
-    const res = await axios.get(`https://rocky-scrubland-70378.herokuapp.com/comment/${post._id}`)
-    const Data = res.data.data
-    setData(Data)
-    console.log(data);
-  }
   return (
     <>
       {/* Post 1 */}
@@ -193,7 +188,7 @@ function Post({
      </button> */}
           {/* Replies button */}
           <button onClick={() => {
-            loadComments()
+            httpGetComment(post._id)
             setOpenComments(!openComments)
           }} className="flex items-center text-slate-400 hover:text-indigo-500">
             <svg className="w-4 h-4 shrink-0 fill-current mr-1.5" viewBox="0 0 16 16">
@@ -239,6 +234,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   httpLikePost: data => dispatch(httpLikePost(data)),
-  loadFeed: feed => dispatch(loadFeed(feed))
+  loadFeed: feed => dispatch(loadFeed(feed)),
+  httpGetComment: postId => dispatch(httpGetComment(postId)),
 })
 export default connect(mapStateToProps, mapDispatchToProps)(Post)

@@ -1,3 +1,4 @@
+import { connect } from 'react-redux';
 import CommenterImage04 from '../../images/user-32-04.jpg';
 import CommenterImage05 from '../../images/user-32-05.jpg';
 import UserImage02 from '../../images/user-40-02.jpg';
@@ -5,7 +6,8 @@ import UserImage02 from '../../images/user-40-02.jpg';
 
 
 
-function Comments(props) {
+function Comments({ loadComment, comment: { comment }, comment }) {
+
   return (
     <div className="mt-5 pt-3 border-t border-slate-200">
       <ul className="space-y-2 mb-3">
@@ -16,14 +18,14 @@ function Comments(props) {
             <div>
               <div className="text-xs text-slate-500">
                 <a className="font-semibold text-slate-800" href="#0">
-                  Sophie Wenner
-                </a>{' '}
+                  {comment.username}
+                </a>{comment?.createdAt?.split('T')[0]}
                 · 44min
               </div>
               <div className="text-sm">
                 <a className="font-medium text-indigo-500 hover:text-indigo-600" href="#0">
                   @EricaSpriggs
-                </a>{' '}
+                </a>{comment.comment_body}
                 Reading through and really enjoying "Zero to Sold" by Arvid.
               </div>
             </div>
@@ -72,6 +74,13 @@ function Comments(props) {
     </div>
   )
 }
+const mapStateToProps = state => ({
+  auth: state.auth,
+  feed: state.feed,
+  comment: state.comment
+})
+const mapDispatchToProps = dispatch => ({
 
+})
 
-export default Comments;
+export default connect(mapStateToProps, mapDispatchToProps)(Comments);
