@@ -44,7 +44,7 @@ export const uploadFile = async (imageData, setFunc) => {
   return axios
     .post(`https://api.cloudinary.com/v1_1/${cloudName}/upload`, data, {
       onUploadProgress: (ProgressEvent) => {
-        console.log((ProgressEvent.loaded / ProgressEvent.total) * 100);
+        // console.log((ProgressEvent.loaded / ProgressEvent.total) * 100);
         setFunc((ProgressEvent.loaded / ProgressEvent.total) * 100);
       },
     })

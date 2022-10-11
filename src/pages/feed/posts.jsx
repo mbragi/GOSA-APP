@@ -209,11 +209,11 @@ function Post({
           </button>
         </footer>
         <div>
-          {openComments && !loading &&
+          {!comment.length && openComments &&
             <div className="text-sm text-slate-500 text-center">Be the first to comment...</div>
           }
 
-          {comment.length > 0 && comment.map((item, idx) => {
+          {openComments && comment.length > 0 && comment.map((item, idx) => {
             return (
               <Comments key={idx} data={item} />
             )
