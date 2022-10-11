@@ -24,7 +24,8 @@ function Post({
   const [data, setData] = useState({})
   const [openComments, setOpenComments] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [numberOfComments, setNumberOfComments] = useState(3)
+  const [numberOfComments, setNumberOfComments] = useState(3);
+  const [reply, setReply] = useState("")
 
   async function deletePost() {
     try {
@@ -38,7 +39,6 @@ function Post({
   async function httpGetComment() {
     const res = await axios.get(`https://rocky-scrubland-70378.herokuapp.com/comment/${post._id}`);
     const data = res?.data?.data
-    // console.log(data)
     setComment(data)
     setLoading(false)
   }
@@ -48,22 +48,26 @@ function Post({
     return findUser ? true : false
   }
 
-  const commentInput = (e) => {
-    const { name, value } = e.target
-    let newComment = {
+
+  async function httpCreateComment(e) {
+    e.preventDefault();
+    if (!reply) return alert("comment can't be empty!");
+    let data = {
       feed_id: post._id,
       user_id: user._id,
       username: user.fullName,
+      comment_body: reply
+    } 
+    try {
+      const res = await axios.post(`https://rocky-scrubland-70378.herokuapp.com/comment`, data);
+      const newComment = [...comment];
+      newComment.push(data);
+      setComment(newComment);
+      setReply("")
+      httpGetComment();
+    } catch (error) {
+      console.log(error.response.data);
     }
-    newComment[name] = value
-    console.log(newComment)
-    setData(newComment)
-  }
-
-  async function httpCreateComment(e) {
-    e.preventDefault()
-    const res = await axios.post(`https://rocky-scrubland-70378.herokuapp.com/comment`, data)
-    console.log(res)
   }
 
   function updatePostLike(userId) {
@@ -81,18 +85,11 @@ function Post({
 
   function viewMoreComment() {
     const total = comment.length;
-
     const diff = total - numberOfComments;
-
     if (diff > numberOfComments) {
       return setNumberOfComments(numberOfComments + 3);
     }
-
     setNumberOfComments(numberOfComments + diff);
-  }
-
-  function commentLimit() {
- 
   }
 
 
@@ -207,13 +204,7 @@ function Post({
             </svg>
             <div className="text-sm text-slate-500">{post?.likes?.length}</div>
           </button>
-          {/* Share button */}
-          {/* <button className="flex items-center text-slate-400 hover:text-indigo-500">
-      <svg className="w-4 h-4 shrink-0 fill-current mr-1.5" viewBox="0 0 16 16">
-       <path d="M13 7h2v6a1 1 0 0 1-1 1H4v2l-4-3 4-3v2h9V7ZM3 9H1V3a1 1 0 0 1 1-1h10V0l4 3-4 3V4H3v5Z" />
-      </svg>
-      <div className="text-sm text-slate-500">44</div>
-     </button> */}
+
           {/* Replies button */}
           <button onClick={(e) => {
             setOpenComments(!openComments),
@@ -256,7 +247,8 @@ function Post({
                 className="form-input w-full bg-slate-100 border-transparent focus:bg-white focus:border-slate-300 placeholder-slate-500"
                 type="input"
                 name='comment_body'
-                onChange={commentInput}
+                value={reply}
+                onChange={e => setReply(e.target.value)}
                 placeholder="Write a comment…"
                 autoComplete='off'
               />
