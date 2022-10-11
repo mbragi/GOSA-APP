@@ -26,7 +26,7 @@ function FeedRightContent() {
     getUsers();
   }, [users.length]);
 
-  console.log(filteredUsers)
+  // console.log(filteredUsers)
   return (
     <div className="w-full hidden xl:block xl:w-72 relative">
       <div className="md:py-2 " >
@@ -112,8 +112,8 @@ function FeedRightContent() {
               <ul className="space-y-3">
                 {
                   filteredUsers.map((item, index) => (
-                    <li>
-                      {console.log(item)}
+                    <li key={index}>
+                      {/* {console.log(item)} */}
                       <div className="flex items-center justify-between">
                         <div className="grow flex items-center">
                           <div className="relative mr-3">
@@ -178,12 +178,12 @@ function FeedRightContent() {
               </ul>
               <div className="mt-4">
                 <button onClick={() => {
-                  if(numberOfMembers === 5) {
+                  if (numberOfMembers === 5) {
                     setNumberOfMembers(filteredUsers.length);
                     return;
-                  } 
+                  }
                   setNumberOfMembers(5);
-                  }} className="btn-sm w-full bg-white border-slate-200 hover:border-slate-300 text-indigo-500 shadow-none">{numberOfMembers === 5 ? "View All" : "Collapse"}</button>
+                }} className="btn-sm w-full bg-white border-slate-200 hover:border-slate-300 text-indigo-500 shadow-none">{numberOfMembers === 5 ? "View All" : "Collapse"}</button>
               </div>
             </div>
 

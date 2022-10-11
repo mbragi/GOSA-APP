@@ -19,14 +19,9 @@ import { EffectCoverflow, Pagination } from "swiper";
 function Gallery() {
   const [users, setUsers] = useState([]);
   const [search, setSearch] = useState('');
-
-
-const searcher = (e) => { 
-setSearch(e.target.value);
-}
-  
-
-
+  const searcher = (e) => {
+    setSearch(e.target.value);
+  }
   const getUsers = async () => {
     const response = await fetch('https://unitygate.herokuapp.com/');
     const users = await response.json();
@@ -39,10 +34,10 @@ setSearch(e.target.value);
 
 
   const searching = users.filter(each => (
-    each.year === '2013' && each.name.toLowerCase().includes(search.toLowerCase()) 
+    each.year === '2013' && each.name.toLowerCase().includes(search.toLowerCase())
   ))
 
-  console.table(searching)
+  // console.table(searching)
 
   const people = searching.map(person => {
     const { id, name, year, house, occupation, gender, mobile, email, social_media } = person
@@ -61,44 +56,44 @@ setSearch(e.target.value);
 
   return (
     <>
-      <section className="text-gray-600 body-font flex-wrap w-screen " style={{ 
-    }}>
+      <section className="text-gray-600 body-font flex-wrap w-screen " style={{
+      }}>
         <Navigation />
-      <div className='flex justify-center'> 
+        <div className='flex justify-center'>
           <input className="form-input focus:border-slate-300" onChange={searcher} type="search" placeholder="Search…" />
-      </div>
-      <div className='flex justify-center ' style={{ }}>
-        <div className='' style={{ width: '100%' }}>
-
-        <Swiper
-        effect={"coverflow"}
-        grabCursor={true}
-        centeredSlides={true}
-        slidesPerView={"auto"}
-        coverflowEffect={{
-          rotate: 50,
-          stretch: 0,
-          depth: 100,
-          modifier: 1,
-          slideShadows: true,
-        }}
-        pagination={false}
-        modules={[EffectCoverflow, Pagination]}
-        className="mySwiper"
-      >
-
-        {
-          searching.map(item => (
-            <SwiperSlide key={item.id}>
-              <h1>{item.name}</h1>
-              <div className='blob'/>
-            </SwiperSlide>
-          ))
-        }
-       
-      </Swiper>
         </div>
-      </div>
+        <div className='flex justify-center ' style={{}}>
+          <div className='' style={{ width: '100%' }}>
+
+            <Swiper
+              effect={"coverflow"}
+              grabCursor={true}
+              centeredSlides={true}
+              slidesPerView={"auto"}
+              coverflowEffect={{
+                rotate: 50,
+                stretch: 0,
+                depth: 100,
+                modifier: 1,
+                slideShadows: true,
+              }}
+              pagination={false}
+              modules={[EffectCoverflow, Pagination]}
+              className="mySwiper"
+            >
+
+              {
+                searching.map(item => (
+                  <SwiperSlide key={item.id}>
+                    <h1>{item.name}</h1>
+                    <div className='blob' />
+                  </SwiperSlide>
+                ))
+              }
+
+            </Swiper>
+          </div>
+        </div>
       </section>
     </>
   );

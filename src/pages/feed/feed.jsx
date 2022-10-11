@@ -32,27 +32,6 @@ function Feed(props) {
     setLoading(true);
     httpGetFeed();
     setLoading(false);
-    // console.log('Getting Feeds...')
-    // try {
-
-    //   const response = await axios.get(`https://rocky-scrubland-70378.herokuapp.com/feeds`);
-    //   // console.log(response.data.allFeeds);
-    //   setFeeds(response.data.allFeeds)
-    // } catch (error) {
-    //   console.log(error?.message);
-    // }
-    // console.log("Finished getting feeds...")
-  }
-
-
-
-
-
-
-  const modalText = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setFeedbackModalOpen(true)
   }
   const modalMedia = (e) => {
     e.preventDefault();
@@ -75,6 +54,7 @@ function Feed(props) {
     const url = await uploadFile(e.target.files[0], setCounter);
     const newData = { ...data }
     newData[name] = url;
+    console.log(newData)
     setData(newData);
     setCounter(0);
   }
@@ -99,9 +79,6 @@ function Feed(props) {
     setModalOpen(false);
     setFeedbackModalOpen(false);
   }
-
-
-
   useEffect(() => {
     fetchPost();
   }, [feed.length])
@@ -215,10 +192,10 @@ function Feed(props) {
                       </form >
 
                       {/* textDescription */}
-                      <form onSubmit={httpPostFeed} className="m-1.5">
+                      {/* <form onSubmit={httpPostFeed} className="m-1.5">
                         <ModalBasic id="feedback-modal" modalOpen={feedbackModalOpen} setModalOpen={setFeedbackModalOpen} title="Create Post">
                           {/* Modal content */}
-                          <div className="px-5 py-4">
+                      {/* <div className="px-5 py-4">
                             <div className="space-y-3">
                               <div>
                                 <label className="block text-sm font-medium mb-1" htmlFor="name">Heading <span className="text-rose-500">*</span></label>
@@ -229,17 +206,17 @@ function Feed(props) {
                                 <textarea name='textDescription' className="form-textarea w-full px-2 py-1" onChange={createPost} rows='10' required></textarea>
                               </div>
                             </div>
-                          </div>
-                          {/* Modal footer */}
-                          <div className="px-5 py-4 border-t border-slate-200">
+                          </div> */}
+                      {/* Modal footer */}
+                      {/* <div className="px-5 py-4 border-t border-slate-200">
                             <div className="flex flex-wrap justify-end space-x-2">
                               <button className="btn-sm border-slate-200 hover:border-slate-300 text-slate-600" onClick={(e) => { e.stopPropagation(); setFeedbackModalOpen(false); }}>Cancel</button>
                               <button className="btn-sm bg-indigo-500 hover:bg-indigo-600 text-white" type='submit'>Send</button>
                             </div>
-                          </div>
-                        </ModalBasic>
-                        {/* End */}
-                      </form >
+                          </div> */}
+                      {/* </ModalBasic> */}
+                      {/* End */}
+                      {/* </form > */}
 
                       {/* Post Block */}
                       <form className="bg-white shadow-md rounded border border-slate-200 p-5">

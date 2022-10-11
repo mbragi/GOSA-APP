@@ -52,5 +52,5 @@ export const uploadFile = async (imageData, setFunc) => {
       console.log(res.data.secure_url);
       return res.data.secure_url;
     })
-    .catch(console.log);
+    .catch(console.log(error.message));
 };
