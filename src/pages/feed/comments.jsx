@@ -23,9 +23,9 @@ function Comments({ data }) {
                 {data?.createdAt?.split('T')[1].split('.')[0]}
               </div>
               <div className="text-sm">
-                <a className="font-medium text-indigo-500 hover:text-indigo-600 mr-2" href="#0">
+                {/* <a className="font-medium text-indigo-500 hover:text-indigo-600 mr-2" href="#0">
                   @EricaSpriggs
-                </a>{''}
+                </a>{''} */}
                 {data.comment_body}
               </div>
             </div>
