@@ -134,7 +134,6 @@ function Post({
               background: 'black',
               height: '20rem'
             }}>
-
               {
                 post?.videoUrl &&
                 <video
