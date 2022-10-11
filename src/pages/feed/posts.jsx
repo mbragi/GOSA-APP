@@ -24,6 +24,7 @@ function Post({
   const [data, setData] = useState({})
   const [openComments, setOpenComments] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [numberOfComments, setNumberOfComments] = useState(3)
 
   async function deletePost() {
     try {
@@ -76,6 +77,22 @@ function Post({
       newFeed[postIndex].likes = filterLike;
     }
     loadFeed(newFeed);
+  }
+
+  function viewMoreComment() {
+    const total = comment.length;
+
+    const diff = total - numberOfComments;
+
+    if (diff > numberOfComments) {
+      return setNumberOfComments(numberOfComments + 3);
+    }
+
+    setNumberOfComments(numberOfComments + diff);
+  }
+
+  function commentLimit() {
+ 
   }
 
 
@@ -205,7 +222,7 @@ function Post({
             <svg className="w-4 h-4 shrink-0 fill-current mr-1.5" viewBox="0 0 16 16">
               <path d="M8 0C3.6 0 0 3.1 0 7s3.6 7 8 7h.6l5.4 2v-4.4c1.2-1.2 2-2.8 2-4.6 0-3.9-3.6-7-8-7zm4 10.8v2.3L8.9 12H8c-3.3 0-6-2.2-6-5s2.7-5 6-5 6 2.2 6 5c0 2.2-2 3.8-2 3.8z" />
             </svg>
-            <div className="text-sm text-slate-500">view comments</div>
+            <div className="text-sm text-slate-500" onClick={() => setNumberOfComments(3)}>{comment.length} comments</div>
           </button>
         </footer>
         <div>
@@ -217,7 +234,16 @@ function Post({
             return (
               <Comments key={idx} data={item} />
             )
-          }).reverse()
+          }).reverse().slice(0, numberOfComments)
+          }
+          {
+            comment.length > numberOfComments && openComments &&
+            <div className="flex justify-between space-x-2">
+              <div className="text-sm text-slate-500">
+                <span className="font-medium text-slate-600">{numberOfComments}</span> of <span className="font-medium text-slate-600">{comment.length}</span> comments
+              </div>
+              <button onClick={viewMoreComment} className="text-sm  font-medium text-indigo-500 hover:text-indigo-600">View More Comments</button>
+            </div> 
           }
           <form onSubmit={httpCreateComment} className="flex items-center space-x-3 mt-3" >
             <img className="rounded-full shrink-0" src={UserImage02} width="32" height="32" alt="User 02" />
