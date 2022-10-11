@@ -219,9 +219,7 @@ function Post({
             )
           }).reverse()
           }
-          <form onSubmit={httpCreateComment
-            //call clear comment area here
-          } className="flex items-center space-x-3 mt-3" >
+          <form onSubmit={httpCreateComment} className="flex items-center space-x-3 mt-3" >
             <img className="rounded-full shrink-0" src={UserImage02} width="32" height="32" alt="User 02" />
             < div className="grow">
               <label htmlFor="comment-form" className="sr-only">
