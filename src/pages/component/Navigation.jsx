@@ -30,10 +30,10 @@ function Navigation() {
           </ul>
           <div style={{ paddingRight: '5rem' }}>
             <Link to={routes.signin}>
-              <button onClick={() => setSelected('signin')} className={`btn ${selected === 'signin' && "bg-white text-black"} hover:text-black text-white mx-4`}>Sign in</button>
+              <button onClick={() => setSelected('signin')} style={{ backgroundColor: 'rgb(63 98 18)' }} className={`btn ${selected === 'signin' && "bg-white text-black"} hover:text-black text-white mx-4`}>Sign in</button>
             </Link>
             <Link to={routes.signup}>
-              <button onClick={() => setSelected('signup')} className={`btn ${selected === 'signup' && "bg-white text-black"} hover:text-white text-white `} >Sign up</button>
+              <button onClick={() => setSelected('signup')} style={{ backgroundColor: 'rgb(63 98 18)' }} className={`btn ${selected === 'signup' && "bg-white text-black"} hover:text-white text-white `} >Sign up</button>
             </Link>
           </div>
         </div>

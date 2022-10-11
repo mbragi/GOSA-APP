@@ -285,22 +285,16 @@ function Feed(props) {
                           )
                         }).reverse()
                       }
-
                     </div>
-
                   </div>
                 </div>
-
               </div>
-
               {/* Right content */}
               <FeedRightContent />
 
             </div>
-
           </div>
         </main>
-
       </div>
     </div>
   );

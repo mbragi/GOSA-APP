@@ -29,7 +29,7 @@ function FeedRightContent() {
   // console.log(filteredUsers)
   return (
     <div className="w-full hidden xl:block xl:w-72 relative">
-      <div className="md:py-2 " >
+      <div className="md:py-8 " >
         {/* Search form */}
         <div className="lg:sticky lg:top-36 lg:h-[calc(100vh-64px)] lg:overflow-x-hidden lg:overflow-y-auto no-scrollbar">
           {/* Blocks */}

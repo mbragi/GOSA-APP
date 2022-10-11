@@ -79,10 +79,10 @@ function Post({
   }
 
 
-  // useEffect(() => {
-  //   setLoading(true)
-  //   httpGetComment()
-  // }, [])
+  useEffect(() => {
+    setLoading(true)
+    httpGetComment()
+  }, [])
 
   return (
     <>
@@ -198,10 +198,9 @@ function Post({
       <div className="text-sm text-slate-500">44</div>
      </button> */}
           {/* Replies button */}
-          <button onClick={() => {
-            setLoading(true)
-            httpGetComment()
-            setOpenComments(!openComments)
+          <button onClick={(e) => {
+            setOpenComments(!openComments),
+              e.stopPropagation()
           }} className="flex items-center text-slate-400 hover:text-indigo-500">
             <svg className="w-4 h-4 shrink-0 fill-current mr-1.5" viewBox="0 0 16 16">
               <path d="M8 0C3.6 0 0 3.1 0 7s3.6 7 8 7h.6l5.4 2v-4.4c1.2-1.2 2-2.8 2-4.6 0-3.9-3.6-7-8-7zm4 10.8v2.3L8.9 12H8c-3.3 0-6-2.2-6-5s2.7-5 6-5 6 2.2 6 5c0 2.2-2 3.8-2 3.8z" />
@@ -210,13 +209,15 @@ function Post({
           </button>
         </footer>
         <div>
-          {openComments && loading}{loading ? <h1>loading...</h1> :
-            comment.map((item, idx) => {
-              // console.log(item)
-              return (
-                <Comments key={idx} data={item} />
-              )
-            })
+          {openComments && !loading &&
+            <div className="text-sm text-slate-500 text-center">Be the first to comment...</div>
+          }
+
+          {comment.length > 0 && comment.map((item, idx) => {
+            return (
+              <Comments key={idx} data={item} />
+            )
+          }).reverse()
           }
           <form onSubmit={httpCreateComment
             //call clear comment area here
@@ -233,6 +234,7 @@ function Post({
                 name='comment_body'
                 onChange={commentInput}
                 placeholder="Write a comment…"
+                autoComplete='off'
               />
             </div>
           </form>
