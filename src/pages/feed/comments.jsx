@@ -6,7 +6,7 @@ import UserImage02 from '../../images/user-40-02.jpg';
 
 
 
-function Comments({ loadComment, comment: { comment }, comment }) {
+function Comments({ data }) {
 
   return (
     <div className="mt-5 pt-3 border-t border-slate-200">
@@ -18,21 +18,21 @@ function Comments({ loadComment, comment: { comment }, comment }) {
             <div>
               <div className="text-xs text-slate-500">
                 <a className="font-semibold text-slate-800" href="#0">
-                  {comment.username}
-                </a>{comment?.createdAt?.split('T')[0]}
-                · 44min
+                  {data.username}
+                </a>{''}
+                {data?.createdAt?.split('T')[1].split('.')[0]}
               </div>
               <div className="text-sm">
                 <a className="font-medium text-indigo-500 hover:text-indigo-600" href="#0">
                   @EricaSpriggs
-                </a>{comment.comment_body}
-                Reading through and really enjoying "Zero to Sold" by Arvid.
+                </a>{''}
+                {data.comment_body}
               </div>
             </div>
           </div>
         </li>
         {/* Comment */}
-        <li className="p-3 bg-slate-50 rounded">
+        {/* <li className="p-3 bg-slate-50 rounded">
           <div className="flex items-start space-x-3">
             <img className="rounded-full shrink-0" src={CommenterImage05} width="32" height="32" alt="User 05" />
             <div>
@@ -47,7 +47,7 @@ function Comments({ loadComment, comment: { comment }, comment }) {
               </div>
             </div>
           </div>
-        </li>
+        </li> */}
       </ul>
       {/* Comments footer */}
       <div className="flex justify-between space-x-2">
@@ -56,31 +56,16 @@ function Comments({ loadComment, comment: { comment }, comment }) {
         </div>
         <button className="text-sm  font-medium text-indigo-500 hover:text-indigo-600">View More Comments</button>
       </div>
-      {/* Comment form */}
-      {/* <div className="flex items-center space-x-3 mt-3">
-        <img className="rounded-full shrink-0" src={UserImage02} width="32" height="32" alt="User 02" />
-        <div className="grow">
-          <label htmlFor="comment-form" className="sr-only">
-            Write a comment…
-          </label>
-          <input
-            id="comment-form"
-            className="form-input w-full bg-slate-100 border-transparent focus:bg-white focus:border-slate-300 placeholder-slate-500"
-            type="text"
-            placeholder="Write a comment…"
-          />
-        </div>
-      </div> */}
     </div>
   )
 }
-const mapStateToProps = state => ({
-  auth: state.auth,
-  feed: state.feed,
-  comment: state.comment
-})
-const mapDispatchToProps = dispatch => ({
+// const mapStateToProps = state => ({
+//   auth: state.auth,
+//   feed: state.feed,
+//   comment: state.comment
+// })
+// const mapDispatchToProps = dispatch => ({
 
-})
+// })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Comments);
+export default Comments;

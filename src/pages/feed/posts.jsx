@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 // import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -15,15 +15,16 @@ import { data } from 'autoprefixer';
 
 function Post({
   post,
-  fetchPost,
   auth: { user },
   httpLikePost,
-  httpGetComment,
   loadFeed,
-  feed: { feed }
+  feed: { feed },
 }) {
+  const [comment, setComment] = useState([])
+  const [data, setData] = useState({})
   const [openComments, setOpenComments] = useState(false);
-  const [comment, setComment] = useState({})
+  const [loading, setLoading] = useState(false);
+
   async function deletePost() {
     try {
       const response = await axios.delete(`https://rocky-scrubland-70378.herokuapp.com/feed/${post._id}`);
@@ -31,6 +32,14 @@ function Post({
     } catch (error) {
       console.log(error.message);
     }
+  }
+
+  async function httpGetComment() {
+    const res = await axios.get(`https://rocky-scrubland-70378.herokuapp.com/comment/${post._id}`);
+    const data = res?.data?.data
+    // console.log(data)
+    setComment(data)
+    setLoading(false)
   }
 
   function findUser() {
@@ -46,17 +55,14 @@ function Post({
       username: user.fullName,
     }
     newComment[name] = value
-    setComment(newComment)
-    console.log(comment)
+    console.log(newComment)
+    setData(newComment)
   }
 
   async function httpCreateComment(e) {
     e.preventDefault()
-    let data = comment
-    // console.log(data)
     const res = await axios.post(`https://rocky-scrubland-70378.herokuapp.com/comment`, data)
     console.log(res)
-    loadComments()
   }
 
   function updatePostLike(userId) {
@@ -72,6 +78,12 @@ function Post({
     loadFeed(newFeed);
   }
 
+
+  // useEffect(() => {
+  //   setLoading(true)
+  //   httpGetComment()
+  // }, [])
+
   return (
     <>
       {/* Post 1 */}
@@ -80,7 +92,7 @@ function Post({
         <header className="flex justify-between items-start space-x-3 mb-3">
           {/* User */}
           <div className="flex items-start space-x-3">
-            <img className="rounded-full shrink-0" src={UserImage03} width="40" height="40" alt="User 03" />
+            <img className="rounded-full shrink-0" src={UserImage03} width="40" height="40" alnt="User 03" />
             <div>
               <div className="leading-tight">
                 <a className="text-sm  font-semibold text-slate-800" href="#0">
@@ -188,7 +200,8 @@ function Post({
      </button> */}
           {/* Replies button */}
           <button onClick={() => {
-            httpGetComment(post._id)
+            setLoading(true)
+            httpGetComment()
             setOpenComments(!openComments)
           }} className="flex items-center text-slate-400 hover:text-indigo-500">
             <svg className="w-4 h-4 shrink-0 fill-current mr-1.5" viewBox="0 0 16 16">
@@ -198,10 +211,13 @@ function Post({
           </button>
         </footer>
         <div>
-          {openComments &&
-
-            // console.log(item)
-            <Comments />
+          {openComments && loading}{loading ? <h1>loading...</h1> :
+            comment.map((item, idx) => {
+              // console.log(item)
+              return (
+                <Comments key={idx} data={item} />
+              )
+            })
           }
           <form onSubmit={httpCreateComment
             //call clear comment area here
@@ -229,12 +245,11 @@ function Post({
 
 const mapStateToProps = state => ({
   auth: state.auth,
-  feed: state.feed
+  feed: state.feed,
 });
 
 const mapDispatchToProps = dispatch => ({
   httpLikePost: data => dispatch(httpLikePost(data)),
   loadFeed: feed => dispatch(loadFeed(feed)),
-  httpGetComment: postId => dispatch(httpGetComment(postId)),
 })
 export default connect(mapStateToProps, mapDispatchToProps)(Post)

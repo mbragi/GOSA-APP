@@ -20,7 +20,7 @@ function Feed(props) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [feedbackModalOpen, setFeedbackModalOpen] = useState(false)
   const [modalOpen, setModalOpen] = useState(false)
-  const [feeds, setFeeds] = useState([])
+  // const [feeds, setFeeds] = useState([])
   const [loading, setLoading] = useState(false)
   const [data, setData] = useState({})
   const [showHeading, setShowHeading] = useState(false);
