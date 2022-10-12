@@ -14,7 +14,7 @@ import ModalBasic from '../../components/ModalBasic';
 
 
 function Home(props) {
-    const [modalOpen, setModalOpen] = useState(true); posti
+    const [modalOpen, setModalOpen] = useState(true);
     return (
         <>
             <div className='gosa-background'
