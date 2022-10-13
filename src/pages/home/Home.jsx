@@ -14,7 +14,7 @@ import ModalBasic from '../../components/ModalBasic';
 
 
 function Home(props) {
-    const [modalOpen, setModalOpen] = useState(true); posti
+    const [modalOpen, setModalOpen] = useState(true);
     return (
         <>
             <div className='gosa-background'
@@ -29,7 +29,7 @@ function Home(props) {
                 <section className="flex bg-block" >
                     <div className=" box-gosa">
                         <div className="w-1/2" style={{ padding: '3rem' }}>
-                            <h1 style={{ lineHeight: 0.9, color: 'black' }} className="max-w-2xl text-4xl font-extrabold leading-none md:text-5xl xl:text-6xl dark:text-white">Set 2013</h1>
+                            <h1 style={{ lineHeight: 0.9, color: 'black' }} className="max-w-2xl text-4xl font-extrabold leading-none md:text-5xl xl:text-6xl dark:text-white">Unity Gate</h1>
                             {/* <hr style={{ width: '18rem', border: '2px solid #fff', marginBottom: '1rem'}}></hr> */}
                             <p style={{ color: 'black' }} className="max-w-2xl mb-6 font-light text-slate-800 lg:mb-8 md:text-lg lg:text-xl dark:text-slate-400 ">For Light and Truth.</p>
                             <Link to={routes.signin}>
