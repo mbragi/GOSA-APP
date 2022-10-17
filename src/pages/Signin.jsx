@@ -5,6 +5,7 @@ import Navigation from './component/Navigation';
 import routes from '../routes';
 import { httpLoginUser } from '../redux/Auth/auth.actions';
 import Toast from '../components/Toast';
+import './Signin.css'
 
 // const URL2 = import.meta.env.VITE_API_URL
 
@@ -28,12 +29,15 @@ function Signin(props) {
   }
 
   return (
-    <main className='min-h-screen'>
-      <Navigation />
+    <main className='min-h-screen signin-container'>
+      {/* <Navigation /> */}
       {/* Content */}
-      <div className="flex  justify-center items-center p-4">
+      <div className="flex  justify-center items-center p-4 pt-6 md:pt-8 lg:pt-16">
         {/* Header */}
         <div className="max-w-sm mt-10 px-10 m-auto py-10  rounded-xl shadow-md shadow-black " style={{ background: 'white' }}>
+          <Link to={routes.home}>
+            <p className='my-4'>&#x25c0;Home</p>
+          </Link>
           {
             error &&
             <Toast type="error" open={true}>
@@ -63,7 +67,7 @@ function Signin(props) {
                     </svg>
                     <span className="ml-2">Loading</span>
                   </button> :
-                  <button style={{ width: '100%' }} className="btn bg-lime-800 text-white hover:bg-lime-900 text-white type=" type='submit'>Sign In </button>
+                  <button style={{ width: '100%' }} className="btn bg-lime-800 hover:bg-lime-900 text-white type=" type='submit'>Sign In </button>
               }
               <div className="mr-1">
                 <Link className="text-sm underline hover:no-underline" to="/reset-password">Forgot Password?</Link>
