@@ -5,6 +5,7 @@ import routes from '../routes';
 import Navigation from './component/Navigation';
 import Toast from '../components/Toast';
 import { connect } from 'react-redux';
+import './Signup.css';
 
 // const URL = import.meta.env.VITE_GOSA_API
 // const URL = ""
@@ -64,9 +65,11 @@ function Signup(props) {
 
   return (
     <>
-      <Navigation />
-      <div className='py-10 flex justify-center p-4'>
-        <div className=" py-10  px-20  my-auto  rounded-xl shadow-md shadow-black" style={{ background: 'white' }}>
+      <div className='signup-container py-10 flex justify-center p-4'>
+        <div className="px-8 py-10  lg:px-20  my-auto  rounded-xl shadow-md shadow-black" style={{ background: 'white' }}>
+          <Link to={routes.home}>
+            <p className='my-4'>&#x25c0;Home</p>
+          </Link>
           <h1 className="text-2xl text-slate-800 font-bold mb-6">Create your Account ✨</h1>
           {/* Form */}
           <Toast open={openToast} type={type} setOpen={setOpenToast}>
