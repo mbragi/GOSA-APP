@@ -1,0 +1,155 @@
+
+
+
+.gosa-background {
+  /* background-color: #353b33;
+  opacity: 0.8;
+  background-image: radial-gradient(circle at center center, #ffffff, #353b33), repeating-radial-gradient(circle at center center, #ffffff, #ffffff, 10px, transparent 20px, transparent 10px);
+  background-blend-mode: multiply; */
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+}
+
+
+
+
+
+
+/* CSS */
+.button-52 {
+  font-size: 16px;
+  font-weight: 200;
+  letter-spacing: 1px;
+  padding: 13px 20px 13px;
+  outline: 0;
+  border: 1px solid #fff;
+  cursor: pointer;
+  position: relative;
+  background-color: rgba(0, 0, 0, 0);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  color: white;
+}
+
+.button-52:after {
+  content: "";
+  background-color: rgb(63 98 18);
+  /* background-color: #fff; */
+  /* background-color: #fff; */
+  width: 100%;
+  z-index: -1;
+  position: absolute;
+  height: 100%;
+  top: 7px;
+  left: 7px;
+  transition: 0.2s;
+}
+
+.button-52:hover:after {
+  top: 0px;
+  left: 0px;
+}
+
+@media (min-width: 768px) {
+  .button-52 {
+    padding: 13px 50px 13px;
+  }
+}
+
+
+
+.custom-shape-divider-bottom-1661903965 {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  transform: rotate(180deg);
+  z-index: -1;
+}
+
+.custom-shape-divider-bottom-1661903965 svg {
+  position: relative;
+  display: block;
+  width: calc(122% + 1.3px);
+  height: 321px;
+}
+
+.custom-shape-divider-bottom-1661903965 .shape-fill {
+  fill: #FFFFFF;
+}
+
+.box-gosa {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+@media only screen and (max-width: 768px) { 
+  .gosa-background {
+   
+  }
+
+  .box-gosa {
+    flex-wrap: wrap-reverse;
+    justify-content: center;
+  }
+
+  .box-gosa div {
+    width: 100%;
+  }
+
+  .custom-shape-divider-bottom-1661903965 svg {
+    position: relative;
+    display: block;
+    width: calc(122% + 1.3px);
+    height: 121px;
+  }
+}
+
+
+
+
+/* 
+
+
+@media only screen and (max-width: '640px') {
+  .gosa-background {
+
+    background-color: #353b33;
+    opacity: 0.8;
+    background-image: radial-gradient(circle at center center, #ffffff, #353b33), repeating-radial-gradient(circle at center center, #ffffff, #ffffff, 10px, transparent 20px, transparent 10px);
+    background-blend-mode: multiply;
+    
+  } 
+  
+
+
+
+.custom-shape-divider-bottom-1661903965 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  transform: rotate(180deg);
+  z-index: -1;
+}
+
+.custom-shape-divider-bottom-1661903965 svg {
+  position: relative;
+  display: block;
+  width: calc(122% + 1.3px);
+  height: 421px;
+}
+
+.custom-shape-divider-bottom-1661903965 .shape-fill {
+  fill: #FFFFFF;
+}
+} */
